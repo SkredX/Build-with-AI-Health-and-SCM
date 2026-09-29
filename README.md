@@ -1,4 +1,4 @@
-# 🏥 PHC-Connect Enterprise
+# PHC-Connect Enterprise
 ### Federated AI Platform for National-Scale Health Resource & Supply Chain Management across India's Primary Health Centres (PHCs)
 
 [![Built for India](https://img.shields.io/badge/Track-Built%20for%20India-orange.svg)](#-depth--reach-across-india-20)
@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 India's public healthcare backbone—over **30,000 Primary Health Centres (PHCs)** serving 1.4 billion citizens—faces persistent vulnerabilities: uncoordinated supply chains, localized stock-outs of life-saving anti-snake venoms and ORS during seasonal surges, and delayed epidemic notification. 
 
@@ -21,7 +21,7 @@ India's public healthcare backbone—over **30,000 Primary Health Centres (PHCs)
 
 ---
 
-## ⚖️ Evaluation Parameter Mapping (100% Weightage Distribution)
+## Evaluation Parameter Mapping (100% Weightage Distribution)
 
 | Criteria | Weight | How PHC-Connect Solves It |
 |---|:---:|---|
@@ -33,7 +33,7 @@ India's public healthcare backbone—over **30,000 Primary Health Centres (PHCs)
 
 ---
 
-## 🏛️ System Architecture
+## System Architecture
 
 ```mermaid
 flowchart TD
@@ -85,7 +85,7 @@ flowchart TD
 
 ---
 
-## 📁 Repository Directory Structure
+## Repository Directory Structure
 
 ```text
 Build-with-AI-Health-and-SCM/
@@ -173,7 +173,7 @@ Build-with-AI-Health-and-SCM/
 
 ---
 
-## 🔒 Security & API Key Management
+## Security & API Key Management
 
 The Google Gemini API Key is **strictly safeguarded** and never exposed to the client-side browser:
 
@@ -245,7 +245,7 @@ All tests verify:
 
 ---
 
-## 🏆 Submission Package Checklist
+## Submission Package Checklist
 
 - [x] **1. Source Code**: Clean, modular Git repository with hardened `.gitignore`.
 - [x] **2. Google AI Integration**: Gemini 2.0 Flash multimodal triage, handwriting OCR, and time-series forecasting.
