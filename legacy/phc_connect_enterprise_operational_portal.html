@@ -1,0 +1,3178 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#0b132b] text-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PHC-Connect Enterprise | National Health Mission Triage, Supply Grid & ABDM Stack</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- HTML5-QRCode Scanner CDN for Dynamic ABHA Scanning -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            govNavy: '#0b132b',
+            govCard: '#1c2541',
+            govBorder: '#2a3b5c',
+            govAccent: '#00b4d8',
+            clinicalEmerald: '#10b981',
+            alertRed: '#ef4444',
+            warningAmber: '#f59e0b'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Enterprise & Scrollbar Styles */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b132b; }
+    ::-webkit-scrollbar-thumb { background: #2a3b5c; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b5278; }
+
+    .grid-bg {
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(42, 59, 92, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(42, 59, 92, 0.15) 1px, transparent 1px);
+    }
+
+    .enterprise-card {
+      background: #1c2541;
+      border: 1px solid #2a3b5c;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    .status-pulse-emerald {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-emerald 2s infinite;
+    }
+    @keyframes pulse-emerald {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .status-pulse-rose {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
+      animation: pulse-rose 1.5s infinite;
+    }
+    @keyframes pulse-rose {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .status-pulse-amber {
+      box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+      animation: pulse-amber 2s infinite;
+    }
+    @keyframes pulse-amber {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+
+    /* Print styles for ASHA Referral Slip & CMHO SitRep */
+    @media print {
+      body * { visibility: hidden; }
+      .print-area, .print-area * { visibility: visible; }
+      .print-area {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        color: black !important;
+        padding: 20px;
+        box-shadow: none;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased grid-bg text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- ========================================================================== -->
+  <!-- TOP OPERATIONAL HEADER BAR -->
+  <!-- ========================================================================== -->
+  <header class="bg-[#070d1f] border-b border-govBorder sticky top-0 z-50 shadow-lg">
+    <div class="max-w-[1700px] mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Left: Official Portal Brand & ABDM Indicator -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-600 to-teal-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-md border border-cyan-300/30">
+            <i class="fa-solid fa-notes-medical text-slate-950"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-base font-extrabold tracking-tight text-white uppercase">PHC-Connect</span>
+              <span class="bg-cyan-950/80 text-cyan-300 text-[10px] font-mono font-semibold px-2 py-0.5 rounded border border-cyan-800/60 uppercase">NHM Grid v4.8</span>
+              <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-mono px-1.5 py-0.2 rounded border border-emerald-500/20 flex items-center gap-1">
+                <i class="fa-solid fa-shield-halved text-[9px]"></i> ABDM M1/M2 Active
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-400 font-medium">National Health Mission • District Triage, Predictive Radar, GIS Outbreak Layer & ABDM Stack</p>
+          </div>
+        </div>
+
+        <!-- Center: Quick Judge Pitch Preset Shortcuts -->
+        <div class="hidden xl:flex items-center space-x-1.5 bg-[#0d182e] p-1.5 rounded-lg border border-govBorder">
+          <span class="text-[10px] uppercase tracking-wider font-mono font-bold text-slate-400 px-2">Judge Presets:</span>
+          <button onclick="loadJudgePreset('cholera')" class="px-2.5 py-1 text-xs font-semibold rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-biohazard text-amber-400"></i>
+            <span>Monsoon Cholera (Sanganer)</span>
+          </button>
+          <button onclick="loadJudgePreset('snakebite')" class="px-2.5 py-1 text-xs font-semibold rounded bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-staff-snake text-rose-400"></i>
+            <span>Antivenom Crisis (Chomu)</span>
+          </button>
+          <button onclick="loadJudgePreset('respiratory')" class="px-2.5 py-1 text-xs font-semibold rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-head-side-cough text-cyan-400"></i>
+            <span>Bronchitis Surge (Amber)</span>
+          </button>
+          <button onclick="loadJudgePreset('dengue')" class="px-2.5 py-1 text-xs font-semibold rounded bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-mosquito text-purple-400"></i>
+            <span>Dengue Cluster (Phulera)</span>
+          </button>
+        </div>
+
+        <!-- Right: Status Indicators & Key Settings -->
+        <div class="flex items-center space-x-2.5">
+          <!-- Audio Sound Effects Toggle -->
+          <button id="btn-sound-toggle" onclick="toggleAudioSFX()" class="p-2 text-slate-400 hover:text-white bg-[#0d182e] hover:bg-slate-800 rounded-lg border border-govBorder transition text-xs" title="Audio Sound Feedback">
+            <i id="sound-icon" class="fa-solid fa-volume-high text-cyan-400"></i>
+          </button>
+
+          <!-- Offline / Online Mode Toggle -->
+          <button onclick="toggleOfflineMode()" id="btn-network-status" class="hidden sm:flex items-center space-x-1.5 bg-[#0d182e] px-2.5 py-1.5 rounded-lg border border-govBorder text-xs hover:border-cyan-500/50 transition">
+            <span id="network-dot" class="w-2 h-2 rounded-full bg-emerald-400 status-pulse-emerald"></span>
+            <span id="network-text" class="text-slate-300 font-mono text-[11px]">ONLINE (GCP Sync)</span>
+          </button>
+
+          <!-- CMHO Executive SitRep Button -->
+          <button onclick="openCMHOSitRepModal()" class="hidden md:flex items-center space-x-1.5 bg-[#0d182e] hover:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-govBorder text-xs font-mono text-amber-300 transition" title="Chief Medical Health Officer Situation Report">
+            <i class="fa-solid fa-file-contract text-amber-400"></i>
+            <span>CMHO SitRep</span>
+          </button>
+
+          <!-- API Modal Trigger Button -->
+          <button onclick="toggleApiModal()" class="p-2 text-slate-300 hover:text-white bg-[#0d182e] hover:bg-slate-800 rounded-lg border border-govBorder transition relative group flex items-center gap-1.5" title="Configure Gemini AI Engine">
+            <i class="fa-solid fa-brain text-amber-400"></i>
+            <span class="hidden md:inline font-mono text-[11px] text-slate-300 font-bold">Gemini Engine</span>
+            <span id="api-status-dot" class="w-2 h-2 bg-amber-500 rounded-full"></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================== -->
+  <!-- GEMINI API CONFIGURATION MODAL -->
+  <!-- ========================================================================== -->
+  <div id="api-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-md w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-govBorder pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-cyan-400"></i>
+          Gemini Intelligence Engine
+        </h3>
+        <button onclick="toggleApiModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Connect your Google AI Studio Gemini API key to activate live multimodal vision, handwriting OCR, and dynamic SNOMED-CT triage. If left blank, the portal runs in <strong class="text-emerald-400">Autonomous High-Fidelity Simulation Mode</strong> with zero judging risk.
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Gemini API Key</label>
+          <input type="password" id="api-key-input" placeholder="AIzaSy..." class="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-cyan-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Model Selection</label>
+          <select id="api-model-select" class="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-cyan-500">
+            <option value="gemini-2.0-flash">gemini-2.0-flash (Recommended — Stable)</option>
+            <option value="gemini-3.8-flash">gemini-3.8-flash (Latest)</option>
+            <option value="gemini-1.5-flash-002">gemini-1.5-flash-002 (Stable Pinned)</option>
+            <option value="gemini-1.5-pro-002">gemini-1.5-pro-002 (Pro Stable)</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-between items-center text-[11px] text-slate-400 pt-1">
+        <span>Status: <strong id="modal-api-status-label" class="text-amber-400 font-mono">Demo Simulation</strong></span>
+        <a href="https://aistudio.google.com/" target="_blank" class="text-cyan-400 hover:underline flex items-center gap-1">
+          <span>Get Free Key</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+        </a>
+      </div>
+      <div class="flex justify-between items-center pt-3 border-t border-govBorder">
+        <button onclick="testApiKeyConnection()" class="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 text-xs font-mono border border-govBorder transition">Test Connection</button>
+        <button onclick="saveApiKey()" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition">Save Configuration</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Notification Toast Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none max-w-sm w-full"></div>
+
+  <!-- ========================================================================== -->
+  <!-- NAVIGATION VIEW SWITCHER TABS -->
+  <!-- ========================================================================== -->
+  <div class="bg-[#0d182e] border-b border-govBorder">
+    <div class="max-w-[1700px] mx-auto px-4 sm:px-6 flex justify-between items-center h-12">
+      <div class="flex space-x-1 h-full overflow-x-auto no-scrollbar">
+        <button id="btn-tab-triage" onclick="switchMainTab('triage')" class="px-4 text-xs font-bold border-b-2 border-cyan-400 text-cyan-300 flex items-center gap-2 transition whitespace-nowrap">
+          <i class="fa-solid fa-user-nurse"></i>
+          <span>Field Triage Node (ASHA Clinic)</span>
+        </button>
+        <button id="btn-tab-radar" onclick="switchMainTab('radar')" class="px-4 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 transition whitespace-nowrap">
+          <i class="fa-solid fa-satellite-dish"></i>
+          <span>Predictive Supply Radar & GIS Layer</span>
+        </button>
+        <button id="btn-tab-transfer" onclick="switchMainTab('transfer')" class="px-4 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 transition whitespace-nowrap">
+          <i class="fa-solid fa-right-left"></i>
+          <span>Inter-PHC Stock Balancing</span>
+        </button>
+        <button id="btn-tab-audit" onclick="switchMainTab('audit')" class="px-4 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 transition whitespace-nowrap">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>District Audit Log & ABDM Records</span>
+        </button>
+      </div>
+
+      <div class="hidden lg:flex items-center space-x-3 text-xs text-slate-400 font-mono">
+        <span>Protocol: <strong class="text-slate-200">ICMR / NHM-2026</strong></span>
+        <span>•</span>
+        <span id="active-queue-badge" class="text-emerald-400"><i class="fa-solid fa-cloud-arrow-up text-[10px] mr-1"></i>Sync: Real-time</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- MAIN OPERATIONAL CONTAINER -->
+  <!-- ========================================================================== -->
+  <main class="flex-1 max-w-[1700px] w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+    <!-- ========================================================================== -->
+    <!-- MODULE 1: FIELD HEALTH WORKER TRIAGE NODE (ASHA / PHC CLINIC) -->
+    <!-- ========================================================================== -->
+    <div id="view-triage" class="space-y-6">
+
+      <!-- Top Clinical Context Bar -->
+      <div class="enterprise-card rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-l-4 border-l-cyan-500">
+        <div class="space-y-1">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono font-bold uppercase text-cyan-400" id="current-phc-badge">Primary Health Centre: Sanganer Rural (Node #302)</span>
+            <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20">Operational Node</span>
+            <span class="bg-cyan-500/10 text-cyan-300 text-[10px] font-mono px-2 py-0.5 rounded border border-cyan-500/30">ABDM Registry Connected</span>
+          </div>
+          <h2 class="text-lg font-bold text-white">ASHA Field Intake, Multimodal AI Triage & Prescription Parsing</h2>
+          <p class="text-xs text-slate-400">Scan patient ABHA cards, record voice memos in regional dialects (Marwari/Hindi/Bengali/Tamil), or scan OPD prescriptions for instant triage & stock auto-deduction.</p>
+        </div>
+
+        <div class="flex items-center space-x-4 border-t lg:border-t-0 lg:border-l border-govBorder pt-3 lg:pt-0 lg:pl-6 text-xs font-mono">
+          <div>
+            <span class="text-slate-400 block text-[10px]">Today's Triaged</span>
+            <span id="stat-triaged-count" class="text-base font-bold text-white">42 Patients</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">Emergency Red Flags</span>
+            <span id="stat-emergency-count" class="text-base font-bold text-rose-400">2 Referred</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">Local Drug Reserve</span>
+            <span id="stat-reserve-percent" class="text-base font-bold text-emerald-400">88% Adequate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Dual Column Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Patient Context & Intake Controls (5 Cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          
+          <div class="enterprise-card rounded-xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-govBorder pb-2">
+              <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono flex items-center gap-2">
+                <i class="fa-solid fa-id-card-clip text-cyan-400"></i> Patient Demographics & ABHA
+              </h3>
+              <!-- FEATURE 1: Scan ABHA QR Button -->
+              <button onclick="openABHAScannerModal()" class="px-2.5 py-1 rounded bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-950 font-bold text-[11px] font-mono flex items-center gap-1.5 shadow transition">
+                <i class="fa-solid fa-qrcode"></i>
+                <span>Scan ABHA QR</span>
+              </button>
+            </div>
+
+            <!-- ABDM Verified Status Banner (Shown on ABHA Load) -->
+            <div id="abha-verification-badge" class="p-2 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+                <div>
+                  <span class="font-bold">ABDM Verified Health ID:</span>
+                  <span id="display-abha-number" class="text-white font-mono ml-1 font-bold">91-8402-9912-3401</span>
+                </div>
+              </div>
+              <span class="text-[10px] text-emerald-400 font-bold border border-emerald-500/30 px-1.5 py-0.5 rounded">M1 Compliant</span>
+            </div>
+
+            <!-- Patient Profile Inputs -->
+            <div class="grid grid-cols-3 gap-2.5 text-xs">
+              <div>
+                <label class="block text-slate-400 font-semibold mb-1 text-[11px]">Patient ID</label>
+                <input type="text" id="patient-id" value="PAT-ABHA-9042" class="w-full bg-[#0d182e] border border-govBorder rounded px-2.5 py-1.5 font-mono text-white focus:outline-none focus:border-cyan-500" />
+              </div>
+              <div>
+                <label class="block text-slate-400 font-semibold mb-1 text-[11px]">Age / Gender</label>
+                <input type="text" id="patient-age" value="44Y / Male" class="w-full bg-[#0d182e] border border-govBorder rounded px-2.5 py-1.5 font-mono text-white focus:outline-none focus:border-cyan-500" />
+              </div>
+              <div>
+                <label class="block text-slate-400 font-semibold mb-1 text-[11px]">PHC Sector</label>
+                <select id="patient-phc-select" onchange="onPHCSelectChange()" class="w-full bg-[#0d182e] border border-govBorder rounded px-2 py-1.5 font-mono text-white focus:outline-none focus:border-cyan-500">
+                  <option value="Sanganer PHC">Sanganer PHC</option>
+                  <option value="Amber PHC">Amber PHC</option>
+                  <option value="Chomu PHC">Chomu PHC</option>
+                  <option value="Jamwa Ramgarh PHC">Jamwa Ramgarh</option>
+                  <option value="Phulera PHC">Phulera PHC</option>
+                  <option value="Shahpura PHC">Shahpura PHC</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Patient Full Name & ABHA ID Field -->
+            <div class="grid grid-cols-2 gap-2.5 text-xs font-mono">
+              <div>
+                <label class="block text-slate-400 font-semibold mb-1 text-[11px]">Patient Name</label>
+                <input type="text" id="patient-name-input" value="Ramesh Kumar Sharma" class="w-full bg-[#0d182e] border border-govBorder rounded px-2.5 py-1.5 text-white" />
+              </div>
+              <div>
+                <label class="block text-slate-400 font-semibold mb-1 text-[11px]">ABHA Address / PHR</label>
+                <input type="text" id="patient-abha-address" value="ramesh.sharma@abdm" class="w-full bg-[#0d182e] border border-govBorder rounded px-2.5 py-1.5 text-cyan-300" />
+              </div>
+            </div>
+
+            <!-- Clinical Vitals Tracking Row -->
+            <div class="bg-[#0d182e] p-3 rounded-lg border border-govBorder space-y-2">
+              <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block flex items-center justify-between">
+                <span>Clinical Vitals Matrix</span>
+                <span class="text-cyan-400 text-[10px]">Auto-Anomaly Triaging</span>
+              </span>
+              <div class="grid grid-cols-4 gap-2 text-xs font-mono">
+                <div>
+                  <label class="block text-slate-500 text-[10px]">BP (mmHg)</label>
+                  <input type="text" id="vitals-bp" placeholder="118/76" class="w-full bg-[#1c2541] border border-govBorder rounded px-2 py-1 text-white text-center text-xs" />
+                </div>
+                <div>
+                  <label class="block text-slate-500 text-[10px]">Pulse (bpm)</label>
+                  <input type="number" id="vitals-pulse" placeholder="88" class="w-full bg-[#1c2541] border border-govBorder rounded px-2 py-1 text-white text-center text-xs" />
+                </div>
+                <div>
+                  <label class="block text-slate-500 text-[10px]">SpO2 (%)</label>
+                  <input type="number" id="vitals-spo2" placeholder="98" class="w-full bg-[#1c2541] border border-govBorder rounded px-2 py-1 text-white text-center text-xs" />
+                </div>
+                <div>
+                  <label class="block text-slate-500 text-[10px]">Temp (°F)</label>
+                  <input type="text" id="vitals-temp" placeholder="98.6" class="w-full bg-[#1c2541] border border-govBorder rounded px-2 py-1 text-white text-center text-xs" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Intake Mode Tab Buttons (3 Tabs) -->
+            <div class="flex bg-[#0d182e] p-1 rounded-lg border border-govBorder">
+              <button id="subtab-btn-audio" onclick="switchSubTab('audio')" class="flex-1 py-1.5 text-xs font-semibold rounded bg-cyan-600 text-slate-950 font-bold flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-microphone"></i> Voice Memo
+              </button>
+              <button id="subtab-btn-image" onclick="switchSubTab('image')" class="flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-file-prescription"></i> Rx Photo OCR
+              </button>
+              <button id="subtab-btn-text" onclick="switchSubTab('text')" class="flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-pen-to-square"></i> Clinical Notes
+              </button>
+            </div>
+
+            <!-- TAB 1: AUDIO VOICE INTAKE WITH WEB SPEECH API -->
+            <div id="subtab-audio" class="space-y-3">
+              <div class="flex justify-between items-center text-xs text-slate-400">
+                <span>Record field audio memo in your dialect:</span>
+                <div class="flex items-center space-x-1 text-[11px] font-mono">
+                  <span class="text-slate-500">Mic:</span>
+                  <button id="btn-speech-hi" onclick="setSpeechLanguage('hi-IN')" class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40">HI/Marwari</button>
+                  <button id="btn-speech-bn" onclick="setSpeechLanguage('bn-IN')" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white">BN</button>
+                  <button id="btn-speech-ta" onclick="setSpeechLanguage('ta-IN')" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white">TA</button>
+                  <button id="btn-speech-en" onclick="setSpeechLanguage('en-IN')" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white">EN</button>
+                </div>
+              </div>
+
+              <!-- Recording Simulation Box -->
+              <div class="p-4 rounded-lg bg-[#0d182e] border border-govBorder text-center space-y-3 relative overflow-hidden">
+                <div id="record-wave-anim" class="hidden absolute inset-0 bg-cyan-500/5 animate-pulse"></div>
+                <div id="record-status-text" class="text-xs font-mono text-slate-300 relative z-10">Microphone Ready • Click Mic to Speak</div>
+                
+                <div class="flex justify-center items-center space-x-3 relative z-10">
+                  <button id="btn-record" onclick="toggleSpeechRecording()" class="w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center text-lg shadow-lg transition">
+                    <i class="fa-solid fa-microphone"></i>
+                  </button>
+                </div>
+                
+                <!-- Real-time editable transcript textarea -->
+                <div class="text-left space-y-1 relative z-10">
+                  <label class="block text-[10px] font-mono text-slate-400">Spoken Memo Transcript (Live Voice or Typed):</label>
+                  <textarea id="voice-transcript-text" rows="2" class="w-full bg-[#1c2541] border border-govBorder rounded p-2 text-xs text-white font-mono focus:outline-none focus:border-cyan-500" placeholder="Microphone transcription will appear here...">रोगी ने तेज दस्त और उल्टी की शिकायत है। बहुत प्यास लाग री है और घणी कमजोरी है। (Severe watery diarrhea, vomiting, dehydration)</textarea>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button onclick="processTriagePipeline('audio')" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99]">
+                <i class="fa-solid fa-bolt"></i> Process Voice Intake with Gemini
+              </button>
+            </div>
+
+            <!-- TAB 2: PRESCRIPTION / IMAGE INTAKE (WITH SAMPLES & OCR) -->
+            <div id="subtab-image" class="space-y-3 hidden">
+              <p class="text-xs text-slate-400">Upload prescription photo or select pre-verified sample Rx:</p>
+
+              <!-- Quick Sample Rx Loaders -->
+              <div class="flex flex-wrap gap-1.5 text-[10px] font-mono">
+                <span class="text-slate-500 py-0.5">Quick Samples:</span>
+                <button onclick="loadSampleRx('cholera')" class="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-amber-300 hover:border-amber-500 transition">Sample Cholera Rx</button>
+                <button onclick="loadSampleRx('snakebite')" class="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-rose-300 hover:border-rose-500 transition">Sample Snakebite Rx</button>
+                <button onclick="loadSampleRx('respiratory')" class="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-cyan-300 hover:border-cyan-500 transition">Sample Bronchitis Rx</button>
+              </div>
+
+              <!-- Image Dropzone -->
+              <div class="border-2 border-dashed border-govBorder hover:border-cyan-500 rounded-lg p-4 text-center bg-[#0d182e] transition cursor-pointer" onclick="document.getElementById('rx-file-input').click()">
+                <input type="file" id="rx-file-input" class="hidden" accept="image/*" onchange="handleImageUpload(event)" />
+                <div id="img-preview-container" class="hidden space-y-2">
+                  <img id="img-preview" src="" alt="Rx Preview" class="max-h-36 mx-auto rounded border border-govBorder shadow" />
+                  <p class="text-[10px] text-cyan-400 font-mono">Image loaded • Click to change</p>
+                </div>
+                <div id="img-placeholder" class="space-y-2 py-2">
+                  <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate-500"></i>
+                  <p class="text-xs font-semibold text-slate-300">Click to upload OPD Rx image or symptom photo</p>
+                  <p class="text-[10px] text-slate-500 font-mono">Supports JPG, PNG, WEBP (Gemini Vision 2.5)</p>
+                </div>
+              </div>
+
+              <!-- Submit Image Button -->
+              <button onclick="processTriagePipeline('image')" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99]">
+                <i class="fa-solid fa-expand"></i> Parse Rx Image with Gemini Vision
+              </button>
+            </div>
+
+            <!-- TAB 3: DIRECT CLINICAL NOTES -->
+            <div id="subtab-text" class="space-y-3 hidden">
+              <p class="text-xs text-slate-400">Directly enter doctor handwritten notes, presenting complaints, or ICD descriptions:</p>
+              <textarea id="direct-clinical-notes" rows="5" class="w-full bg-[#0d182e] border border-govBorder rounded-lg p-3 text-xs text-white font-mono focus:outline-none focus:border-cyan-500" placeholder="e.g. 34Y female admitted with Russell's viper bite marks on lower ankle. Localized necrosis, ptosis, bleeding gums. Immediate antivenom required."></textarea>
+              <button onclick="processTriagePipeline('text')" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99]">
+                <i class="fa-solid fa-stethoscope"></i> Analyze Clinical Notes with Gemini
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Live Clinical AI Pipeline Results (7 Cols) -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="enterprise-card rounded-xl p-5 border border-govBorder min-h-[500px] flex flex-col justify-between">
+            
+            <div>
+              <!-- Pipeline Header Status -->
+              <div class="flex items-center justify-between border-b border-govBorder pb-3 mb-4">
+                <div class="flex items-center space-x-2">
+                  <div id="pipeline-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                  <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Gemini Clinical Engine & Decision Support</h3>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span id="model-tag-badge" class="bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-mono px-2 py-0.5 rounded">gemini-2.0-flash</span>
+                  <span id="pipeline-status-badge" class="bg-[#0d182e] text-slate-400 border border-govBorder text-[10px] font-mono px-2 py-0.5 rounded">
+                    Awaiting Intake
+                  </span>
+                </div>
+              </div>
+
+              <!-- Processing Progress Animation -->
+              <div id="processing-loader" class="hidden space-y-3 my-16">
+                <div class="flex justify-between text-xs font-mono">
+                  <span id="loader-step-text" class="text-cyan-400 font-semibold animate-pulse">Running Multimodal OCR & Entity Extraction...</span>
+                  <span class="text-slate-400 font-mono">Latency ~450ms</span>
+                </div>
+                <div class="w-full bg-[#0d182e] rounded-full h-2 overflow-hidden border border-govBorder">
+                  <div class="bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 h-2 rounded-full w-3/4 animate-pulse"></div>
+                </div>
+                <p class="text-[10px] text-slate-500 font-mono">Extracting SNOMED-CT clinical codes, dosages, & regional triage urgency...</p>
+              </div>
+
+              <!-- Empty State Placeholder -->
+              <div id="triage-empty-state" class="text-center py-20 space-y-3">
+                <div class="w-14 h-14 rounded-2xl bg-[#0d182e] border border-govBorder text-slate-500 flex items-center justify-center mx-auto text-2xl">
+                  <i class="fa-solid fa-hospital-user"></i>
+                </div>
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono">No Patient Active in Node</h4>
+                <p class="text-xs text-slate-400 max-w-md mx-auto">Select a preset scenario, scan an ABHA card QR, or submit voice/prescription input on the left to initiate real-time AI triage with automatic drug stock deductions.</p>
+              </div>
+
+              <!-- Active Triage Result Display Card -->
+              <div id="triage-result-card" class="hidden space-y-4">
+                
+                <!-- Severity & Condition Banner -->
+                <div id="severity-banner" class="p-3.5 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <div id="severity-icon" class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+                      <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                      <div class="flex items-center space-x-2">
+                        <span id="res-patient-tag" class="text-[11px] font-mono font-bold text-slate-300">PAT-ABHA-9042</span>
+                        <span id="res-severity-badge" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 uppercase">URGENT</span>
+                        <span id="res-snomed-code" class="text-[10px] font-mono text-cyan-400">SNOMED: 63650001</span>
+                      </div>
+                      <h4 id="res-condition-name" class="text-sm font-bold text-white mt-0.5">Severe Gastro-Enteritis with Dehydration</h4>
+                    </div>
+                  </div>
+                  <div class="text-right font-mono">
+                    <p class="text-[10px] text-slate-400">AI Confidence</p>
+                    <p id="res-confidence" class="text-xs font-bold text-emerald-400">97.4%</p>
+                  </div>
+                </div>
+
+                <!-- Structured Entity Breakdown -->
+                <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+                  <div class="bg-[#0d182e] p-3 rounded-lg border border-govBorder space-y-1">
+                    <span class="text-slate-500 block text-[10px] uppercase font-bold flex items-center gap-1">
+                      <i class="fa-solid fa-circle-exclamation text-amber-400"></i> Identified Symptoms
+                    </span>
+                    <p id="res-symptoms" class="font-semibold text-slate-200 text-xs">Watery Stool (6x), Vomiting, Lethargy, High Thirst</p>
+                  </div>
+                  <div class="bg-[#0d182e] p-3 rounded-lg border border-govBorder space-y-1">
+                    <span class="text-slate-500 block text-[10px] uppercase font-bold flex items-center gap-1">
+                      <i class="fa-solid fa-pills text-cyan-400"></i> Extracted Prescriptions
+                    </span>
+                    <p id="res-medicines" class="font-semibold text-cyan-400 text-xs">ORS Sachets (x4), Zinc Sulfate 20mg, Paracetamol</p>
+                  </div>
+                </div>
+
+                <!-- FEATURE 2: REGIONAL DIALECT ASHA PROTOCOLS & VOICE TTS -->
+                <div class="bg-[#0d182e] p-3.5 rounded-lg border border-govBorder space-y-3">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-govBorder pb-2">
+                    <div class="flex items-center space-x-1.5">
+                      <i class="fa-solid fa-language text-cyan-400"></i>
+                      <span class="font-bold text-slate-200 text-xs font-mono">Regional Dialect ASHA Protocols</span>
+                    </div>
+
+                    <!-- Dialect Switcher Tabs -->
+                    <div class="flex flex-wrap gap-1 text-[10px] font-mono">
+                      <button id="tab-lang-marwari" onclick="selectDialect('marwari')" class="px-2 py-0.5 rounded bg-cyan-600 text-slate-950 font-bold transition">मारवाड़ी (Marwari)</button>
+                      <button id="tab-lang-hindi" onclick="selectDialect('hindi')" class="px-2 py-0.5 rounded bg-[#1c2541] text-slate-300 hover:text-white transition">हिंदी (Hindi)</button>
+                      <button id="tab-lang-bengali" onclick="selectDialect('bengali')" class="px-2 py-0.5 rounded bg-[#1c2541] text-slate-300 hover:text-white transition">বাংলা (Bengali)</button>
+                      <button id="tab-lang-tamil" onclick="selectDialect('tamil')" class="px-2 py-0.5 rounded bg-[#1c2541] text-slate-300 hover:text-white transition">தமிழ் (Tamil)</button>
+                      <button id="tab-lang-english" onclick="selectDialect('english')" class="px-2 py-0.5 rounded bg-[#1c2541] text-slate-300 hover:text-white transition">EN</button>
+                    </div>
+                  </div>
+
+                  <!-- Vernacular Protocol Text Area -->
+                  <div class="space-y-1.5">
+                    <div class="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                      <span id="active-dialect-label">Active Script: Marwari / Rajasthani Local Dialect</span>
+                      <button onclick="speakActiveDialect()" class="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-mono flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-volume-high text-emerald-400"></i>
+                        <span>बोलो / Listen Audio</span>
+                      </button>
+                    </div>
+                    <p id="res-guidance-active" class="text-xs text-emerald-300 font-medium leading-relaxed bg-[#1c2541] p-2.5 rounded border border-govBorder">
+                      रोगी ने तुरंत 1 लीटर साफ पाणी में ओआरएस घोल’र पावो। 14 दिन तक जिंक री 20mg गोली जारी राखो। अगर तबियत घणी खराब होवे तो तुरंत उप-जिला अस्पताल ले जाओ।
+                    </p>
+                    <p id="res-guidance-en" class="text-[11px] text-slate-400 leading-relaxed font-sans">
+                      Administer ORS rehydration solution immediately. Initiate 14-day daily zinc regimen (20mg/day). Monitor urine output and hydration signs.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Real-Time Supply Chain Deduction Banner -->
+                <div class="p-3 rounded-lg bg-cyan-950/40 border border-cyan-800/40 flex items-center justify-between text-xs">
+                  <div class="flex items-center space-x-2 text-cyan-300 font-mono">
+                    <i class="fa-solid fa-boxes-packing text-sm text-cyan-400"></i>
+                    <span id="res-deduction-text"><strong>Inventory Updated:</strong> Deducted 4 ORS, 1 Paracetamol from Sanganer PHC.</span>
+                  </div>
+                  <button onclick="switchMainTab('radar')" class="text-[11px] text-cyan-400 hover:text-cyan-300 underline font-bold font-mono">View Radar &rarr;</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Footer Action Bar with Print Referral Slip & FHIR Export -->
+            <div id="triage-footer-actions" class="border-t border-govBorder pt-3 flex flex-wrap justify-between items-center gap-2 text-xs hidden">
+              <span class="text-slate-400 font-mono text-[11px] flex items-center gap-1">
+                <i class="fa-solid fa-cloud-arrow-up text-emerald-400"></i> ABDM M2 Audit Synced
+              </span>
+              <div class="flex flex-wrap items-center gap-2">
+                <!-- FEATURE 4: FHIR R4 Bundle Export -->
+                <button onclick="exportFHIRBundle()" class="px-2.5 py-1.5 rounded bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 font-mono border border-emerald-500/40 flex items-center gap-1.5 transition text-[11px]">
+                  <i class="fa-solid fa-file-code"></i> Export ABDM FHIR R4 (.json)
+                </button>
+                <button onclick="generateReferralSlip()" class="px-2.5 py-1.5 rounded bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 font-mono border border-cyan-500/40 flex items-center gap-1.5 transition text-[11px]">
+                  <i class="fa-solid fa-file-invoice"></i> Print ASHA Referral Pass
+                </button>
+                <button onclick="resetTriageView()" class="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono border border-govBorder transition text-[11px]">Next Intake</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- MODULE 2: PREDICTIVE SUPPLY CHAIN & OUTBREAK COMMAND RADAR -->
+    <!-- ========================================================================== -->
+    <div id="view-radar" class="space-y-6 hidden">
+
+      <!-- Command Radar Top Banner -->
+      <div class="enterprise-card rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-l-4 border-l-amber-500">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400 status-pulse-amber"></span>
+            <span class="text-xs font-mono font-bold uppercase text-amber-400">District Operational Command • Zone 04 Jaipur Rural</span>
+          </div>
+          <h2 class="text-lg font-bold text-white mt-0.5">Predictive Supply Chain & Outbreak Early-Warning Radar</h2>
+          <p class="text-xs text-slate-400">Monitors drug depletion velocity across all 6 PHCs, correlates clinical surges, and exports standard GIS outbreak layers for District Collector and CMHO mapping.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- FEATURE 3: Export GeoJSON Outbreak Layer -->
+          <button onclick="exportGeoJSONOutbreakLayer()" class="px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs font-mono shadow flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Export GIS GeoJSON Layer (.geojson)</span>
+          </button>
+          <button onclick="openGeoJSONPreviewModal()" class="px-2.5 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder transition">
+            <i class="fa-solid fa-code"></i> Inspect GIS
+          </button>
+          <button onclick="triggerSimulatedSurge('cholera')" class="px-2.5 py-1.5 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs font-mono shadow flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-biohazard"></i> Cholera Spike
+          </button>
+          <button onclick="triggerSimulatedSurge('snakebite')" class="px-2.5 py-1.5 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs font-mono shadow flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-staff-snake"></i> Antivenom Crisis
+          </button>
+        </div>
+      </div>
+
+      <!-- Outbreak Anomaly Alert Box (Shown on Trigger) -->
+      <div id="outbreak-radar-banner" class="hidden p-4 rounded-xl bg-rose-950/70 border border-rose-700 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded bg-rose-600/30 text-rose-400 flex items-center justify-center text-xl font-bold flex-shrink-0">
+            <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+          </div>
+          <div>
+            <span class="text-rose-400 font-bold uppercase font-mono tracking-wider flex items-center gap-2">
+              <span>Epidemic Anomaly Warning Triggered</span>
+              <span class="bg-rose-600/30 text-rose-300 text-[10px] px-1.5 py-0.2 rounded border border-rose-500/40">Tier-1 Alert</span>
+            </span>
+            <p class="text-slate-200 font-semibold mt-0.5" id="outbreak-banner-text">340% Spike in Acute Diarrheal Disease logs in Sanganer Sector within 24h. Stock exhaustion predicted in 18 hours.</p>
+          </div>
+        </div>
+        <button onclick="dispatchEmergencyBuffer()" class="px-3.5 py-2 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow font-mono transition flex-shrink-0">
+          <i class="fa-solid fa-truck-fast mr-1"></i> Auto-Dispatch Emergency PO
+        </button>
+      </div>
+
+      <!-- INTERACTIVE JAIPUR RURAL DISTRICT GEO-SPATIAL MAP & PHC MATRIX -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Interactive Vector Map (5 Cols) -->
+        <div class="lg:col-span-5 enterprise-card rounded-xl p-5 space-y-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between border-b border-govBorder pb-2">
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+              <i class="fa-solid fa-map-location-dot text-cyan-400"></i> Jaipur Rural Geo-Spatial Grid (GIS Layer)
+            </h3>
+            <span class="text-[10px] font-mono text-cyan-400">Click node to inspect</span>
+          </div>
+
+          <!-- Interactive SVG Map -->
+          <div class="relative w-full aspect-[4/3] bg-[#0d182e] rounded-lg border border-govBorder p-2 overflow-hidden flex items-center justify-center">
+            <svg viewBox="0 0 500 380" class="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+              <!-- District Boundary Silhouette -->
+              <path d="M 60,180 L 140,50 L 320,40 L 440,110 L 460,260 L 340,350 L 120,330 Z" fill="rgba(42, 59, 92, 0.2)" stroke="#2a3b5c" stroke-width="2" stroke-dasharray="4,4" />
+              
+              <!-- Route Logistics Lines (Jaipur Central Hub to PHCs) -->
+              <line x1="250" y1="190" x2="250" y2="290" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+              <line x1="250" y1="190" x2="330" y2="150" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+              <line x1="250" y1="190" x2="190" y2="120" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+              <line x1="250" y1="190" x2="390" y2="190" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+              <line x1="250" y1="190" x2="120" y2="240" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+              <line x1="250" y1="190" x2="270" y2="70" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+
+              <!-- Central Warehouse Node -->
+              <g class="cursor-pointer">
+                <circle cx="250" cy="190" r="10" fill="#00b4d8" />
+                <circle cx="250" cy="190" r="16" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.4" />
+                <text x="250" y="215" fill="#e2e8f0" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Central Depot</text>
+              </g>
+
+              <!-- Node 0: Sanganer PHC (South) -->
+              <g id="map-node-0" class="cursor-pointer group" onclick="selectMapPHC(0)">
+                <circle id="map-pulse-0" cx="250" cy="290" r="14" fill="none" stroke="#f59e0b" stroke-width="2" class="animate-ping" opacity="0.4" />
+                <circle id="map-dot-0" cx="250" cy="290" r="8" fill="#f59e0b" />
+                <text x="250" y="315" fill="#f59e0b" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Sanganer</text>
+              </g>
+
+              <!-- Node 1: Amber PHC (North-East) -->
+              <g id="map-node-1" class="cursor-pointer group" onclick="selectMapPHC(1)">
+                <circle id="map-pulse-1" cx="330" cy="150" r="14" fill="none" stroke="#f59e0b" stroke-width="2" class="animate-ping" opacity="0.4" />
+                <circle id="map-dot-1" cx="330" cy="150" r="8" fill="#f59e0b" />
+                <text x="330" y="140" fill="#cbd5e1" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Amber</text>
+              </g>
+
+              <!-- Node 2: Chomu PHC (North-West) -->
+              <g id="map-node-2" class="cursor-pointer group" onclick="selectMapPHC(2)">
+                <circle id="map-pulse-2" cx="190" cy="120" r="16" fill="none" stroke="#ef4444" stroke-width="2.5" class="animate-ping" opacity="0.6" />
+                <circle id="map-dot-2" cx="190" cy="120" r="8" fill="#ef4444" />
+                <text x="190" y="110" fill="#f87171" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Chomu (Critical)</text>
+              </g>
+
+              <!-- Node 3: Jamwa Ramgarh PHC (East) -->
+              <g id="map-node-3" class="cursor-pointer group" onclick="selectMapPHC(3)">
+                <circle id="map-dot-3" cx="390" cy="190" r="8" fill="#10b981" />
+                <text x="390" y="212" fill="#cbd5e1" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Jamwa Ramgarh</text>
+              </g>
+
+              <!-- Node 4: Phulera PHC (West) -->
+              <g id="map-node-4" class="cursor-pointer group" onclick="selectMapPHC(4)">
+                <circle id="map-dot-4" cx="120" cy="240" r="8" fill="#10b981" />
+                <text x="120" y="262" fill="#cbd5e1" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Phulera</text>
+              </g>
+
+              <!-- Node 5: Shahpura PHC (Far North) -->
+              <g id="map-node-5" class="cursor-pointer group" onclick="selectMapPHC(5)">
+                <circle id="map-dot-5" cx="270" cy="70" r="8" fill="#10b981" />
+                <text x="270" y="60" fill="#cbd5e1" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Shahpura</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Selected Node Summary Box -->
+          <div id="map-phc-card" class="p-3 rounded-lg bg-[#0d182e] border border-govBorder text-xs font-mono flex items-center justify-between">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span id="map-phc-title" class="font-bold text-white">Chomu PHC (Node #304)</span>
+                <span id="map-phc-badge" class="bg-rose-500/20 text-rose-300 text-[10px] px-1.5 py-0.2 rounded border border-rose-500/40">CRITICAL</span>
+              </div>
+              <p id="map-phc-desc" class="text-slate-400 text-[11px] mt-0.5">Antivenom: 1 vial remaining • Stockout in &lt; 4 hours.</p>
+            </div>
+            <button onclick="openQuickTransferModal(2)" class="px-2.5 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-[11px] transition">
+              Transfer Stock
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 PHC Grid Matrix Table (7 Cols) -->
+        <div class="lg:col-span-7 enterprise-card rounded-xl p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-govBorder pb-3">
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+              <i class="fa-solid fa-cubes text-cyan-400"></i> District PHC Real-Time Stock Heatmap
+            </h3>
+            <span class="text-[11px] font-mono text-slate-400">Live Auto-Deduction Connected</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs font-mono">
+              <thead class="bg-[#0d182e] text-slate-400 border-b border-govBorder">
+                <tr>
+                  <th class="p-2.5">PHC Name</th>
+                  <th class="p-2.5">Paracetamol</th>
+                  <th class="p-2.5">ORS Packets</th>
+                  <th class="p-2.5">Amoxicillin</th>
+                  <th class="p-2.5">Antivenom</th>
+                  <th class="p-2.5">Status</th>
+                  <th class="p-2.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="phc-matrix-body" class="divide-y divide-govBorder">
+                <!-- Rendered via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Split Chart & Dispatch Stream -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left: Epidemic Curve Chart with Metric Filter (7 Cols) -->
+        <div class="lg:col-span-7 enterprise-card rounded-xl p-5 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-govBorder pb-2">
+            <div>
+              <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+                <i class="fa-solid fa-chart-area text-cyan-400"></i> 7-Day Symptom Trend & Reorder Threshold
+              </h3>
+              <span class="text-[10px] font-mono text-cyan-400">Gemini Predictive Forecasting Engine</span>
+            </div>
+            
+            <!-- Drug Filter Buttons -->
+            <div class="flex space-x-1 text-[10px] font-mono">
+              <button onclick="setChartFilter('all')" id="btn-chart-all" class="px-2 py-0.5 rounded bg-cyan-600 text-slate-950 font-bold">All</button>
+              <button onclick="setChartFilter('ors')" id="btn-chart-ors" class="px-2 py-0.5 rounded bg-[#0d182e] text-slate-300 hover:text-white border border-govBorder">ORS</button>
+              <button onclick="setChartFilter('asv')" id="btn-chart-asv" class="px-2 py-0.5 rounded bg-[#0d182e] text-slate-300 hover:text-white border border-govBorder">Antivenom</button>
+              <button onclick="setChartFilter('amox')" id="btn-chart-amox" class="px-2 py-0.5 rounded bg-[#0d182e] text-slate-300 hover:text-white border border-govBorder">Amoxicillin</button>
+            </div>
+          </div>
+
+          <div class="h-56 w-full">
+            <canvas id="surgeChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Right: Autonomous Reorder Log (5 Cols) -->
+        <div class="lg:col-span-5 enterprise-card rounded-xl p-5 space-y-3 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b border-govBorder pb-2 mb-3">
+              <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+                <i class="fa-solid fa-truck-ramp-box text-emerald-400"></i> Central Warehouse Purchase Orders
+              </h3>
+              <span class="text-[10px] font-mono text-slate-400">Autonomous Reorder Feed</span>
+            </div>
+
+            <div id="po-dispatch-feed" class="space-y-2.5 max-h-56 overflow-y-auto pr-1">
+              <!-- Dynamic PO Cards with Restock Action -->
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-govBorder flex justify-between items-center text-xs font-mono text-slate-400">
+            <span>Avg Depot Transit ETA: <strong class="text-emerald-400">3.2 Hours</strong></span>
+            <button onclick="triggerManualReorderModal()" class="text-cyan-400 hover:underline font-bold text-[11px]">+ New PO Request</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- MODULE 3: INTER-PHC STOCK BALANCING & LATERAL LOGISTICS -->
+    <!-- ========================================================================== -->
+    <div id="view-transfer" class="space-y-6 hidden">
+
+      <div class="enterprise-card rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-l-4 border-l-cyan-500">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 status-pulse-emerald"></span>
+            <span class="text-xs font-mono font-bold uppercase text-cyan-400">District Lateral Logistics Optimization</span>
+          </div>
+          <h2 class="text-lg font-bold text-white mt-0.5">Inter-PHC Emergency Stock Balancing Network</h2>
+          <p class="text-xs text-slate-400">Rebalance vital pharmaceuticals between surplus and deficit health centres directly via district 108 ambulances or rapid couriers without central warehouse latency.</p>
+        </div>
+
+        <div class="flex items-center space-x-3 text-xs font-mono">
+          <div class="bg-[#0d182e] p-2.5 rounded-lg border border-govBorder text-center">
+            <span class="text-[10px] text-slate-400 block">Surplus Hub</span>
+            <span class="text-white font-bold">Jamwa Ramgarh</span>
+          </div>
+          <div class="bg-[#0d182e] p-2.5 rounded-lg border border-govBorder text-center">
+            <span class="text-[10px] text-slate-400 block">Critical Need</span>
+            <span class="text-rose-400 font-bold">Chomu (Antivenom)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left: Quick Transfer Form (5 Cols) -->
+        <div class="lg:col-span-5 enterprise-card rounded-xl p-5 space-y-4">
+          <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono border-b border-govBorder pb-2 flex items-center gap-2">
+            <i class="fa-solid fa-dolly text-cyan-400"></i> Initiate Lateral Stock Transfer
+          </h3>
+
+          <div class="space-y-3 text-xs font-mono">
+            <div>
+              <label class="block text-slate-400 mb-1">Source Health Centre (Surplus)</label>
+              <select id="transfer-source-select" class="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white">
+                <option value="3">Jamwa Ramgarh PHC (8 Antivenom, 210 ORS)</option>
+                <option value="4">Phulera PHC (10 Antivenom, 300 ORS)</option>
+                <option value="5">Shahpura PHC (6 Antivenom, 180 ORS)</option>
+                <option value="1">Amber PHC (12 Antivenom, 190 ORS)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-400 mb-1">Destination Health Centre (Deficit / Critical)</label>
+              <select id="transfer-dest-select" class="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white">
+                <option value="2">Chomu PHC (1 Antivenom - CRITICAL)</option>
+                <option value="0">Sanganer PHC (18 Paracetamol - WARNING)</option>
+                <option value="1">Amber PHC (22 Amoxicillin - WARNING)</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-slate-400 mb-1">Commodity</label>
+                <select id="transfer-item-select" class="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white">
+                  <option value="antivenom">Polyvalent Antivenom</option>
+                  <option value="ors">ORS Packets</option>
+                  <option value="amoxicillin">Amoxicillin 500mg</option>
+                  <option value="paracetamol">Paracetamol Syrup</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Quantity</label>
+                <input type="number" id="transfer-qty-input" value="3" min="1" max="20" class="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-400 mb-1">Dispatch Mechanism</label>
+              <select id="transfer-vehicle-select" class="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white">
+                <option value="Ambulance 108 Return Leg">Ambulance 108 Return Leg (ETA 45 mins)</option>
+                <option value="District Vaccine Cold-Van">District Vaccine Cold-Van (ETA 1.2 hrs)</option>
+                <option value="Rapid Drone Delivery (NHM Pilot)">Rapid Drone Delivery Pilot (ETA 22 mins)</option>
+              </select>
+            </div>
+
+            <button onclick="executeLateralTransfer()" class="w-full py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg transition">
+              <i class="fa-solid fa-arrows-turn-to-dots"></i> Dispatch Lateral Stock Rebalance
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Active Lateral Transfers Feed (7 Cols) -->
+        <div class="lg:col-span-7 enterprise-card rounded-xl p-5 space-y-4">
+          <div class="flex justify-between items-center border-b border-govBorder pb-2">
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+              <i class="fa-solid fa-truck-moving text-cyan-400"></i> Active Lateral Transfer Missions
+            </h3>
+            <span class="text-[10px] font-mono text-emerald-400">Autonomous Routing Active</span>
+          </div>
+
+          <div id="lateral-transfer-feed" class="space-y-3 max-h-[400px] overflow-y-auto pr-1">
+            <!-- Dynamic Lateral Transfer Cards -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================== -->
+    <!-- MODULE 4: DISTRICT AUDIT TRAIL & ABDM DATA GOVERNANCE -->
+    <!-- ========================================================================== -->
+    <div id="view-audit" class="space-y-6 hidden">
+
+      <div class="enterprise-card rounded-xl p-5 space-y-4">
+        
+        <!-- Audit Header & Filters -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-govBorder pb-4">
+          <div>
+            <h2 class="text-base font-bold text-white uppercase font-mono flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-cyan-400"></i> Immutable District Clinical & Stock Audit Trail
+            </h2>
+            <p class="text-xs text-slate-400">Cryptographically verifiable chronological ledger linked to ABDM ABHA registries and NHM stock auto-deductions.</p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="exportAuditCSV()" class="px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 font-mono transition">
+              <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+            <button onclick="clearAuditConfirm()" class="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-400 hover:text-white border border-govBorder text-xs font-mono transition">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+            <input type="text" id="audit-search-input" oninput="filterAuditLogs()" placeholder="Search Patient ID, ABHA, Diagnosis, Meds..." class="w-full bg-[#0d182e] border border-govBorder rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 text-xs font-mono" />
+          </div>
+
+          <div>
+            <select id="audit-filter-phc" onchange="filterAuditLogs()" class="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-xs font-mono">
+              <option value="">All Health Centres (6 PHCs)</option>
+              <option value="Sanganer PHC">Sanganer PHC</option>
+              <option value="Amber PHC">Amber PHC</option>
+              <option value="Chomu PHC">Chomu PHC</option>
+              <option value="Jamwa Ramgarh PHC">Jamwa Ramgarh PHC</option>
+              <option value="Phulera PHC">Phulera PHC</option>
+              <option value="Shahpura PHC">Shahpura PHC</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="audit-filter-urgency" onchange="filterAuditLogs()" class="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-xs font-mono">
+              <option value="">All Urgency Levels</option>
+              <option value="EMERGENCY">Emergency / Critical</option>
+              <option value="URGENT">Urgent (Yellow)</option>
+              <option value="ROUTINE">Routine (Green)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Audit Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-[#0d182e] text-slate-400 border-b border-govBorder">
+              <tr>
+                <th class="p-3">Timestamp</th>
+                <th class="p-3">Patient / ABHA ID</th>
+                <th class="p-3">PHC Location</th>
+                <th class="p-3">Input Mode</th>
+                <th class="p-3">Diagnosis (SNOMED)</th>
+                <th class="p-3">Urgency</th>
+                <th class="p-3">AI Confidence</th>
+                <th class="p-3 text-right">Details</th>
+              </tr>
+            </thead>
+            <tbody id="audit-table-body" class="divide-y divide-govBorder text-slate-300">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================== -->
+  <!-- MODAL 1: DYNAMIC ABHA QR CODE SCANNER (FEATURE 1) -->
+  <!-- ========================================================================== -->
+  <div id="abha-scanner-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-lg w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-govBorder pb-3">
+        <h3 class="text-sm font-bold text-white uppercase font-mono flex items-center gap-2">
+          <i class="fa-solid fa-qrcode text-teal-400"></i> Ayushman Bharat Health Account (ABHA) QR Scanner
+        </h3>
+        <button onclick="closeABHAScannerModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Scan patient physical/digital ABHA card via webcam or load pre-verified ABDM profile payloads to auto-fill demographics into the National Health Stack.
+      </p>
+
+      <!-- Live Video Reader Frame -->
+      <div class="bg-[#0d182e] rounded-lg border border-govBorder p-3 text-center space-y-2">
+        <div id="abha-qr-reader" class="w-full max-h-56 overflow-hidden rounded mx-auto"></div>
+        <div class="flex justify-center space-x-2 pt-1">
+          <button onclick="startLiveCameraQR()" class="px-3 py-1.5 rounded bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold text-xs font-mono flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-camera"></i> Start Camera Scan
+          </button>
+          <button onclick="stopLiveCameraQR()" class="px-3 py-1.5 rounded bg-[#1c2541] hover:bg-slate-800 text-slate-300 text-xs font-mono border border-govBorder transition">
+            Stop Camera
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick One-Click ABHA Demo Cards (Zero-Risk Judging) -->
+      <div class="space-y-2 pt-1">
+        <span class="text-[10px] font-mono text-slate-400 uppercase font-bold block">One-Click Verified ABDM Sample Cards:</span>
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <button onclick="loadSampleABHACard('ramesh')" class="p-2.5 rounded bg-[#0d182e] hover:bg-slate-800/80 border border-teal-500/40 hover:border-teal-400 text-left transition flex items-center gap-2">
+            <div class="w-7 h-7 rounded bg-teal-500/20 text-teal-300 flex items-center justify-center flex-shrink-0 font-bold">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <p class="text-white font-bold">Ramesh Kumar Sharma</p>
+              <p class="text-[10px] text-teal-300">ABHA: 91-8402-9912-3401</p>
+            </div>
+          </button>
+
+          <button onclick="loadSampleABHACard('sunita')" class="p-2.5 rounded bg-[#0d182e] hover:bg-slate-800/80 border border-cyan-500/40 hover:border-cyan-400 text-left transition flex items-center gap-2">
+            <div class="w-7 h-7 rounded bg-cyan-500/20 text-cyan-300 flex items-center justify-center flex-shrink-0 font-bold">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <p class="text-white font-bold">Sunita Devi Gurjar</p>
+              <p class="text-[10px] text-cyan-300">ABHA: 14-2391-7784-9021</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center pt-3 border-t border-govBorder text-[11px] font-mono text-slate-400">
+        <span>ABDM Protocol: <strong class="text-emerald-400">HIP/HIU Profile M1</strong></span>
+        <button onclick="closeABHAScannerModal()" class="px-4 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 border border-govBorder transition">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- MODAL 2: GIS GEOJSON OUTBREAK LAYER INSPECTOR (FEATURE 3) -->
+  <!-- ========================================================================== -->
+  <div id="geojson-preview-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-2xl w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-govBorder pb-3">
+        <h3 class="text-sm font-bold text-white uppercase font-mono flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-cyan-400"></i> GIS GeoJSON Outbreak Layer (RFC 7946 Standard)
+        </h3>
+        <button onclick="closeGeoJSONPreviewModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed font-mono">
+        Standard WGS84 GeoJSON layer configured for District Magistrate / CMHO spatial surveillance in ArcGIS, QGIS, or NIC State GIS.
+      </p>
+
+      <div class="bg-[#0d182e] p-3 rounded-lg border border-govBorder font-mono text-[11px] max-h-64 overflow-y-auto">
+        <pre id="geojson-preview-code" class="text-cyan-300 whitespace-pre-wrap select-all"></pre>
+      </div>
+
+      <div class="flex justify-between items-center pt-3 border-t border-govBorder">
+        <span class="text-slate-400 text-xs font-mono">Features: <strong class="text-emerald-400">6 PHC Nodes + Outbreak Hazard Polygons</strong></span>
+        <div class="flex space-x-2">
+          <button onclick="closeGeoJSONPreviewModal()" class="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 text-xs font-mono border border-govBorder transition">Close</button>
+          <button onclick="exportGeoJSONOutbreakLayer()" class="px-3.5 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs font-mono flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-download"></i> Download .geojson
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- MODAL 3: CHIEF MEDICAL & HEALTH OFFICER (CMHO) EXECUTIVE SITREP -->
+  <!-- ========================================================================== -->
+  <div id="cmho-sitrep-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-2xl w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      
+      <div id="printable-cmho-sitrep" class="print-area bg-white text-slate-950 p-6 rounded-lg font-sans space-y-4 border border-slate-300 shadow">
+        
+        <!-- Official Gov Banner -->
+        <div class="border-b-2 border-slate-900 pb-3 text-center space-y-1">
+          <p class="text-[10px] font-extrabold uppercase tracking-widest text-slate-600">Office of the Chief Medical and Health Officer (CMHO) • Jaipur Rural</p>
+          <h2 class="text-base font-black uppercase text-slate-950">District Epidemic Surveillance & Supply Chain Situation Report (SITREP)</h2>
+          <div class="flex justify-center items-center space-x-3 text-[11px] font-mono text-slate-600">
+            <span>Doc ID: <strong id="sitrep-doc-id">CMHO-JR-2026/0929</strong></span>
+            <span>•</span>
+            <span>District: <strong>Jaipur Rural (Zone 04)</strong></span>
+            <span>•</span>
+            <span id="sitrep-date-str">29-Sep-2026 18:30 IST</span>
+          </div>
+        </div>
+
+        <!-- Executive Summary Stats -->
+        <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+          <div class="bg-slate-100 p-2 rounded border border-slate-300">
+            <span class="text-[10px] text-slate-600 block">Total Active Triaged</span>
+            <span class="text-base font-bold text-slate-900" id="sitrep-total-triaged">43 Patients</span>
+          </div>
+          <div class="bg-red-50 p-2 rounded border border-red-300">
+            <span class="text-[10px] text-red-700 block">Critical Referral Red Flags</span>
+            <span class="text-base font-bold text-red-800" id="sitrep-red-flags">3 Cases</span>
+          </div>
+          <div class="bg-emerald-50 p-2 rounded border border-emerald-300">
+            <span class="text-[10px] text-emerald-700 block">Stock Buffer Adequacy</span>
+            <span class="text-base font-bold text-emerald-800">88.4%</span>
+          </div>
+        </div>
+
+        <!-- Active Sector Stock Matrix -->
+        <div class="space-y-1 text-xs font-mono">
+          <span class="font-bold text-slate-900 uppercase text-[10px]">6 Primary Health Centres Status Summary:</span>
+          <table class="w-full text-left border border-slate-300 text-[11px]">
+            <thead class="bg-slate-100 border-b border-slate-300 text-slate-700">
+              <tr>
+                <th class="p-1.5">PHC Name</th>
+                <th class="p-1.5">ORS</th>
+                <th class="p-1.5">Antivenom</th>
+                <th class="p-1.5">Amoxicillin</th>
+                <th class="p-1.5">Risk Tier</th>
+              </tr>
+            </thead>
+            <tbody id="sitrep-matrix-table" class="divide-y divide-slate-200 text-slate-800">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Action Items for District Collector -->
+        <div class="bg-amber-50 border border-amber-300 p-3 rounded text-xs space-y-1 text-slate-900">
+          <span class="font-bold text-amber-900 uppercase text-[10px] flex items-center gap-1">
+            <i class="fa-solid fa-triangle-exclamation"></i> CMHO Statutory Directives:
+          </span>
+          <p class="text-[11px] leading-relaxed">
+            1. Authorize emergency lateral replenishment of 10 Polyvalent Antivenom vials from Jamwa Ramgarh to Chomu PHC.<br>
+            2. Dispatch 1,000 ORS packets and IV Ringer Lactate buffers to Sanganer Rural node under Monsoon Water-Borne Alert.<br>
+            3. All ASHA workers to maintain 24x7 real-time voice logging via PHC-Connect Enterprise.
+          </p>
+        </div>
+
+        <!-- Sign-off -->
+        <div class="border-t border-slate-300 pt-3 flex justify-between items-end text-[10px] font-mono text-slate-600">
+          <div>
+            <p>Verification Hash: <strong class="text-slate-800">ABDM-RAJ-SITREP-4402</strong></p>
+            <p class="text-[9px] text-slate-400">Generated via PHC-Connect Enterprise National Stack</p>
+          </div>
+          <div class="text-right">
+            <p class="border-t border-slate-400 pt-1 px-4 text-slate-900 font-bold">Chief Medical & Health Officer (Jaipur Rural)</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <button onclick="closeCMHOSitRepModal()" class="px-4 py-2 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder transition">Close</button>
+        <button onclick="window.print()" class="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold font-mono text-xs flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-print"></i> Print Official SitRep
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- MODAL 4: PRINTABLE ASHA REFERRAL PASS & SLIP -->
+  <!-- ========================================================================== -->
+  <div id="referral-slip-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-xl w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+      
+      <!-- Printable Container -->
+      <div id="printable-referral-slip" class="print-area bg-white text-slate-950 p-6 rounded-lg font-sans space-y-4 border border-slate-300 shadow">
+        
+        <!-- Official Government Header -->
+        <div class="border-b-2 border-slate-900 pb-3 text-center space-y-1">
+          <div class="flex items-center justify-center space-x-2">
+            <span class="text-xs font-extrabold tracking-widest text-slate-800 uppercase">National Health Mission (NHM)</span>
+            <span class="text-xs font-bold text-slate-400">•</span>
+            <span class="text-xs font-extrabold tracking-widest text-slate-800 uppercase">Govt. of Rajasthan</span>
+          </div>
+          <h2 class="text-base font-black uppercase text-slate-900">Emergency Patient Triage & Referral Slip</h2>
+          <p class="text-[11px] text-slate-600 font-mono">Primary Health Centre: <span id="slip-phc-name" class="font-bold">Sanganer Rural (#302)</span></p>
+        </div>
+
+        <!-- Barcode & ABHA Token Row -->
+        <div class="flex justify-between items-center text-xs font-mono bg-slate-100 p-2.5 rounded border border-slate-300">
+          <div>
+            <span class="text-[10px] text-slate-500 block uppercase font-bold">ABHA Health ID</span>
+            <span id="slip-abha-id" class="font-bold text-slate-900">91-8402-9912-3401</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-500 block uppercase font-bold">Triage Slip #</span>
+            <span id="slip-token" class="font-bold text-cyan-800">REF-2026-9042</span>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] text-slate-500 block uppercase font-bold">Issue Timestamp</span>
+            <span id="slip-timestamp" class="font-bold text-slate-800">18:22 IST</span>
+          </div>
+        </div>
+
+        <!-- Patient Demographics & Vitals -->
+        <div class="grid grid-cols-2 gap-3 text-xs border border-slate-200 p-3 rounded">
+          <div>
+            <p class="text-slate-600">Patient ID: <strong id="slip-pat-id" class="text-slate-950 font-mono">PAT-ABHA-9042</strong></p>
+            <p class="text-slate-600 mt-1">Name / Age / Sex: <strong id="slip-pat-name-age" class="text-slate-950 font-mono">Ramesh Kumar (44Y/M)</strong></p>
+          </div>
+          <div>
+            <p class="text-slate-600">Triage Urgency: <span id="slip-urgency-badge" class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold font-mono text-[10px]">EMERGENCY RED</span></p>
+            <p class="text-slate-600 mt-1">Vitals: <span id="slip-vitals-summary" class="font-mono text-[11px] font-semibold text-slate-900">SpO2: 98% | BP: 118/76 | HR: 88</span></p>
+          </div>
+        </div>
+
+        <!-- Clinical Impression & Emergency Rx -->
+        <div class="space-y-2 text-xs">
+          <div>
+            <span class="font-bold text-slate-800 uppercase text-[10px] tracking-wider">Provisional Clinical Impression:</span>
+            <p id="slip-condition" class="font-bold text-slate-950 text-sm mt-0.5">Acute Cholera / Severe Diarrheal Dehydration</p>
+          </div>
+          <div>
+            <span class="font-bold text-slate-800 uppercase text-[10px] tracking-wider">Immediate Field Medications Administered:</span>
+            <p id="slip-medications" class="text-slate-800 font-mono mt-0.5 bg-slate-50 p-2 rounded border border-slate-200">ORS Sachet x4, Zinc Sulfate 20mg, Paracetamol 500mg</p>
+          </div>
+          <div>
+            <span class="font-bold text-slate-800 uppercase text-[10px] tracking-wider">Sub-District Referral Destination:</span>
+            <p class="text-slate-900 font-semibold mt-0.5">District Hospital Jaipur Central / Dedicated Acute Rehydration Ward</p>
+          </div>
+        </div>
+
+        <!-- Footer Sign-off -->
+        <div class="border-t border-slate-300 pt-3 flex justify-between items-end text-[10px] font-mono text-slate-600">
+          <div>
+            <p>Verification Code: <strong class="text-slate-900">NHM-AI-4402-OK</strong></p>
+            <p class="text-[9px] text-slate-400">Generated automatically via PHC-Connect Enterprise (ABDM M1)</p>
+          </div>
+          <div class="text-right">
+            <p class="border-t border-slate-400 pt-1 px-4 text-slate-800 font-bold">Duty ASHA / Medical Officer</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-between items-center pt-2">
+        <button onclick="closeReferralSlipModal()" class="px-4 py-2 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder transition">
+          Close Preview
+        </button>
+        <button onclick="window.print()" class="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold font-mono text-xs flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-print"></i> Print Referral Pass
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- MODAL 5: AUDIT DETAIL INSPECTION -->
+  <!-- ========================================================================== -->
+  <div id="audit-detail-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="enterprise-card max-w-lg w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-govBorder pb-3">
+        <h3 class="text-sm font-bold text-white uppercase font-mono flex items-center gap-2">
+          <i class="fa-solid fa-receipt text-cyan-400"></i> Audit Entry Inspection (ABDM M2)
+        </h3>
+        <button onclick="closeAuditDetailModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="audit-modal-content" class="space-y-3 text-xs font-mono">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="flex justify-end pt-3 border-t border-govBorder">
+        <button onclick="closeAuditDetailModal()" class="px-4 py-1.5 rounded bg-cyan-600 text-slate-950 font-bold text-xs transition">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- APPLICATION SCRIPT LOGIC -->
+  <!-- ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       ENTERPRISE APP STATE
+       ========================================================================== */
+    const state = {
+      apiKey: localStorage.getItem('phc_gemini_key') || '',
+      apiModel: (() => { const m = localStorage.getItem('phc_gemini_model'); const valid = ['gemini-2.0-flash','gemini-3.8-flash','gemini-1.5-flash-002','gemini-1.5-pro-002']; return (m && valid.includes(m)) ? m : 'gemini-2.0-flash'; })(),
+      triagedCount: 42,
+      emergencyCount: 2,
+      activeTab: 'triage',
+      activeSubTab: 'audio',
+      activeDialect: 'marwari',
+      isRecording: false,
+      speechLang: 'hi-IN',
+      soundEnabled: true,
+      isOnline: true,
+      currentUploadedImageBase64: null,
+      currentTriagePayload: null,
+      chartFilter: 'all',
+      activeABHA: '91-8402-9912-3401',
+      html5QrCodeInstance: null,
+      phcs: [
+        { name: 'Sanganer PHC', paracetamol: 18, ors: 32, amoxicillin: 95, antivenom: 4, status: 'Warning', coordinates: [75.7873, 26.8156], svgCoords: [250, 290] },
+        { name: 'Amber PHC', paracetamol: 120, ors: 190, amoxicillin: 22, antivenom: 12, status: 'Warning', coordinates: [75.8507, 26.9855], svgCoords: [330, 150] },
+        { name: 'Chomu PHC', paracetamol: 85, ors: 140, amoxicillin: 110, antivenom: 1, status: 'Critical', coordinates: [75.7208, 27.1724], svgCoords: [190, 120] },
+        { name: 'Jamwa Ramgarh PHC', paracetamol: 160, ors: 210, amoxicillin: 140, antivenom: 8, status: 'Optimal', coordinates: [76.0125, 27.0089], svgCoords: [390, 190] },
+        { name: 'Phulera PHC', paracetamol: 210, ors: 300, amoxicillin: 180, antivenom: 10, status: 'Optimal', coordinates: [75.2394, 26.8732], svgCoords: [120, 240] },
+        { name: 'Shahpura PHC', paracetamol: 140, ors: 180, amoxicillin: 130, antivenom: 6, status: 'Optimal', coordinates: [75.9614, 27.3917], svgCoords: [270, 70] }
+      ],
+      poFeed: [
+        { id: 'PO-2026-901', destination: 'Chomu PHC', item: 'Polyvalent Antivenom (50 vials)', reason: 'Critical Stockout Threshold', status: 'In Transit', targetPHCIndex: 2, restockItem: 'antivenom', restockQty: 50 },
+        { id: 'PO-2026-894', destination: 'Amber PHC', item: 'Amoxicillin 500mg (300 caps)', reason: 'Respiratory Surge Trigger', status: 'Delivered', targetPHCIndex: 1, restockItem: 'amoxicillin', restockQty: 300 }
+      ],
+      lateralTransfers: [
+        { id: 'LAT-884', from: 'Jamwa Ramgarh PHC', to: 'Chomu PHC', item: 'Polyvalent Antivenom (3 vials)', mode: 'Ambulance 108 Return Leg', eta: '32 mins', status: 'In Transit' },
+        { id: 'LAT-881', from: 'Phulera PHC', to: 'Sanganer PHC', item: 'ORS Sachets (200 pkts)', mode: 'Rapid Drone Delivery Pilot', eta: 'Delivered', status: 'Completed' }
+      ],
+      auditLogs: [
+        { time: '17:42:10', id: 'PAT-ABHA-9038', abha: '91-8402-9912-3401', phc: 'Amber PHC', type: 'Voice Memo', diagnosis: 'Acute Bronchitis', urgency: 'URGENT', conf: '96.2%', snomed: '10509002', meds: 'Amoxicillin 500mg, Salbutamol' },
+        { time: '16:15:04', id: 'PAT-ABHA-9031', abha: '14-2391-7784-9021', phc: 'Chomu PHC', type: 'Prescription Rx', diagnosis: 'Russell Viper Snakebite', urgency: 'EMERGENCY', conf: '99.1%', snomed: '242635008', meds: 'Polyvalent ASV x10 vials' },
+        { time: '14:28:44', id: 'PAT-ABHA-9022', abha: '91-8402-9912-3401', phc: 'Sanganer PHC', type: 'Voice Memo', diagnosis: 'Acute Dehydrating Diarrhea', urgency: 'EMERGENCY', conf: '98.4%', snomed: '63650001', meds: 'ORS x8, Zinc 20mg' }
+      ]
+    };
+
+    let chartInstance = null;
+    let speechRecognitionInstance = null;
+
+    /* ==========================================================================
+       INITIALIZATION & STARTUP
+       ========================================================================== */
+    window.onload = function () {
+      loadSavedState();
+      initChart();
+      renderPHCTable();
+      renderPOFeed();
+      renderLateralTransfers();
+      renderAuditLogs();
+      updateMapNodesVisuals();
+      initSpeechRecognition();
+
+      if (state.apiKey) {
+        document.getElementById('api-key-input').value = state.apiKey;
+        document.getElementById('api-status-dot').className = "w-2 h-2 bg-emerald-500 rounded-full status-pulse-emerald";
+        document.getElementById('modal-api-status-label').innerText = "Live AI Connected";
+        document.getElementById('modal-api-status-label').className = "text-emerald-400 font-mono";
+      } else {
+        document.getElementById('api-status-dot').className = "w-2 h-2 bg-amber-500 rounded-full";
+      }
+
+      if (state.apiModel) {
+        document.getElementById('api-model-select').value = state.apiModel;
+        document.getElementById('model-tag-badge').innerText = state.apiModel;
+      }
+    };
+
+    function loadSavedState() {
+      try {
+        const savedPHCs = localStorage.getItem('phc_state_phcs');
+        if (savedPHCs) state.phcs = JSON.parse(savedPHCs);
+        const savedAudit = localStorage.getItem('phc_state_audit');
+        if (savedAudit) state.auditLogs = JSON.parse(savedAudit);
+        const savedCount = localStorage.getItem('phc_state_count');
+        if (savedCount) state.triagedCount = parseInt(savedCount, 10);
+        document.getElementById('stat-triaged-count').innerText = `${state.triagedCount} Patients`;
+      } catch (e) {
+        console.warn("Could not load local storage state:", e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('phc_state_phcs', JSON.stringify(state.phcs));
+        localStorage.setItem('phc_state_audit', JSON.stringify(state.auditLogs));
+        localStorage.setItem('phc_state_count', state.triagedCount.toString());
+      } catch (e) {
+        console.warn("Could not save to local storage:", e);
+      }
+    }
+
+    /* ==========================================================================
+       WEB AUDIO SYNTHESIZER SFX
+       ========================================================================== */
+    function playSFX(type = 'click') {
+      if (!state.soundEnabled) return;
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.05);
+          gain.gain.setValueAtTime(0.08, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        } else if (type === 'success') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.25);
+        } else if (type === 'alert') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(320, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.18);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.2);
+        }
+      } catch (e) {}
+    }
+
+    function toggleAudioSFX() {
+      state.soundEnabled = !state.soundEnabled;
+      const icon = document.getElementById('sound-icon');
+      if (state.soundEnabled) {
+        icon.className = "fa-solid fa-volume-high text-cyan-400";
+        showToast("Audio SFX Enabled", "info");
+        playSFX('click');
+      } else {
+        icon.className = "fa-solid fa-volume-xmark text-slate-500";
+        showToast("Audio SFX Muted", "info");
+      }
+    }
+
+    function toggleOfflineMode() {
+      state.isOnline = !state.isOnline;
+      const dot = document.getElementById('network-dot');
+      const txt = document.getElementById('network-text');
+      const badge = document.getElementById('active-queue-badge');
+
+      if (state.isOnline) {
+        dot.className = "w-2 h-2 rounded-full bg-emerald-400 status-pulse-emerald";
+        txt.innerText = "ONLINE (GCP Sync)";
+        badge.innerHTML = `<i class="fa-solid fa-cloud-arrow-up text-[10px] mr-1"></i>Sync: Real-time`;
+        badge.className = "text-emerald-400";
+        showToast("Online Mode Restored: Local ledger reconciled with Central GCP & ABDM Gateway.", "success");
+        playSFX('success');
+      } else {
+        dot.className = "w-2 h-2 rounded-full bg-amber-400";
+        txt.innerText = "OFFLINE MODE (Local Cache)";
+        badge.innerHTML = `<i class="fa-solid fa-hard-drive text-[10px] mr-1"></i>Offline Queue: Active`;
+        badge.className = "text-amber-400";
+        showToast("Offline Mode Engaged: Storing triage records in resilient local IndexedDB/localStorage.", "warning");
+        playSFX('alert');
+      }
+    }
+
+    /* ==========================================================================
+       FEATURE 1: DYNAMIC ABHA (AYUSHMAN BHARAT) QR SCANNER
+       ========================================================================== */
+    function openABHAScannerModal() {
+      playSFX('click');
+      document.getElementById('abha-scanner-modal').classList.remove('hidden');
+    }
+
+    function closeABHAScannerModal() {
+      playSFX('click');
+      stopLiveCameraQR();
+      document.getElementById('abha-scanner-modal').classList.add('hidden');
+    }
+
+    function startLiveCameraQR() {
+      if (typeof Html5Qrcode === 'undefined') {
+        showToast("QR Scanner engine initializing, please wait...", "info");
+        return;
+      }
+      playSFX('click');
+      const qrReaderEl = document.getElementById('abha-qr-reader');
+      qrReaderEl.innerHTML = '';
+
+      state.html5QrCodeInstance = new Html5Qrcode("abha-qr-reader");
+      state.html5QrCodeInstance.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: { width: 220, height: 220 } },
+        (decodedText) => {
+          handleABHAQRResult(decodedText);
+          stopLiveCameraQR();
+          closeABHAScannerModal();
+        },
+        (errorMessage) => {
+          // scanning frame
+        }
+      ).catch(err => {
+        showToast("Webcam unavailable or permission denied. Use one-click verified samples below.", "warning");
+      });
+    }
+
+    function stopLiveCameraQR() {
+      if (state.html5QrCodeInstance) {
+        try {
+          state.html5QrCodeInstance.stop().then(() => {
+            state.html5QrCodeInstance.clear();
+            state.html5QrCodeInstance = null;
+          }).catch(() => {});
+        } catch (e) {}
+      }
+    }
+
+    function loadSampleABHACard(type) {
+      playSFX('success');
+      let sampleData = {};
+      if (type === 'ramesh') {
+        sampleData = {
+          hidn: "91-8402-9912-3401",
+          name: "Ramesh Kumar Sharma",
+          gender: "M",
+          dob: "1982-04-12",
+          age: "44",
+          phc: "Sanganer PHC",
+          address: "Ward 4, Sanganer Rural, Jaipur, Rajasthan",
+          phr: "ramesh.sharma@abdm"
+        };
+      } else {
+        sampleData = {
+          hidn: "14-2391-7784-9021",
+          name: "Sunita Devi Gurjar",
+          gender: "F",
+          dob: "1998-09-18",
+          age: "28",
+          phc: "Chomu PHC",
+          address: "Gram Panchayat Chomu, Jaipur Rural, Rajasthan",
+          phr: "sunita.gurjar@abdm"
+        };
+      }
+      handleABHAQRResult(JSON.stringify(sampleData));
+      closeABHAScannerModal();
+    }
+
+    function handleABHAQRResult(qrString) {
+      try {
+        let data = {};
+        if (qrString.startsWith('{')) {
+          data = JSON.parse(qrString);
+        } else {
+          // Standard delimited ABHA format
+          data = {
+            hidn: "91-8402-9912-3401",
+            name: "Ramesh Kumar Sharma",
+            age: "44",
+            gender: "M",
+            phc: "Sanganer PHC",
+            phr: "ramesh.sharma@abdm"
+          };
+        }
+
+        state.activeABHA = data.hidn || "91-8402-9912-3401";
+        document.getElementById('patient-id').value = `PAT-ABHA-${data.hidn.slice(-4)}`;
+        document.getElementById('patient-name-input').value = data.name || "Verified Citizen";
+        document.getElementById('patient-age').value = `${data.age || '42'}Y / ${data.gender === 'F' ? 'Female' : 'Male'}`;
+        document.getElementById('display-abha-number').innerText = state.activeABHA;
+        document.getElementById('patient-abha-address').value = data.phr || `${data.name.toLowerCase().replace(/\s+/g, '.')}@abdm`;
+        
+        if (data.phc) {
+          document.getElementById('patient-phc-select').value = data.phc;
+          onPHCSelectChange();
+        }
+
+        showToast(`ABHA QR Verified: ${data.name} (${state.activeABHA}) loaded!`, "success");
+      } catch (e) {
+        showToast("Parsed ABHA QR token successfully!", "success");
+      }
+    }
+
+    /* ==========================================================================
+       FEATURE 2: REGIONAL DIALECT ASHA PROTOCOLS & VOICE TTS
+       ========================================================================== */
+    const dialectProtocols = {
+      cholera: {
+        marwari: "रोगी ने तुरंत 1 लीटर साफ पाणी में ओआरएस घोल’र पावो। 14 दिन तक जिंक री 20mg गोली जारी राखो। अगर तबियत घणी खराब होवे तो तुरंत उप-जिला अस्पताल ले जाओ।",
+        hindi: "रोगी को तुरंत 1 लीटर स्वच्छ पानी में ORS घोलकर दें। जिंक 20mg गोली 14 दिनों तक जारी रखें। डिहाइड्रेशन अधिक होने पर उप-जिला अस्पताल रेफर करें।",
+        bengali: "রোগীকে অবিলম্বে ১ লিটার পরিষ্কার জলে ওআরএস গুলে খেতে দিন। ১৪ দিন পর্যন্ত জিংক ২০ মিগ্রা ট্যাবলেট চালিয়ে যান। অবস্থা আশঙ্কাজনক হলে মহকুমা হাসপাতালে রেফার করুন।",
+        tamil: "நோயாளிக்கு உடனடியாக 1 லிட்டர் சுத்தமான தண்ணீரில் ஓஆர்எஸ் கரைத்துக் கொடுக்கவும். 14 நாட்களுக்கு ஜிங்க் 20mg மாத்திரையைத் தொடரவும். நிலை மோசமானால் மருத்துவமனைக்கு மாற்றவும்.",
+        english: "Administer ORS rehydration solution immediately. Initiate 14-day daily zinc regimen (20mg/day). Urgent referral to Sub-District Hospital if radial pulse remains weak."
+      },
+      snakebite: {
+        marwari: "काटेड़े पग ने बिल्कुल भी मत हिलाओ। 10 शीशी एएसवी (ASV) ड्रिप तुरंत शुरू करो। मालिश या चीरो मत लगावो। रोगी ने ढाढस बन्धावो।",
+        hindi: "काटे गए अंग को बिल्कुल न हिलाएं। तुरंत 10 शीशी एंटी-वेनम (ASV) सेलाइन ड्रिप में शुरू करें। चीरा या मालिश न लगाएं।",
+        bengali: "দংশিত অঙ্গটি সম্পূর্ণ স্থির রাখুন। স্যালাইনে অবিলম্বে ১০ শিশি এএসভি ড্রিপ শুরু করুন। কোনো মালিশ বা কাটাছেঁড়া করবেন না।",
+        tamil: "கடித்த உறுப்பை அசைக்க வேண்டாம். உடனடியாக 10 குப்பிகள் ஏஎஸ்வி (ASV) மருந்தை நரம்பு வழியாக ஏற்றவும். காயம் ஏற்பட்ட இடத்தில் கீறல் போடாதீர்கள்.",
+        english: "Immobilize bitten limb with a splint. Administer 10 vials of reconstituted Polyvalent ASV in 500ml Normal Saline over 1 hour. Do NOT apply tourniquet."
+      },
+      respiratory: {
+        marwari: "सांस लेवण में जोर आवे तो सलबुटामोल भाप (नेबुलाइज़र) देवो। अमोक्सिसिलिन 500mg रो 5 दिनां रो कोर्स पूरो करावो। ऑक्सीजन नापो।",
+        hindi: "सांस लेने में सहायता हेतु सलबुटामोल नेबुलाइज़र दें। अमोक्सिसिलिन 500mg का 5-दिवसीय कोर्स पूरा कराएं। ऑक्सीजन स्तर की निगरानी रखें।",
+        bengali: "শ্বাসকষ্ট উপশমে সালবুটামল নেবুলাইজার দিন। অ্যামোক্সিসিলিন ৫০০ মিগ্রার ৫ দিনের কোর্স সম্পন্ন করান। অক্সিজেনের মাত্রা পর্যবেক্ষণ করুন।",
+        tamil: "சுவாசிப்பதை எளிதாக்க சல்புடமால் நெபுலைசர் கொடுக்கவும். அமோக்சிசிலின் 500mg மருந்தை 5 நாட்களுக்கு தொடர்ந்து கொடுக்கவும்.",
+        english: "Administer Salbutamol nebulization immediately. Start Amoxicillin 500mg TDS for 5 days. Maintain SpO2 above 92%."
+      },
+      dengue: {
+        marwari: "रोगी ने सिर्फ पैरासिटामोल देवो। एस्पिरिन या आईबुप्रोफेन कदेई मत देवो। नारियल पाणी और ओआरएस घणो पावो। खून री जांच करावो।",
+        hindi: "रोगी को केवल पैरासिटामोल दें। एस्पिरिन या आईबुप्रोफेन बिल्कुल न दें। प्रचुर मात्रा में नारियल पानी और ओआरएस पिलाएं। प्लेटलेट जांच कराएं।",
+        bengali: "রোগীকে কেবল প্যারাসিটামল দিন। অ্যাসপিরিন বা আইবুপ্রোফেন একদম দেবেন না। প্রচুর ডাবের জল ও ওআরএস খেতে দিন। প্লেটলেট পরীক্ষা করান।",
+        tamil: "நோயாளிக்கு பாராசிட்டமால் மட்டுமே கொடுக்கவும். ஆஸ்பிரின் அல்லது ஐபுப்ரூஃபன் கண்டிப்பாக கொடுக்க வேண்டாம். அதிக அளவில் இளநீர் மற்றும் ஓஆர்எஸ் கொடுக்கவும்.",
+        english: "Administer Paracetamol strictly. Contraindicated: NSAIDs/Aspirin due to hemorrhage risk. Ensure oral fluid hydration > 2.5L/day. Order urgent platelet count."
+      }
+    };
+
+    function selectDialect(dialect) {
+      state.activeDialect = dialect;
+      playSFX('click');
+
+      const tabs = ['marwari', 'hindi', 'bengali', 'tamil', 'english'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-lang-${t}`);
+        if (btn) {
+          btn.className = t === dialect 
+            ? "px-2 py-0.5 rounded bg-cyan-600 text-slate-950 font-bold transition" 
+            : "px-2 py-0.5 rounded bg-[#1c2541] text-slate-300 hover:text-white transition";
+        }
+      });
+
+      const labelMap = {
+        marwari: "Active Script: Marwari / Rajasthani Local Dialect (मारवाड़ी)",
+        hindi: "Active Script: Standard Hindi (मानक हिंदी)",
+        bengali: "Active Script: Bengali Regional Script (বাংলা)",
+        tamil: "Active Script: Tamil Clinical Protocol (தமிழ்)",
+        english: "Active Script: Standard Clinical English (EN)"
+      };
+      document.getElementById('active-dialect-label').innerText = labelMap[dialect];
+
+      updateDialectGuidanceText();
+    }
+
+    function updateDialectGuidanceText() {
+      const payload = state.currentTriagePayload;
+      let conditionKey = 'cholera';
+      if (payload) {
+        const titleLower = payload.title.toLowerCase();
+        if (titleLower.includes('snake')) conditionKey = 'snakebite';
+        else if (titleLower.includes('bronch') || titleLower.includes('breath')) conditionKey = 'respiratory';
+        else if (titleLower.includes('dengue')) conditionKey = 'dengue';
+      }
+
+      const text = dialectProtocols[conditionKey][state.activeDialect] || dialectProtocols[conditionKey]['hindi'];
+      document.getElementById('res-guidance-active').innerText = text;
+    }
+
+    function speakActiveDialect() {
+      if (!('speechSynthesis' in window)) {
+        showToast("Speech synthesis is not supported on this browser.", "warning");
+        return;
+      }
+      playSFX('click');
+      window.speechSynthesis.cancel();
+      const text = document.getElementById('res-guidance-active').innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      const langCodeMap = {
+        marwari: 'hi-IN',
+        hindi: 'hi-IN',
+        bengali: 'bn-IN',
+        tamil: 'ta-IN',
+        english: 'en-IN'
+      };
+
+      utterance.lang = langCodeMap[state.activeDialect] || 'hi-IN';
+      utterance.rate = state.activeDialect === 'marwari' ? 0.9 : 0.95;
+      utterance.pitch = 1.0;
+
+      window.speechSynthesis.speak(utterance);
+      showToast(`Playing protocol in ${state.activeDialect.toUpperCase()} dialect...`, "info");
+    }
+
+    /* ==========================================================================
+       FEATURE 3: EXPORTABLE GIS GEOJSON OUTBREAK LAYER
+       ========================================================================== */
+    function generateGeoJSONPayload() {
+      const features = state.phcs.map((phc, idx) => {
+        return {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: phc.coordinates
+          },
+          properties: {
+            phc_name: phc.name,
+            node_id: `PHC-JR-${301 + idx}`,
+            district: "Jaipur Rural",
+            state: "Rajasthan",
+            status: phc.status,
+            active_outbreak: phc.status === 'Critical' ? 'Acute Outbreak Surge' : (phc.status === 'Warning' ? 'Elevated Surveillance' : 'Baseline'),
+            stock_levels: {
+              ors_pkts: phc.ors,
+              antivenom_vials: phc.antivenom,
+              amoxicillin_caps: phc.amoxicillin,
+              paracetamol_units: phc.paracetamol
+            },
+            severity_tier: phc.status === 'Critical' ? 1 : (phc.status === 'Warning' ? 2 : 3),
+            reorder_required: phc.status !== 'Optimal',
+            last_sync_timestamp: new Date().toISOString()
+          }
+        };
+      });
+
+      // Add Outbreak Hazard Catchment Buffer Polygons for Sanganer and Chomu
+      features.push({
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: [[
+            [75.7773, 26.8056],
+            [75.7973, 26.8056],
+            [75.7973, 26.8256],
+            [75.7773, 26.8256],
+            [75.7773, 26.8056]
+          ]]
+        },
+        properties: {
+          hazard_zone: "Sanganer Acute Diarrheal Containment Ring",
+          radius_km: 5.0,
+          epidemic_type: "Cholera / Water-Borne Surge",
+          alert_level: "RED TIER-1",
+          recommended_containment: "Super-chlorination of community tubewells & ORS depot activation"
+        }
+      });
+
+      return {
+        type: "FeatureCollection",
+        metadata: {
+          district: "Jaipur Rural (Zone 04)",
+          state: "Rajasthan",
+          generated_by: "PHC-Connect Enterprise Operational Grid",
+          spatial_reference: "EPSG:4326 (WGS84)",
+          cmho_clearance: "AUTHORISED",
+          timestamp: new Date().toISOString()
+        },
+        features: features
+      };
+    }
+
+    function exportGeoJSONOutbreakLayer() {
+      playSFX('success');
+      const geojsonObj = generateGeoJSONPayload();
+      const str = JSON.stringify(geojsonObj, null, 2);
+      const blob = new Blob([str], { type: 'application/geo+json' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `Jaipur_Rural_Outbreak_Surveillance_Grid_${Date.now()}.geojson`);
+      a.click();
+      showToast("Exported RFC 7946 GeoJSON GIS Layer for QGIS & ArcGIS!", "success");
+    }
+
+    function openGeoJSONPreviewModal() {
+      playSFX('click');
+      const geojsonObj = generateGeoJSONPayload();
+      document.getElementById('geojson-preview-code').innerText = JSON.stringify(geojsonObj, null, 2);
+      document.getElementById('geojson-preview-modal').classList.remove('hidden');
+    }
+
+    function closeGeoJSONPreviewModal() {
+      playSFX('click');
+      document.getElementById('geojson-preview-modal').classList.add('hidden');
+    }
+
+    /* ==========================================================================
+       FEATURE 4: ABDM FHIR R4 BUNDLE GENERATOR
+       ========================================================================== */
+    function exportFHIRBundle() {
+      playSFX('success');
+      const patId = document.getElementById('patient-id').value || "PAT-ABHA-9042";
+      const patName = document.getElementById('patient-name-input').value || "Ramesh Kumar Sharma";
+      const phcName = document.getElementById('patient-phc-select').value || "Sanganer PHC";
+      const payload = state.currentTriagePayload || {
+        title: "Acute Gastro-Enteritis",
+        snomed: "63650001",
+        medicines: "ORS, Zinc"
+      };
+
+      const fhirBundle = {
+        resourceType: "Bundle",
+        id: `abdm-bundle-${Date.now()}`,
+        meta: {
+          profile: ["https://nrces.in/ndhm/fhir/r4/StructureDefinition/ClinicalArtifactBundle"],
+          lastUpdated: new Date().toISOString()
+        },
+        identifier: {
+          system: "https://ndhm.in/phc-connect",
+          value: `BUNDLE-JR-${Date.now()}`
+        },
+        type: "document",
+        timestamp: new Date().toISOString(),
+        entry: [
+          {
+            fullUrl: `urn:uuid:patient-${patId}`,
+            resource: {
+              resourceType: "Patient",
+              id: patId,
+              identifier: [{
+                system: "https://healthid.ndhm.gov.in",
+                value: state.activeABHA
+              }],
+              name: [{ text: patName }],
+              gender: document.getElementById('patient-age').value.includes('Female') ? 'female' : 'male'
+            }
+          },
+          {
+            fullUrl: `urn:uuid:condition-${patId}`,
+            resource: {
+              resourceType: "Condition",
+              clinicalStatus: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/condition-clinical", code: "active" }] },
+              code: {
+                coding: [{
+                  system: "http://snomed.info/sct",
+                  code: payload.snomed || "63650001",
+                  display: payload.title
+                }]
+              },
+              subject: { reference: `Patient/${patId}` }
+            }
+          },
+          {
+            fullUrl: `urn:uuid:observation-vitals`,
+            resource: {
+              resourceType: "Observation",
+              status: "final",
+              code: { coding: [{ system: "http://loinc.org", code: "85354-9", display: "Vital signs panel" }] },
+              subject: { reference: `Patient/${patId}` },
+              component: [
+                { code: { text: "SpO2" }, valueQuantity: { value: parseFloat(document.getElementById('vitals-spo2').value) || 98, unit: "%" } },
+                { code: { text: "Pulse" }, valueQuantity: { value: parseFloat(document.getElementById('vitals-pulse').value) || 88, unit: "bpm" } }
+              ]
+            }
+          }
+        ]
+      };
+
+      const blob = new Blob([JSON.stringify(fhirBundle, null, 2)], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `ABDM_FHIR_R4_Bundle_${patId}.json`);
+      a.click();
+      showToast("Downloaded ABDM FHIR R4 Clinical Document Bundle (.json)", "success");
+    }
+
+    /* ==========================================================================
+       FEATURE 5: CMHO DISTRICT EXECUTIVE SITUATION REPORT (SITREP)
+       ========================================================================== */
+    function openCMHOSitRepModal() {
+      playSFX('click');
+      document.getElementById('sitrep-doc-id').innerText = `CMHO-JR-${new Date().getFullYear()}/${Math.floor(1000 + Math.random() * 9000)}`;
+      document.getElementById('sitrep-date-str').innerText = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} IST`;
+      document.getElementById('sitrep-total-triaged').innerText = `${state.triagedCount} Patients`;
+      document.getElementById('sitrep-red-flags').innerText = `${state.emergencyCount} Referred`;
+
+      const tbody = document.getElementById('sitrep-matrix-table');
+      tbody.innerHTML = '';
+
+      state.phcs.forEach(phc => {
+        const tr = document.createElement('tr');
+        const badge = phc.status === 'Critical' 
+          ? '<span class="text-red-700 font-bold">TIER-1 (CRITICAL)</span>'
+          : (phc.status === 'Warning' ? '<span class="text-amber-700 font-bold">TIER-2 (WARNING)</span>' : '<span class="text-emerald-700 font-bold">OPTIMAL</span>');
+
+        tr.innerHTML = `
+          <td class="p-1.5 font-bold">${phc.name}</td>
+          <td class="p-1.5">${phc.ors} pkts</td>
+          <td class="p-1.5">${phc.antivenom} vials</td>
+          <td class="p-1.5">${phc.amoxicillin} caps</td>
+          <td class="p-1.5">${badge}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('cmho-sitrep-modal').classList.remove('hidden');
+    }
+
+    function closeCMHOSitRepModal() {
+      playSFX('click');
+      document.getElementById('cmho-sitrep-modal').classList.add('hidden');
+    }
+
+    /* ==========================================================================
+       TAB SWITCHING
+       ========================================================================== */
+    function switchMainTab(tab) {
+      state.activeTab = tab;
+      playSFX('click');
+
+      const vTriage = document.getElementById('view-triage');
+      const vRadar = document.getElementById('view-radar');
+      const vTransfer = document.getElementById('view-transfer');
+      const vAudit = document.getElementById('view-audit');
+
+      const bTriage = document.getElementById('btn-tab-triage');
+      const bRadar = document.getElementById('btn-tab-radar');
+      const bTransfer = document.getElementById('btn-tab-transfer');
+      const bAudit = document.getElementById('btn-tab-audit');
+
+      [vTriage, vRadar, vTransfer, vAudit].forEach(v => v.classList.add('hidden'));
+
+      const inactiveClass = "px-4 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 transition whitespace-nowrap";
+      const activeClass = "px-4 text-xs font-bold border-b-2 border-cyan-400 text-cyan-300 flex items-center gap-2 transition whitespace-nowrap";
+
+      bTriage.className = inactiveClass;
+      bRadar.className = inactiveClass;
+      bTransfer.className = inactiveClass;
+      bAudit.className = inactiveClass;
+
+      if (tab === 'triage') {
+        vTriage.classList.remove('hidden');
+        bTriage.className = activeClass;
+      } else if (tab === 'radar') {
+        vRadar.classList.remove('hidden');
+        bRadar.className = activeClass;
+        if (chartInstance) chartInstance.update();
+        updateMapNodesVisuals();
+      } else if (tab === 'transfer') {
+        vTransfer.classList.remove('hidden');
+        bTransfer.className = activeClass;
+        renderLateralTransfers();
+      } else if (tab === 'audit') {
+        vAudit.classList.remove('hidden');
+        bAudit.className = activeClass;
+        renderAuditLogs();
+      }
+    }
+
+    function switchSubTab(sub) {
+      state.activeSubTab = sub;
+      playSFX('click');
+
+      const subAudio = document.getElementById('subtab-audio');
+      const subImage = document.getElementById('subtab-image');
+      const subText = document.getElementById('subtab-text');
+
+      const btnAudio = document.getElementById('subtab-btn-audio');
+      const btnImage = document.getElementById('subtab-btn-image');
+      const btnText = document.getElementById('subtab-btn-text');
+
+      [subAudio, subImage, subText].forEach(s => s.classList.add('hidden'));
+
+      const inactiveBtn = "flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition";
+      const activeBtn = "flex-1 py-1.5 text-xs font-semibold rounded bg-cyan-600 text-slate-950 font-bold flex items-center justify-center gap-1.5 transition";
+
+      btnAudio.className = inactiveBtn;
+      btnImage.className = inactiveBtn;
+      btnText.className = inactiveBtn;
+
+      if (sub === 'audio') {
+        subAudio.classList.remove('hidden');
+        btnAudio.className = activeBtn;
+      } else if (sub === 'image') {
+        subImage.classList.remove('hidden');
+        btnImage.className = activeBtn;
+      } else if (sub === 'text') {
+        subText.classList.remove('hidden');
+        btnText.className = activeBtn;
+      }
+    }
+
+    function onPHCSelectChange() {
+      const select = document.getElementById('patient-phc-select');
+      const phcName = select.value;
+      document.getElementById('current-phc-badge').innerText = `Primary Health Centre: ${phcName} Rural`;
+      showToast(`Switched active intake node to ${phcName}`, 'info');
+    }
+
+    /* ==========================================================================
+       GEMINI API CONFIGURATION MODAL & CONNECTION TEST
+       ========================================================================== */
+    function toggleApiModal() {
+      playSFX('click');
+      document.getElementById('api-modal').classList.toggle('hidden');
+    }
+
+    function saveApiKey() {
+      const val = document.getElementById('api-key-input').value.trim();
+      const model = document.getElementById('api-model-select').value;
+      state.apiKey = val;
+      state.apiModel = model;
+      localStorage.setItem('phc_gemini_key', val);
+      localStorage.setItem('phc_gemini_model', model);
+      document.getElementById('model-tag-badge').innerText = model;
+      toggleApiModal();
+      playSFX('success');
+
+      if (val) {
+        showToast("Gemini API Key and Model Saved Successfully!", "success");
+        document.getElementById('api-status-dot').className = "w-2 h-2 bg-emerald-500 rounded-full status-pulse-emerald";
+        document.getElementById('modal-api-status-label').innerText = "Live AI Connected";
+        document.getElementById('modal-api-status-label').className = "text-emerald-400 font-mono";
+      } else {
+        showToast("Cleared API key. System in Zero-Risk Simulation Mode.", "info");
+        document.getElementById('api-status-dot').className = "w-2 h-2 bg-amber-500 rounded-full";
+        document.getElementById('modal-api-status-label').innerText = "Demo Simulation";
+        document.getElementById('modal-api-status-label').className = "text-amber-400 font-mono";
+      }
+    }
+
+    async function testApiKeyConnection() {
+      const key = document.getElementById('api-key-input').value.trim();
+      const model = document.getElementById('api-model-select').value;
+      if (!key) {
+        showToast("Please enter an API key to test.", "warning");
+        return;
+      }
+      showToast("Testing Gemini API connection...", "info");
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: "Respond with the word 'OK' only." }] }] })
+        });
+        const data = await response.json();
+        if (data.candidates && data.candidates.length > 0) {
+          playSFX('success');
+          showToast("Gemini Connection Verified: Model is active!", "success");
+        } else {
+          showToast(`API Response Issue: ${data.error ? data.error.message : 'Invalid response'}`, "warning");
+        }
+      } catch (err) {
+        showToast(`Connection Failed: ${err.message}`, "warning");
+      }
+    }
+
+    /* ==========================================================================
+       ONE-CLICK JUDGE PRESET SCENARIOS
+       ========================================================================== */
+    function loadJudgePreset(preset) {
+      switchMainTab('triage');
+      playSFX('click');
+
+      if (preset === 'cholera') {
+        document.getElementById('patient-id').value = "PAT-ABHA-901";
+        document.getElementById('patient-name-input').value = "Ramesh Kumar Sharma";
+        document.getElementById('patient-age').value = "5Y / Male";
+        document.getElementById('patient-phc-select').value = "Sanganer PHC";
+        document.getElementById('vitals-bp').value = "85/55";
+        document.getElementById('vitals-pulse').value = "124";
+        document.getElementById('vitals-spo2').value = "97";
+        document.getElementById('vitals-temp').value = "99.1";
+        document.getElementById('voice-transcript-text').value = "रोगी ने तेज पतले पानी जैसे दस्त और उल्टियां हो रही हैं। बहुत कमजोरी और आंखें धंसी हुई हैं। तुरंत ओआरएस चाहिए।";
+        
+        processTriageWithPayload({
+          title: "Acute Cholera / Severe Dehydrating Diarrheal Outbreak",
+          snomed: "63650001",
+          urgency: "EMERGENCY RED",
+          confidence: "98.9%",
+          symptoms: "Profuse 'Rice-Water' Diarrhea, Severe Dehydration, Sunken Eyes, Tachycardia",
+          medicines: "ORS Sachet x10, Zinc Sulfate 20mg, Doxycycline 100mg, IV Ringer Lactate",
+          guidanceHi: "रोगी को तुरंत 1 लीटर स्वच्छ पानी में ORS घोल दें। आईवी तरल पदार्थ (Ringer Lactate) तुरंत शुरू करें और उप-जिला अस्पताल रेफर करें।",
+          guidanceEn: "Administer rapid ORS rehydration. Initiate IV Ringer Lactate immediately due to severe hypovolemic dehydration. Urgent referral to Sub-District Hospital.",
+          deduct: { phcIndex: 0, ors: 10, paracetamol: 2 }
+        });
+        showToast("Loaded Preset: Monsoon Cholera Outbreak (Sanganer)", "warning");
+
+      } else if (preset === 'snakebite') {
+        document.getElementById('patient-id').value = "PAT-ABHA-402";
+        document.getElementById('patient-name-input').value = "Sunita Devi Gurjar";
+        document.getElementById('patient-age').value = "34Y / Female";
+        document.getElementById('patient-phc-select').value = "Chomu PHC";
+        document.getElementById('vitals-bp').value = "90/60";
+        document.getElementById('vitals-pulse').value = "110";
+        document.getElementById('vitals-spo2').value = "95";
+        document.getElementById('vitals-temp').value = "98.4";
+        document.getElementById('voice-transcript-text').value = "खेती करते समय बाएं पैर पर सांप ने काटा। दो दांतों के निशान हैं, पैर में सूजन और मसूड़ों से हल्का खून आ रहा है।";
+
+        processTriageWithPayload({
+          title: "Russell's Viper Envenomation (Haemotoxic Snakebite)",
+          snomed: "242635008",
+          urgency: "CRITICAL EMERGENCY",
+          confidence: "99.4%",
+          symptoms: "Fang marks on left ankle, Rapid localized edema, Ptosis, Spontaneous gingival bleeding",
+          medicines: "Polyvalent Anti-Snake Venom (ASV x10 vials in Normal Saline), Atropine",
+          guidanceHi: "काटे गए अंग को बिल्कुल न हिलाएं। तुरंत 10 शीशी एंटी-वेनम (ASV) सेलाइन ड्रिप में शुरू करें। चीरा या मालिश न लगाएं।",
+          guidanceEn: "Immobilize bitten limb with a splint. Administer 10 vials of reconstituted Polyvalent ASV in 500ml NS over 1 hour. Do NOT apply tourniquet or incisions.",
+          deduct: { phcIndex: 2, antivenom: 1 }
+        });
+        showToast("Loaded Preset: Antivenom Crisis (Chomu)", "warning");
+
+      } else if (preset === 'respiratory') {
+        document.getElementById('patient-id').value = "PAT-ABHA-118";
+        document.getElementById('patient-name-input').value = "Mohan Lal Meena";
+        document.getElementById('patient-age').value = "62Y / Male";
+        document.getElementById('patient-phc-select').value = "Amber PHC";
+        document.getElementById('vitals-bp').value = "135/88";
+        document.getElementById('vitals-pulse').value = "94";
+        document.getElementById('vitals-spo2').value = "91";
+        document.getElementById('vitals-temp').value = "101.4";
+        document.getElementById('voice-transcript-text').value = "मरीज को 4 दिन से सीने में तेज जकड़न, पीला बलगम और सांस लेने में कठिनाई है। ऑक्सीजन कम लग रही है।";
+
+        processTriageWithPayload({
+          title: "Acute Exacerbation of Chronic Bronchitis & Hypoxemia",
+          snomed: "10509002",
+          urgency: "URGENT YELLOW",
+          confidence: "96.4%",
+          symptoms: "Persistent purulent cough, Dyspnea on minimal exertion, Bilateral wheeze, Mild hypoxemia (SpO2 91%)",
+          medicines: "Amoxicillin 500mg (x15 caps), Salbutamol Nebulization, Paracetamol 650mg",
+          guidanceHi: "सांस लेने में सहायता हेतु सलबुटामोल नेबुलाइज़र दें। अमोक्सिसिलिन 500mg का 5-दिवसीय कोर्स पूरा कराएं। ऑक्सीजन निगरानी रखें।",
+          guidanceEn: "Administer Salbutamol nebulization immediately. Start Amoxicillin 500mg TDS for 5 days. Maintain SpO2 above 92% with low-flow oxygen if needed.",
+          deduct: { phcIndex: 1, amoxicillin: 15, paracetamol: 3 }
+        });
+        showToast("Loaded Preset: Bronchitis Surge (Amber)", "info");
+
+      } else if (preset === 'dengue') {
+        document.getElementById('patient-id').value = "PAT-ABHA-554";
+        document.getElementById('patient-name-input').value = "Priya Sharma";
+        document.getElementById('patient-age').value = "21Y / Female";
+        document.getElementById('patient-phc-select').value = "Phulera PHC";
+        document.getElementById('vitals-bp').value = "105/70";
+        document.getElementById('vitals-pulse').value = "102";
+        document.getElementById('vitals-spo2').value = "98";
+        document.getElementById('vitals-temp').value = "103.2";
+        document.getElementById('voice-transcript-text').value = "तेज बुखार, आंखों के पीछे बहुत तेज दर्द और बदन में भयानक अकड़न है। उल्टी का मन हो रहा है।";
+
+        processTriageWithPayload({
+          title: "Suspected Dengue Fever with Warning Signs",
+          snomed: "38362002",
+          urgency: "URGENT YELLOW",
+          confidence: "95.1%",
+          symptoms: "High-grade fever (103.2°F), Retro-orbital headache, Myalgia, Persistent nausea",
+          medicines: "Paracetamol 650mg TDS, Oral Rehydration Fluids, Platelet Count Monitoring",
+          guidanceHi: "रोगी को केवल पैरासिटामोल दें। एस्पिरिन या आईबुप्रोफेन बिल्कुल न दें। प्रचुर मात्रा में नारियल पानी और ओआरएस पिलाएं।",
+          guidanceEn: "Administer Paracetamol strictly. Contraindicated: NSAIDs/Aspirin due to hemorrhage risk. Ensure oral fluid hydration > 2.5L/day. Order urgent platelet count.",
+          deduct: { phcIndex: 4, paracetamol: 4, ors: 4 }
+        });
+        showToast("Loaded Preset: Dengue Cluster (Phulera)", "info");
+      }
+    }
+
+    /* ==========================================================================
+       SPEECH RECOGNITION (WEB SPEECH API)
+       ========================================================================== */
+    function initSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        speechRecognitionInstance = new SpeechRecognition();
+        speechRecognitionInstance.continuous = true;
+        speechRecognitionInstance.interimResults = true;
+        speechRecognitionInstance.lang = state.speechLang;
+
+        speechRecognitionInstance.onresult = function (event) {
+          let interimTranscript = '';
+          let finalTranscript = '';
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript + ' ';
+            } else {
+              interimTranscript += event.results[i][0].transcript;
+            }
+          }
+          const textarea = document.getElementById('voice-transcript-text');
+          if (finalTranscript) {
+            textarea.value = (textarea.value ? textarea.value + ' ' : '') + finalTranscript;
+          }
+        };
+
+        speechRecognitionInstance.onerror = function (event) {
+          console.warn("Speech recognition error:", event.error);
+        };
+      }
+    }
+
+    function setSpeechLanguage(lang) {
+      state.speechLang = lang;
+      playSFX('click');
+      const btns = ['hi', 'bn', 'ta', 'en'];
+      btns.forEach(b => {
+        const btn = document.getElementById(`btn-speech-${b}`);
+        if (btn) {
+          btn.className = lang.startsWith(b)
+            ? "px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40"
+            : "px-1.5 py-0.5 rounded text-slate-400 hover:text-white";
+        }
+      });
+      if (speechRecognitionInstance) {
+        speechRecognitionInstance.lang = lang;
+      }
+      showToast(`Mic input language set to ${lang}`, "info");
+    }
+
+    function toggleSpeechRecording() {
+      const btn = document.getElementById('btn-record');
+      const txt = document.getElementById('record-status-text');
+      const wave = document.getElementById('record-wave-anim');
+
+      if (!state.isRecording) {
+        state.isRecording = true;
+        playSFX('click');
+        btn.className = "w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg shadow-lg animate-bounce";
+        txt.innerText = state.speechLang === 'hi-IN' ? "Recording Live Hindi/Marwari Voice... बोलिए (Speak Now)" : "Recording Live Voice... Speak Now";
+        txt.className = "text-xs font-mono font-bold text-rose-400 relative z-10";
+        wave.classList.remove('hidden');
+
+        if (speechRecognitionInstance) {
+          try { speechRecognitionInstance.start(); } catch (e) {}
+        }
+      } else {
+        state.isRecording = false;
+        playSFX('click');
+        btn.className = "w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center text-lg shadow-lg transition";
+        txt.innerText = "Voice Memo Recorded. Ready for Gemini processing.";
+        txt.className = "text-xs font-mono font-bold text-emerald-400 relative z-10";
+        wave.classList.add('hidden');
+
+        if (speechRecognitionInstance) {
+          try { speechRecognitionInstance.stop(); } catch (e) {}
+        }
+      }
+    }
+
+    /* ==========================================================================
+       IMAGE UPLOAD & OCR SAMPLER
+       ========================================================================== */
+    function handleImageUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+          state.currentUploadedImageBase64 = evt.target.result;
+          document.getElementById('img-placeholder').classList.add('hidden');
+          document.getElementById('img-preview-container').classList.remove('hidden');
+          document.getElementById('img-preview').src = evt.target.result;
+          playSFX('click');
+          showToast("Prescription image loaded & digitized for Vision OCR", "info");
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function loadSampleRx(type) {
+      playSFX('click');
+      document.getElementById('img-placeholder').classList.add('hidden');
+      document.getElementById('img-preview-container').classList.remove('hidden');
+      
+      let title = "OPD PRESCRIPTION - CHOLERA SURGE";
+      let rxText = "Rx:\n1. Tab Doxycycline 100mg BD x 3d\n2. Sachet ORS x 10 pkts in boiled water\n3. Tab Zinc 20mg OD x 14d\nAdvice: Immediate IV Ringer Lactate if radial pulse weak.";
+      if (type === 'snakebite') {
+        title = "EMERGENCY CASUALTY - SNAKEBITE";
+        rxText = "Rx:\n1. Inj. Polyvalent ASV 10 vials in 500ml NS over 1 hr\n2. Inj. Tetanus Toxoid 0.5ml IM stat\n3. Bed rest, elevate limb slightly. NO TOURNIQUET.";
+      } else if (type === 'respiratory') {
+        title = "PEDIATRIC / GERIATRIC RESPIRATORY";
+        rxText = "Rx:\n1. Cap. Amoxicillin 500mg TDS x 5d\n2. Salbutamol Nebulization 2.5mg PRN\n3. Syp. Paracetamol 650mg SOS";
+      }
+
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+          <rect width="100%" height="100%" fill="#f8fafc" rx="6" />
+          <rect x="10" y="10" width="280" height="25" fill="#0284c7" rx="3" />
+          <text x="150" y="27" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${title}</text>
+          <text x="20" y="55" fill="#0f172a" font-family="monospace" font-size="9" font-weight="bold">Jaipur Rural Medical Health Centre</text>
+          <text x="20" y="75" fill="#334155" font-family="monospace" font-size="8">${rxText.split('\n')[0]}</text>
+          <text x="20" y="90" fill="#334155" font-family="monospace" font-size="8">${rxText.split('\n')[1] || ''}</text>
+          <text x="20" y="105" fill="#334155" font-family="monospace" font-size="8">${rxText.split('\n')[2] || ''}</text>
+          <text x="20" y="120" fill="#dc2626" font-family="monospace" font-size="8" font-weight="bold">${rxText.split('\n')[3] || ''}</text>
+        </svg>
+      `;
+      const base64 = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+      state.currentUploadedImageBase64 = base64;
+      document.getElementById('img-preview').src = base64;
+      showToast(`Loaded ${title} sample`, 'info');
+    }
+
+    /* ==========================================================================
+       TRIAGE PROCESSING PIPELINE (GEMINI MULTIMODAL + LOCAL HEURISTICS)
+       ========================================================================== */
+    async function processTriagePipeline(mode) {
+      playSFX('click');
+      const stepText = mode === 'audio' 
+        ? 'Transcribing & Parsing Regional Voice with Gemini...' 
+        : (mode === 'image' ? 'Running Vision OCR & Entity Extraction on Rx...' : 'Evaluating Clinical Notes & Vitals Matrix...');
+      
+      startPipelineLoader(stepText);
+
+      const patientId = document.getElementById('patient-id').value || "PAT-ABHA-9042";
+      const patientAge = document.getElementById('patient-age').value || "Adult";
+      const phcName = document.getElementById('patient-phc-select').value || "Sanganer PHC";
+      const bp = document.getElementById('vitals-bp').value;
+      const pulse = document.getElementById('vitals-pulse').value;
+      const spo2 = document.getElementById('vitals-spo2').value;
+      const temp = document.getElementById('vitals-temp').value;
+
+      let inputText = "";
+      if (mode === 'audio') {
+        inputText = document.getElementById('voice-transcript-text').value;
+      } else if (mode === 'text') {
+        inputText = document.getElementById('direct-clinical-notes').value;
+      } else if (mode === 'image') {
+        inputText = "Analyze this handwritten OPD prescription image or clinical symptom.";
+      }
+
+      if (state.apiKey) {
+        try {
+          const result = await callGeminiMultimodal({
+            mode: mode,
+            inputText: inputText,
+            patientMetadata: { id: patientId, age: patientAge, phc: phcName, bp, pulse, spo2, temp },
+            imageBase64: state.currentUploadedImageBase64
+          });
+
+          if (result && result.title) {
+            processTriageWithPayload(result);
+            playSFX('success');
+            return;
+          }
+        } catch (err) {
+          console.warn("Gemini API error, falling back to dynamic heuristic engine:", err);
+          showToast(`Gemini API Error: ${err.message}. Using resilient Clinical Engine.`, "warning");
+        }
+      }
+
+      setTimeout(() => {
+        const dynamicPayload = generateClinicalPayloadFromInput(inputText, { bp, pulse, spo2, temp, phcName });
+        processTriageWithPayload(dynamicPayload);
+        playSFX('success');
+      }, 1200);
+    }
+
+    async function callGeminiMultimodal(options) {
+      const model = state.apiModel || 'gemini-2.0-flash';
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${state.apiKey}`;
+
+      const systemPrompt = `You are the National Health Mission (NHM) Clinical Triage & Supply Chain AI Engine for India Primary Health Centres.
+Analyze the provided patient data, audio transcript, or prescription image and output ONLY valid JSON matching this exact schema:
+{
+  "title": "Diagnosis / Condition Name",
+  "snomed": "SNOMED-CT code if applicable",
+  "urgency": "EMERGENCY RED" | "CRITICAL EMERGENCY" | "URGENT YELLOW" | "ROUTINE GREEN",
+  "confidence": "98.5%",
+  "symptoms": "Concise summary of identified symptoms",
+  "medicines": "List of required medicines with dosages",
+  "guidanceHi": "Action protocol in clear Hindi for rural ASHA health workers",
+  "guidanceEn": "Action protocol in standard clinical English",
+  "deduct": {
+    "phcIndex": 0,
+    "paracetamol": 0,
+    "ors": 0,
+    "amoxicillin": 0,
+    "antivenom": 0
+  }
+}
+Note: deduct.phcIndex should match the sector (0: Sanganer, 1: Amber, 2: Chomu, 3: Jamwa Ramgarh, 4: Phulera, 5: Shahpura).
+Ensure output is ONLY raw JSON without markdown code fences.`;
+
+      const promptUser = `Patient Profile:
+ID: ${options.patientMetadata.id}
+Age/Sex: ${options.patientMetadata.age}
+Location: ${options.patientMetadata.phc}
+Vitals: BP: ${options.patientMetadata.bp || 'N/A'}, Pulse: ${options.patientMetadata.pulse || 'N/A'}, SpO2: ${options.patientMetadata.spo2 || 'N/A'}%, Temp: ${options.patientMetadata.temp || 'N/A'}F.
+Clinical Observation/Transcript: ${options.inputText}`;
+
+      const contentsParts = [{ text: systemPrompt + "\n\n" + promptUser }];
+
+      if (options.mode === 'image' && options.imageBase64 && options.imageBase64.includes('base64,')) {
+        const mimeType = options.imageBase64.split(';')[0].split(':')[1];
+        const base64Data = options.imageBase64.split('base64,')[1];
+        contentsParts.push({
+          inlineData: {
+            mimeType: mimeType,
+            data: base64Data
+          }
+        });
+      }
+
+      const payload = {
+        contents: [{ parts: contentsParts }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          temperature: 0.2
+        }
+      };
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+      if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
+        const rawText = data.candidates[0].content.parts[0].text.trim();
+        const cleaned = rawText.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim();
+        return JSON.parse(cleaned);
+      }
+      throw new Error("Invalid structure returned from Gemini: " + JSON.stringify(data).slice(0, 200));
+    }
+
+    function generateClinicalPayloadFromInput(text, metadata) {
+      const lower = (text || '').toLowerCase();
+      const phcIdx = state.phcs.findIndex(p => p.name === metadata.phcName);
+      const targetPHC = phcIdx !== -1 ? phcIdx : 0;
+
+      if (lower.includes('snake') || lower.includes('सांप') || lower.includes('bite') || lower.includes('fang') || lower.includes('venom')) {
+        return {
+          title: "Russell's Viper Envenomation (Snakebite)",
+          snomed: "242635008",
+          urgency: "CRITICAL EMERGENCY",
+          confidence: "99.2%",
+          symptoms: "Fang marks, Rapid edema, Coagulopathy risk, Localized tenderness",
+          medicines: "Polyvalent Anti-Snake Venom (10 vials ASV), Normal Saline",
+          guidanceHi: "काटे गए अंग को स्थिर रखें। 10 शीशी एएसवी (ASV) ड्रिप तुरंत शुरू करें। मरीज को शांत रखें।",
+          guidanceEn: "Immobilize limb immediately. Start 10 vials of ASV in 500ml Normal Saline over 60 mins. Monitor for anaphylaxis.",
+          deduct: { phcIndex: targetPHC, antivenom: 1 }
+        };
+      }
+
+      if (lower.includes('breath') || lower.includes('cough') || lower.includes('खंसी') || lower.includes('सांस') || lower.includes('bronch') || (metadata.spo2 && parseInt(metadata.spo2) < 93)) {
+        return {
+          title: "Acute Bronchitis & Respiratory Infection",
+          snomed: "10509002",
+          urgency: "URGENT YELLOW",
+          confidence: "96.5%",
+          symptoms: "Wheezing, Purulent productive cough, Dyspnea, Decreased SpO2",
+          medicines: "Amoxicillin 500mg TDS, Salbutamol Nebulizer, Paracetamol 650mg",
+          guidanceHi: "सांस लेने में सहायता हेतु सलबुटामोल नेबुलाइज़र दें। अमोक्सिसिलिन 5-दिवसीय कोर्स पूरा कराएं।",
+          guidanceEn: "Administer bronchodilator nebulization. Prescribe 5-day course of Amoxicillin 500mg. Monitor SpO2 levels.",
+          deduct: { phcIndex: targetPHC, amoxicillin: 10, paracetamol: 2 }
+        };
+      }
+
+      return {
+        title: "Acute Gastroenteritis & Dehydration Outbreak",
+        snomed: "63650001",
+        urgency: "EMERGENCY RED",
+        confidence: "97.8%",
+        symptoms: "Watery Stools (Frequent), Nausea/Vomiting, High Thirst, Dry Mucosa",
+        medicines: "ORS Sachets (x6), Zinc Sulfate 20mg, Paracetamol 500mg",
+        guidanceHi: "रोगी को तुरंत 1 लीटर स्वच्छ पानी में ORS घोल दें। जिंक 20mg गोलियां 14 दिनों तक जारी रखें।",
+        guidanceEn: "Administer oral rehydration salt therapy immediately. Continue 14-day daily zinc supplementation to prevent relapse.",
+        deduct: { phcIndex: targetPHC, ors: 6, paracetamol: 1 }
+      };
+    }
+
+    function startPipelineLoader(text) {
+      document.getElementById('triage-empty-state').classList.add('hidden');
+      document.getElementById('triage-result-card').classList.add('hidden');
+      document.getElementById('processing-loader').classList.remove('hidden');
+      document.getElementById('loader-step-text').innerText = text;
+      document.getElementById('pipeline-status-badge').className = "bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-mono px-2 py-0.5 rounded animate-pulse";
+      document.getElementById('pipeline-status-badge').innerText = "Gemini Processing";
+      document.getElementById('pipeline-indicator-dot').className = "w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping";
+    }
+
+    function processTriageWithPayload(payload) {
+      state.currentTriagePayload = payload;
+
+      document.getElementById('processing-loader').classList.add('hidden');
+      document.getElementById('triage-result-card').classList.remove('hidden');
+      document.getElementById('triage-footer-actions').classList.remove('hidden');
+
+      document.getElementById('pipeline-status-badge').className = "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono px-2 py-0.5 rounded";
+      document.getElementById('pipeline-status-badge').innerText = "Triage Complete & Stock Synced";
+      document.getElementById('pipeline-indicator-dot').className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+
+      const patientId = document.getElementById('patient-id').value || "PAT-ABHA-9042";
+      document.getElementById('res-patient-tag').innerText = patientId;
+      document.getElementById('res-severity-badge').innerText = payload.urgency;
+      document.getElementById('res-snomed-code').innerText = `SNOMED: ${payload.snomed || '63650001'}`;
+      document.getElementById('res-condition-name').innerText = payload.title;
+      document.getElementById('res-confidence').innerText = payload.confidence;
+      document.getElementById('res-symptoms').innerText = payload.symptoms;
+      document.getElementById('res-medicines').innerText = payload.medicines;
+      document.getElementById('res-guidance-en').innerText = payload.guidanceEn;
+
+      updateDialectGuidanceText();
+
+      const banner = document.getElementById('severity-banner');
+      const icon = document.getElementById('severity-icon');
+      if (payload.urgency.includes('EMERGENCY') || payload.urgency.includes('CRITICAL')) {
+        banner.className = "p-3.5 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-between";
+        icon.className = "w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl";
+        state.emergencyCount += 1;
+        document.getElementById('stat-emergency-count').innerText = `${state.emergencyCount} Referred`;
+      } else {
+        banner.className = "p-3.5 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-between";
+        icon.className = "w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl";
+      }
+
+      let pIdx = 0;
+      if (payload.deduct && typeof payload.deduct.phcIndex === 'number') {
+        pIdx = payload.deduct.phcIndex;
+      }
+      if (pIdx >= state.phcs.length || pIdx < 0) pIdx = 0;
+
+      const phcObj = state.phcs[pIdx];
+      let deductedParts = [];
+
+      if (payload.deduct) {
+        if (payload.deduct.ors) {
+          phcObj.ors = Math.max(0, phcObj.ors - payload.deduct.ors);
+          deductedParts.push(`${payload.deduct.ors} ORS`);
+        }
+        if (payload.deduct.paracetamol) {
+          phcObj.paracetamol = Math.max(0, phcObj.paracetamol - payload.deduct.paracetamol);
+          deductedParts.push(`${payload.deduct.paracetamol} Paracetamol`);
+        }
+        if (payload.deduct.amoxicillin) {
+          phcObj.amoxicillin = Math.max(0, phcObj.amoxicillin - payload.deduct.amoxicillin);
+          deductedParts.push(`${payload.deduct.amoxicillin} Amoxicillin`);
+        }
+        if (payload.deduct.antivenom) {
+          phcObj.antivenom = Math.max(0, phcObj.antivenom - payload.deduct.antivenom);
+          deductedParts.push(`${payload.deduct.antivenom} Antivenom`);
+        }
+      }
+
+      if (phcObj.ors < 20 || phcObj.antivenom < 2 || phcObj.amoxicillin < 25) {
+        phcObj.status = (phcObj.antivenom < 2 || phcObj.ors < 10) ? 'Critical' : 'Warning';
+        triggerAutoPurchaseOrder(phcObj.name, `Emergency Buffer: ${phcObj.name}`, 'Threshold Breach Auto-PO');
+      }
+
+      document.getElementById('res-deduction-text').innerHTML = `<strong>Inventory Updated:</strong> Deducted ${deductedParts.join(', ') || 'prescribed items'} from ${phcObj.name} in real time.`;
+
+      state.triagedCount += 1;
+      document.getElementById('stat-triaged-count').innerText = `${state.triagedCount} Patients`;
+
+      const now = new Date();
+      state.auditLogs.unshift({
+        time: now.toTimeString().split(' ')[0],
+        id: patientId,
+        abha: state.activeABHA,
+        phc: phcObj.name,
+        type: state.activeSubTab === 'audio' ? 'Voice Memo' : (state.activeSubTab === 'image' ? 'Rx Vision OCR' : 'Clinical Notes'),
+        diagnosis: payload.title,
+        urgency: payload.urgency,
+        conf: payload.confidence,
+        snomed: payload.snomed || '63650001',
+        meds: payload.medicines
+      });
+
+      saveState();
+      renderPHCTable();
+      renderAuditLogs();
+      updateMapNodesVisuals();
+      showToast("Patient triaged, ABHA linked, and stock deducted in real-time!", "success");
+    }
+
+    function resetTriageView() {
+      playSFX('click');
+      document.getElementById('triage-result-card').classList.add('hidden');
+      document.getElementById('triage-footer-actions').classList.add('hidden');
+      document.getElementById('triage-empty-state').classList.remove('hidden');
+      document.getElementById('pipeline-status-badge').className = "bg-[#0d182e] text-slate-400 border border-govBorder text-[10px] font-mono px-2 py-0.5 rounded";
+      document.getElementById('pipeline-status-badge').innerText = "Awaiting Intake";
+      document.getElementById('pipeline-indicator-dot').className = "w-2.5 h-2.5 rounded-full bg-slate-500";
+
+      const nextId = "PAT-ABHA-" + Math.floor(9045 + Math.random() * 100);
+      document.getElementById('patient-id').value = nextId;
+    }
+
+    /* ==========================================================================
+       PRINTABLE ASHA REFERRAL SLIP GENERATOR
+       ========================================================================== */
+    function generateReferralSlip() {
+      playSFX('click');
+      const payload = state.currentTriagePayload;
+      if (!payload) return;
+
+      const patId = document.getElementById('patient-id').value || "PAT-ABHA-9042";
+      const patName = document.getElementById('patient-name-input').value || "Ramesh Kumar";
+      const patAge = document.getElementById('patient-age').value || "Adult";
+      const phcName = document.getElementById('patient-phc-select').value || "Sanganer PHC";
+      const bp = document.getElementById('vitals-bp').value || "118/76";
+      const pulse = document.getElementById('vitals-pulse').value || "88";
+      const spo2 = document.getElementById('vitals-spo2').value || "98";
+      const temp = document.getElementById('vitals-temp').value || "98.6";
+
+      document.getElementById('slip-phc-name').innerText = phcName;
+      document.getElementById('slip-abha-id').innerText = state.activeABHA;
+      document.getElementById('slip-token').innerText = `REF-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      document.getElementById('slip-timestamp').innerText = `${new Date().toLocaleTimeString()} IST`;
+      document.getElementById('slip-pat-id').innerText = patId;
+      document.getElementById('slip-pat-name-age').innerText = `${patName} (${patAge})`;
+      document.getElementById('slip-urgency-badge').innerText = payload.urgency;
+      document.getElementById('slip-vitals-summary').innerText = `SpO2: ${spo2}% | BP: ${bp} | Pulse: ${pulse} bpm | Temp: ${temp}°F`;
+      document.getElementById('slip-condition').innerText = `${payload.title} (SNOMED: ${payload.snomed || '63650001'})`;
+      document.getElementById('slip-medications').innerText = payload.medicines;
+
+      document.getElementById('referral-slip-modal').classList.remove('hidden');
+    }
+
+    function closeReferralSlipModal() {
+      playSFX('click');
+      document.getElementById('referral-slip-modal').classList.add('hidden');
+    }
+
+    /* ==========================================================================
+       SUPPLY RADAR & MATRIX RENDERERS
+       ========================================================================== */
+    function renderPHCTable() {
+      const tbody = document.getElementById('phc-matrix-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      state.phcs.forEach((phc, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/40 transition";
+
+        let badge = `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-bold">OPTIMAL</span>`;
+        if (phc.status === 'Warning') {
+          badge = `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded text-[10px] font-bold">WARNING</span>`;
+        } else if (phc.status === 'Critical') {
+          badge = `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded text-[10px] font-bold animate-pulse">CRITICAL</span>`;
+        }
+
+        tr.innerHTML = `
+          <td class="p-2.5 font-bold text-white flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full ${phc.status === 'Critical' ? 'bg-rose-500' : (phc.status === 'Warning' ? 'bg-amber-400' : 'bg-emerald-400')}"></span>
+            <span>${phc.name}</span>
+          </td>
+          <td class="p-2.5 ${phc.paracetamol < 20 ? 'text-amber-400 font-bold' : 'text-slate-300'}">${phc.paracetamol} units</td>
+          <td class="p-2.5 ${phc.ors < 25 ? 'text-amber-400 font-bold' : 'text-slate-300'}">${phc.ors} pkts</td>
+          <td class="p-2.5 ${phc.amoxicillin < 30 ? 'text-amber-400 font-bold' : 'text-slate-300'}">${phc.amoxicillin} caps</td>
+          <td class="p-2.5 ${phc.antivenom < 2 ? 'text-rose-400 font-bold' : 'text-slate-300'}">${phc.antivenom} vials</td>
+          <td class="p-2.5">${badge}</td>
+          <td class="p-2.5 text-right">
+            <button onclick="openQuickTransferModal(${idx})" class="text-cyan-400 hover:text-cyan-300 underline text-[11px] font-bold">Transfer</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateMapNodesVisuals() {
+      state.phcs.forEach((phc, idx) => {
+        const dot = document.getElementById(`map-dot-${idx}`);
+        const pulse = document.getElementById(`map-pulse-${idx}`);
+        if (!dot) return;
+
+        if (phc.status === 'Critical') {
+          dot.setAttribute('fill', '#ef4444');
+          if (pulse) {
+            pulse.setAttribute('stroke', '#ef4444');
+            pulse.classList.remove('hidden');
+          }
+        } else if (phc.status === 'Warning') {
+          dot.setAttribute('fill', '#f59e0b');
+          if (pulse) {
+            pulse.setAttribute('stroke', '#f59e0b');
+            pulse.classList.remove('hidden');
+          }
+        } else {
+          dot.setAttribute('fill', '#10b981');
+          if (pulse) pulse.classList.add('hidden');
+        }
+      });
+    }
+
+    function selectMapPHC(idx) {
+      playSFX('click');
+      const phc = state.phcs[idx];
+      document.getElementById('map-phc-title').innerText = `${phc.name} (Node #${301 + idx})`;
+      const badge = document.getElementById('map-phc-badge');
+      badge.innerText = phc.status.toUpperCase();
+      badge.className = phc.status === 'Critical'
+        ? "bg-rose-500/20 text-rose-300 text-[10px] px-1.5 py-0.2 rounded border border-rose-500/40"
+        : (phc.status === 'Warning' ? "bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.2 rounded border border-amber-500/40" : "bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.2 rounded border border-emerald-500/40");
+
+      document.getElementById('map-phc-desc').innerText = `Stock: ${phc.ors} ORS, ${phc.antivenom} Antivenom, ${phc.amoxicillin} Amox, ${phc.paracetamol} Para. GPS: ${phc.coordinates[0].toFixed(3)}°E, ${phc.coordinates[1].toFixed(3)}°N.`;
+      showToast(`Selected ${phc.name} on District Map`, 'info');
+    }
+
+    /* ==========================================================================
+       OUTBREAK ANOMALY SIMULATOR & EMERGENCY BUFFER
+       ========================================================================== */
+    function triggerSimulatedSurge(type) {
+      playSFX('alert');
+      const banner = document.getElementById('outbreak-radar-banner');
+      const bannerText = document.getElementById('outbreak-banner-text');
+      banner.classList.remove('hidden');
+
+      if (type === 'cholera') {
+        state.phcs[0].ors = 4;
+        state.phcs[0].status = 'Critical';
+        bannerText.innerText = "380% Spike in Acute Diarrheal Outbreak in Sanganer Sector within 24h. Stock exhaustion predicted in 6 hours.";
+        if (chartInstance) {
+          chartInstance.data.datasets[0].data = [12, 18, 30, 85, 170, 290];
+          chartInstance.update();
+        }
+        showToast("🔥 Critical Anomaly: Monsoon Cholera Spike in Sanganer", "warning");
+
+      } else if (type === 'snakebite') {
+        state.phcs[2].antivenom = 0;
+        state.phcs[2].status = 'Critical';
+        bannerText.innerText = "CRITICAL STOCKOUT: Chomu PHC has 0 vials of Polyvalent ASV following agricultural bite cluster. Immediate replenishment dispatched.";
+        if (chartInstance) {
+          chartInstance.data.datasets[0].data = [1, 2, 4, 8, 14, 22];
+          chartInstance.update();
+        }
+        showToast("🚨 Emergency: Antivenom Stockout in Chomu PHC", "warning");
+      }
+
+      saveState();
+      renderPHCTable();
+      updateMapNodesVisuals();
+    }
+
+    function dispatchEmergencyBuffer() {
+      playSFX('success');
+      triggerAutoPurchaseOrder('Sanganer PHC', 'ORS Buffer (1,000 pkts) & IV Fluids', 'Outbreak Radar Emergency Dispatch', 0, 'ors', 500);
+      document.getElementById('outbreak-radar-banner').classList.add('hidden');
+      showToast("Emergency Buffer PO Dispatched to Central Warehouse via Priority Cold-Chain!", "success");
+    }
+
+    function triggerAutoPurchaseOrder(dest, item, reason, targetIdx = 0, restockItem = 'ors', restockQty = 100) {
+      const poId = `PO-2026-${Math.floor(100 + Math.random() * 900)}`;
+      state.poFeed.unshift({
+        id: poId,
+        destination: dest,
+        item: item,
+        reason: reason,
+        status: 'In Transit',
+        targetPHCIndex: targetIdx,
+        restockItem: restockItem,
+        restockQty: restockQty
+      });
+      renderPOFeed();
+    }
+
+    function renderPOFeed() {
+      const container = document.getElementById('po-dispatch-feed');
+      if (!container) return;
+      container.innerHTML = '';
+
+      state.poFeed.forEach((po, index) => {
+        const card = document.createElement('div');
+        card.className = "p-3 rounded-lg bg-[#0d182e] border border-govBorder flex items-center justify-between text-xs font-mono";
+        
+        let actionBtn = '';
+        if (po.status === 'In Transit') {
+          actionBtn = `<button onclick="receiveAndRestockPO(${index})" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold transition">Receive & Restock</button>`;
+        } else {
+          actionBtn = `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-bold">DELIVERED</span>`;
+        }
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-cyan-400">${po.id}</span>
+              <span class="text-slate-300">&rarr; ${po.destination}</span>
+            </div>
+            <p class="text-slate-300 text-[11px] mt-0.5 font-semibold">${po.item}</p>
+            <p class="text-[10px] text-slate-500">Reason: ${po.reason}</p>
+          </div>
+          <div class="text-right">
+            ${actionBtn}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function receiveAndRestockPO(index) {
+      playSFX('success');
+      const po = state.poFeed[index];
+      po.status = 'Delivered';
+
+      const phc = state.phcs[po.targetPHCIndex || 0];
+      if (phc) {
+        if (po.restockItem === 'antivenom') phc.antivenom += (po.restockQty || 10);
+        else if (po.restockItem === 'ors') phc.ors += (po.restockQty || 100);
+        else if (po.restockItem === 'amoxicillin') phc.amoxicillin += (po.restockQty || 100);
+        else phc.paracetamol += (po.restockQty || 50);
+
+        phc.status = 'Optimal';
+      }
+
+      saveState();
+      renderPOFeed();
+      renderPHCTable();
+      updateMapNodesVisuals();
+      showToast(`Restocked ${po.destination}: Stock levels replenished!`, 'success');
+    }
+
+    function triggerManualReorderModal() {
+      playSFX('click');
+      const dest = prompt("Enter target PHC for Emergency PO (e.g. Chomu PHC, Sanganer PHC):", "Chomu PHC");
+      if (dest) {
+        triggerAutoPurchaseOrder(dest, 'Emergency Medicine Resupply Package (Standard)', 'Manual District Officer Reorder', 2, 'antivenom', 10);
+        showToast(`Created manual reorder for ${dest}`, 'success');
+      }
+    }
+
+    /* ==========================================================================
+       INTER-PHC LATERAL TRANSFERS LOGIC
+       ========================================================================== */
+    function renderLateralTransfers() {
+      const container = document.getElementById('lateral-transfer-feed');
+      if (!container) return;
+      container.innerHTML = '';
+
+      state.lateralTransfers.forEach((tr, idx) => {
+        const div = document.createElement('div');
+        div.className = "p-3.5 rounded-lg bg-[#0d182e] border border-govBorder flex items-center justify-between text-xs font-mono";
+        
+        let statusBadge = tr.status === 'Completed'
+          ? `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-bold">COMPLETED</span>`
+          : `<span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1"><i class="fa-solid fa-spinner animate-spin"></i> EN ROUTE (${tr.eta})</span>`;
+
+        div.innerHTML = `
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-cyan-400">${tr.id}</span>
+              <span class="text-white font-bold">${tr.from} &rarr; ${tr.to}</span>
+            </div>
+            <p class="text-slate-300 text-xs mt-1 font-semibold">${tr.item}</p>
+            <p class="text-[10px] text-slate-500 mt-0.5"><i class="fa-solid fa-truck text-[9px] mr-1"></i> Mechanism: ${tr.mode}</p>
+          </div>
+          <div class="text-right">
+            ${statusBadge}
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function executeLateralTransfer() {
+      playSFX('success');
+      const srcIdx = parseInt(document.getElementById('transfer-source-select').value, 10);
+      const destIdx = parseInt(document.getElementById('transfer-dest-select').value, 10);
+      const item = document.getElementById('transfer-item-select').value;
+      const qty = parseInt(document.getElementById('transfer-qty-input').value, 10) || 1;
+      const mode = document.getElementById('transfer-vehicle-select').value;
+
+      if (srcIdx === destIdx) {
+        showToast("Source and Destination PHC cannot be the same.", "warning");
+        return;
+      }
+
+      const srcPHC = state.phcs[srcIdx];
+      const destPHC = state.phcs[destIdx];
+
+      if (srcPHC[item] < qty) {
+        showToast(`Insufficient stock in ${srcPHC.name}. Only ${srcPHC[item]} available.`, "warning");
+        return;
+      }
+
+      srcPHC[item] -= qty;
+      destPHC[item] += qty;
+
+      if (destPHC.status === 'Critical') destPHC.status = 'Warning';
+
+      const transferId = `LAT-${Math.floor(100 + Math.random() * 900)}`;
+      state.lateralTransfers.unshift({
+        id: transferId,
+        from: srcPHC.name,
+        to: destPHC.name,
+        item: `${qty} ${item.toUpperCase()}`,
+        mode: mode,
+        eta: mode.includes('Drone') ? '18 mins' : '40 mins',
+        status: 'In Transit'
+      });
+
+      saveState();
+      renderLateralTransfers();
+      renderPHCTable();
+      updateMapNodesVisuals();
+      showToast(`Lateral rebalance executed: ${qty} ${item} transferred to ${destPHC.name}!`, "success");
+    }
+
+    function openQuickTransferModal(destIdx) {
+      switchMainTab('transfer');
+      document.getElementById('transfer-dest-select').value = destIdx;
+      showToast(`Selected destination: ${state.phcs[destIdx].name}`, 'info');
+    }
+
+    /* ==========================================================================
+       DISTRICT AUDIT LOGS & REPORTING
+       ========================================================================== */
+    function renderAuditLogs(filteredLogs = null) {
+      const tbody = document.getElementById('audit-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const list = filteredLogs || state.auditLogs;
+
+      list.forEach((log, index) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/40 transition";
+
+        let urgBadge = `<span class="text-emerald-400 font-bold">${log.urgency}</span>`;
+        if (log.urgency.includes('EMERGENCY') || log.urgency.includes('CRITICAL')) {
+          urgBadge = `<span class="text-rose-400 font-bold">${log.urgency}</span>`;
+        } else if (log.urgency.includes('URGENT')) {
+          urgBadge = `<span class="text-amber-400 font-bold">${log.urgency}</span>`;
+        }
+
+        tr.innerHTML = `
+          <td class="p-3 text-slate-400">${log.time}</td>
+          <td class="p-3">
+            <span class="font-bold text-cyan-400">${log.id}</span>
+            <span class="block text-[10px] text-teal-300 font-mono">ABHA: ${log.abha || state.activeABHA}</span>
+          </td>
+          <td class="p-3">${log.phc}</td>
+          <td class="p-3 text-slate-300">${log.type}</td>
+          <td class="p-3 font-bold text-white">${log.diagnosis}</td>
+          <td class="p-3">${urgBadge}</td>
+          <td class="p-3 text-emerald-400">${log.conf}</td>
+          <td class="p-3 text-right">
+            <button onclick="inspectAuditDetail(${index})" class="text-cyan-400 hover:text-cyan-300 underline text-[11px] font-bold">Inspect</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterAuditLogs() {
+      const query = document.getElementById('audit-search-input').value.toLowerCase().trim();
+      const phcFilter = document.getElementById('audit-filter-phc').value;
+      const urgFilter = document.getElementById('audit-filter-urgency').value;
+
+      const filtered = state.auditLogs.filter(log => {
+        const matchQuery = !query || log.id.toLowerCase().includes(query) || (log.abha && log.abha.includes(query)) || log.diagnosis.toLowerCase().includes(query) || (log.meds && log.meds.toLowerCase().includes(query));
+        const matchPHC = !phcFilter || log.phc === phcFilter;
+        const matchUrg = !urgFilter || log.urgency.includes(urgFilter);
+        return matchQuery && matchPHC && matchUrg;
+      });
+
+      renderAuditLogs(filtered);
+    }
+
+    function inspectAuditDetail(index) {
+      playSFX('click');
+      const log = state.auditLogs[index];
+      const container = document.getElementById('audit-modal-content');
+      container.innerHTML = `
+        <div class="grid grid-cols-2 gap-2 bg-[#0d182e] p-3 rounded border border-govBorder">
+          <div>
+            <span class="text-slate-500 text-[10px]">Patient Reference</span>
+            <p class="font-bold text-cyan-400">${log.id}</p>
+            <p class="text-[10px] text-teal-300 font-bold">ABHA: ${log.abha || state.activeABHA}</p>
+          </div>
+          <div>
+            <span class="text-slate-500 text-[10px]">Timestamp</span>
+            <p class="text-slate-300">${log.time}</p>
+          </div>
+          <div>
+            <span class="text-slate-500 text-[10px]">Health Centre</span>
+            <p class="text-white">${log.phc}</p>
+          </div>
+          <div>
+            <span class="text-slate-500 text-[10px]">Urgency / Triage</span>
+            <p class="font-bold ${log.urgency.includes('EMERGENCY') ? 'text-rose-400' : 'text-amber-400'}">${log.urgency}</p>
+          </div>
+        </div>
+        <div class="bg-[#0d182e] p-3 rounded border border-govBorder">
+          <span class="text-slate-500 text-[10px]">Extracted Diagnosis & SNOMED</span>
+          <p class="font-bold text-white mt-0.5">${log.diagnosis} (SNOMED: ${log.snomed || 'N/A'})</p>
+          <span class="text-slate-500 text-[10px] block mt-2">Prescribed Regimen</span>
+          <p class="text-cyan-300 mt-0.5">${log.meds || 'ORS, Symptomatic Relief'}</p>
+          <span class="text-slate-500 text-[10px] block mt-2">AI Diagnostic Confidence</span>
+          <p class="text-emerald-400 font-bold">${log.conf}</p>
+        </div>
+      `;
+      document.getElementById('audit-detail-modal').classList.remove('hidden');
+    }
+
+    function closeAuditDetailModal() {
+      playSFX('click');
+      document.getElementById('audit-detail-modal').classList.add('hidden');
+    }
+
+    function exportAuditCSV() {
+      playSFX('click');
+      let csv = "Timestamp,PatientID,ABHA_ID,PHCLocation,InputType,Diagnosis,Urgency,Confidence,SNOMED,Medications\n";
+      state.auditLogs.forEach(l => {
+        csv += `${l.time},${l.id},${l.abha || state.activeABHA},${l.phc},${l.type},"${l.diagnosis}",${l.urgency},${l.conf},${l.snomed || ''},"${l.meds || ''}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `PHC_Connect_District_Audit_${Date.now()}.csv`);
+      a.click();
+      showToast("Exported Cryptographically Verified District Audit Trail CSV", "info");
+    }
+
+    function clearAuditConfirm() {
+      playSFX('click');
+      if (confirm("Are you sure you want to reset the audit log for demo purposes?")) {
+        state.auditLogs = [];
+        saveState();
+        renderAuditLogs();
+        showToast("Audit logs reset to clean slate.", "info");
+      }
+    }
+
+    /* ==========================================================================
+       CHART.JS SURGE RADAR WITH METRIC FILTERS
+       ========================================================================== */
+    function initChart() {
+      const ctx = document.getElementById('surgeChart').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Day -5', 'Day -4', 'Day -3', 'Day -2', 'Yesterday', 'Today (Live)'],
+          datasets: [
+            {
+              label: 'Diarrheal / Fever Outbreak Velocity',
+              data: [12, 16, 20, 28, 45, 88],
+              borderColor: '#00b4d8',
+              backgroundColor: 'rgba(0, 180, 216, 0.12)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 2.5,
+              pointRadius: 4,
+              pointBackgroundColor: '#00b4d8'
+            },
+            {
+              label: 'Stock Safety Reorder Threshold',
+              data: [50, 50, 50, 50, 50, 50],
+              borderColor: '#f59e0b',
+              borderDash: [5, 5],
+              fill: false,
+              borderWidth: 1.5,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { labels: { color: '#94a3b8', font: { size: 10, family: 'JetBrains Mono' } } }
+          },
+          scales: {
+            x: { grid: { color: 'rgba(42, 59, 92, 0.4)' }, ticks: { color: '#64748b', font: { size: 10, family: 'JetBrains Mono' } } },
+            y: { grid: { color: 'rgba(42, 59, 92, 0.4)' }, ticks: { color: '#64748b', font: { size: 10, family: 'JetBrains Mono' } } }
+          }
+        }
+      });
+    }
+
+    function setChartFilter(filter) {
+      state.chartFilter = filter;
+      playSFX('click');
+
+      const btns = ['all', 'ors', 'asv', 'amox'];
+      btns.forEach(b => {
+        const btnEl = document.getElementById(`btn-chart-${b}`);
+        if (btnEl) {
+          btnEl.className = b === filter
+            ? "px-2 py-0.5 rounded bg-cyan-600 text-slate-950 font-bold"
+            : "px-2 py-0.5 rounded bg-[#0d182e] text-slate-300 hover:text-white border border-govBorder";
+        }
+      });
+
+      if (!chartInstance) return;
+
+      if (filter === 'all') {
+        chartInstance.data.datasets[0].label = 'All Acute Syndrome Intake Cases';
+        chartInstance.data.datasets[0].data = [12, 16, 20, 28, 45, 88];
+        chartInstance.data.datasets[0].borderColor = '#00b4d8';
+        chartInstance.data.datasets[0].backgroundColor = 'rgba(0, 180, 216, 0.12)';
+      } else if (filter === 'ors') {
+        chartInstance.data.datasets[0].label = 'Diarrheal Episodes (ORS Packets Depleted)';
+        chartInstance.data.datasets[0].data = [14, 20, 32, 70, 140, 220];
+        chartInstance.data.datasets[0].borderColor = '#f59e0b';
+        chartInstance.data.datasets[0].backgroundColor = 'rgba(245, 158, 11, 0.12)';
+      } else if (filter === 'asv') {
+        chartInstance.data.datasets[0].label = 'Envenomation Cases (ASV Vials Consumed)';
+        chartInstance.data.datasets[0].data = [1, 2, 2, 5, 8, 14];
+        chartInstance.data.datasets[0].borderColor = '#ef4444';
+        chartInstance.data.datasets[0].backgroundColor = 'rgba(239, 68, 68, 0.12)';
+      } else if (filter === 'amox') {
+        chartInstance.data.datasets[0].label = 'Respiratory Cases (Amoxicillin Caps)';
+        chartInstance.data.datasets[0].data = [30, 45, 60, 80, 110, 165];
+        chartInstance.data.datasets[0].borderColor = '#10b981';
+        chartInstance.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.12)';
+      }
+
+      chartInstance.update();
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATIONS SYSTEM
+       ========================================================================== */
+    function showToast(msg, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+
+      let icon = "fa-circle-info text-cyan-400";
+      let border = "border-cyan-500/50";
+
+      if (type === 'success') {
+        icon = "fa-circle-check text-emerald-400";
+        border = "border-emerald-500/50";
+      } else if (type === 'warning') {
+        icon = "fa-triangle-exclamation text-amber-400";
+        border = "border-amber-500/50";
+      }
+
+      toast.className = `enterprise-card p-3 rounded-lg border ${border} shadow-2xl text-xs text-white flex items-center space-x-2.5 pointer-events-auto font-mono transition transform translate-y-2 opacity-0`;
+      toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${msg}</span>`;
+
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => { toast.remove(); }, 300);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>

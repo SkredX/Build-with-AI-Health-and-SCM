@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+pydantic-settings
+google-generativeai
+numpy
+scipy
+pandas
+httpx
+python-multipart
+aiofiles
+pytest

@@ -1,0 +1,1030 @@
+phc_id,phc_name,district,state,latitude,longitude,beds,staff_count,status
+PHC-RJ-JAI-001,Jaipur Primary Health Centre 1,Jaipur,Rajasthan,26.0253,76.7657,13,12,Operational
+PHC-RJ-JAI-002,Jaipur Primary Health Centre 2,Jaipur,Rajasthan,26.3633,76.7757,19,24,Operational
+PHC-RJ-JAI-003,Jaipur Primary Health Centre 3,Jaipur,Rajasthan,27.0613,74.9586,40,6,Operational
+PHC-RJ-JAI-004,Jaipur Primary Health Centre 4,Jaipur,Rajasthan,26.5833,74.8183,41,14,Operational
+PHC-RJ-JAI-005,Jaipur Primary Health Centre 5,Jaipur,Rajasthan,26.9107,75.5415,12,7,Operational
+PHC-RJ-JAI-006,Jaipur Primary Health Centre 6,Jaipur,Rajasthan,27.8546,76.8109,15,20,Operational
+PHC-RJ-JAI-007,Jaipur Primary Health Centre 7,Jaipur,Rajasthan,25.5478,74.6106,24,8,Operational
+PHC-RJ-JAI-008,Jaipur Primary Health Centre 8,Jaipur,Rajasthan,27.574,74.8707,39,24,Operational
+PHC-RJ-JAI-009,Jaipur Primary Health Centre 9,Jaipur,Rajasthan,27.6314,74.6421,36,12,Warning
+PHC-RJ-JAI-010,Jaipur Primary Health Centre 10,Jaipur,Rajasthan,26.9998,75.784,14,22,Warning
+PHC-RJ-JAI-011,Jaipur Primary Health Centre 11,Jaipur,Rajasthan,27.5535,74.6276,41,12,Warning
+PHC-RJ-JAI-012,Jaipur Primary Health Centre 12,Jaipur,Rajasthan,26.8543,74.3046,40,12,Operational
+PHC-RJ-JAI-013,Jaipur Primary Health Centre 13,Jaipur,Rajasthan,28.2736,77.098,25,6,Operational
+PHC-RJ-JAI-014,Jaipur Primary Health Centre 14,Jaipur,Rajasthan,27.8758,76.3251,42,8,Critical
+PHC-RJ-JAI-015,Jaipur Primary Health Centre 15,Jaipur,Rajasthan,25.8014,76.5557,17,23,Operational
+PHC-RJ-JAI-016,Jaipur Primary Health Centre 16,Jaipur,Rajasthan,26.8135,74.8774,13,17,Operational
+PHC-RJ-JAI-017,Jaipur Primary Health Centre 17,Jaipur,Rajasthan,28.0842,75.6432,11,11,Operational
+PHC-RJ-JAI-018,Jaipur Primary Health Centre 18,Jaipur,Rajasthan,26.2165,77.1433,35,15,Operational
+PHC-RJ-JAI-019,Jaipur Primary Health Centre 19,Jaipur,Rajasthan,26.9917,74.7202,48,10,Warning
+PHC-RJ-JAI-020,Jaipur Primary Health Centre 20,Jaipur,Rajasthan,28.3925,77.1182,12,17,Warning
+PHC-RJ-JAI-021,Jaipur Primary Health Centre 21,Jaipur,Rajasthan,26.6235,76.8578,39,15,Operational
+PHC-RJ-JOD-022,Jodhpur Primary Health Centre 1,Jodhpur,Rajasthan,25.7383,74.4497,20,6,Operational
+PHC-RJ-JOD-023,Jodhpur Primary Health Centre 2,Jodhpur,Rajasthan,28.3607,76.2238,13,8,Warning
+PHC-RJ-JOD-024,Jodhpur Primary Health Centre 3,Jodhpur,Rajasthan,27.5532,75.3372,43,6,Operational
+PHC-RJ-JOD-025,Jodhpur Primary Health Centre 4,Jodhpur,Rajasthan,28.3395,75.6615,35,19,Operational
+PHC-RJ-JOD-026,Jodhpur Primary Health Centre 5,Jodhpur,Rajasthan,27.0997,74.9957,32,23,Warning
+PHC-RJ-JOD-027,Jodhpur Primary Health Centre 6,Jodhpur,Rajasthan,27.7863,75.8406,12,10,Warning
+PHC-RJ-JOD-028,Jodhpur Primary Health Centre 7,Jodhpur,Rajasthan,26.5951,76.7578,45,19,Warning
+PHC-RJ-JOD-029,Jodhpur Primary Health Centre 8,Jodhpur,Rajasthan,27.2049,75.1795,15,6,Operational
+PHC-RJ-JOD-030,Jodhpur Primary Health Centre 9,Jodhpur,Rajasthan,26.0341,75.2335,19,18,Operational
+PHC-RJ-JOD-031,Jodhpur Primary Health Centre 10,Jodhpur,Rajasthan,27.5038,76.4239,18,15,Warning
+PHC-RJ-JOD-032,Jodhpur Primary Health Centre 11,Jodhpur,Rajasthan,25.6853,74.6446,50,16,Warning
+PHC-RJ-JOD-033,Jodhpur Primary Health Centre 12,Jodhpur,Rajasthan,27.8184,76.5075,32,20,Operational
+PHC-RJ-JOD-034,Jodhpur Primary Health Centre 13,Jodhpur,Rajasthan,28.1769,76.9584,26,12,Critical
+PHC-RJ-JOD-035,Jodhpur Primary Health Centre 14,Jodhpur,Rajasthan,27.5856,75.6724,44,10,Operational
+PHC-RJ-JOD-036,Jodhpur Primary Health Centre 15,Jodhpur,Rajasthan,27.3565,75.422,20,10,Operational
+PHC-RJ-JOD-037,Jodhpur Primary Health Centre 16,Jodhpur,Rajasthan,28.3645,75.5656,22,9,Operational
+PHC-RJ-JOD-038,Jodhpur Primary Health Centre 17,Jodhpur,Rajasthan,27.0917,77.042,14,18,Warning
+PHC-RJ-JOD-039,Jodhpur Primary Health Centre 18,Jodhpur,Rajasthan,26.1742,77.0711,44,15,Operational
+PHC-RJ-JOD-040,Jodhpur Primary Health Centre 19,Jodhpur,Rajasthan,26.1235,75.7651,50,10,Operational
+PHC-RJ-JOD-041,Jodhpur Primary Health Centre 20,Jodhpur,Rajasthan,28.2063,75.6569,26,8,Operational
+PHC-RJ-JOD-042,Jodhpur Primary Health Centre 21,Jodhpur,Rajasthan,26.0231,74.2158,48,19,Operational
+PHC-RJ-UDA-043,Udaipur Primary Health Centre 1,Udaipur,Rajasthan,26.2589,76.3866,39,24,Operational
+PHC-RJ-UDA-044,Udaipur Primary Health Centre 2,Udaipur,Rajasthan,27.4067,74.4094,28,16,Operational
+PHC-RJ-UDA-045,Udaipur Primary Health Centre 3,Udaipur,Rajasthan,26.3141,74.9017,41,16,Operational
+PHC-RJ-UDA-046,Udaipur Primary Health Centre 4,Udaipur,Rajasthan,26.2236,75.7295,16,23,Operational
+PHC-RJ-UDA-047,Udaipur Primary Health Centre 5,Udaipur,Rajasthan,27.63,75.2833,25,19,Operational
+PHC-RJ-UDA-048,Udaipur Primary Health Centre 6,Udaipur,Rajasthan,26.9771,75.1717,28,21,Operational
+PHC-RJ-UDA-049,Udaipur Primary Health Centre 7,Udaipur,Rajasthan,27.6852,75.6715,39,7,Operational
+PHC-RJ-UDA-050,Udaipur Primary Health Centre 8,Udaipur,Rajasthan,27.2826,76.3056,14,14,Operational
+PHC-RJ-UDA-051,Udaipur Primary Health Centre 9,Udaipur,Rajasthan,27.0391,76.9821,37,12,Operational
+PHC-RJ-UDA-052,Udaipur Primary Health Centre 10,Udaipur,Rajasthan,27.5596,76.158,21,6,Operational
+PHC-RJ-UDA-053,Udaipur Primary Health Centre 11,Udaipur,Rajasthan,27.3707,74.9268,44,20,Operational
+PHC-RJ-UDA-054,Udaipur Primary Health Centre 12,Udaipur,Rajasthan,26.9407,75.0985,39,5,Warning
+PHC-RJ-UDA-055,Udaipur Primary Health Centre 13,Udaipur,Rajasthan,25.8525,74.6894,45,15,Operational
+PHC-RJ-UDA-056,Udaipur Primary Health Centre 14,Udaipur,Rajasthan,27.877,76.7488,31,19,Operational
+PHC-RJ-UDA-057,Udaipur Primary Health Centre 15,Udaipur,Rajasthan,25.8425,75.992,14,9,Warning
+PHC-RJ-UDA-058,Udaipur Primary Health Centre 16,Udaipur,Rajasthan,25.5297,74.8245,36,22,Operational
+PHC-RJ-UDA-059,Udaipur Primary Health Centre 17,Udaipur,Rajasthan,25.4832,75.7548,29,16,Operational
+PHC-RJ-UDA-060,Udaipur Primary Health Centre 18,Udaipur,Rajasthan,26.5052,74.9748,47,18,Operational
+PHC-RJ-UDA-061,Udaipur Primary Health Centre 19,Udaipur,Rajasthan,27.4816,76.8352,38,18,Warning
+PHC-RJ-UDA-062,Udaipur Primary Health Centre 20,Udaipur,Rajasthan,25.6812,77.1661,36,25,Operational
+PHC-RJ-UDA-063,Udaipur Primary Health Centre 21,Udaipur,Rajasthan,27.508,75.3384,22,14,Operational
+PHC-RJ-AJM-064,Ajmer Primary Health Centre 1,Ajmer,Rajasthan,27.6318,74.4956,29,19,Operational
+PHC-RJ-AJM-065,Ajmer Primary Health Centre 2,Ajmer,Rajasthan,27.9062,76.2702,21,9,Operational
+PHC-RJ-AJM-066,Ajmer Primary Health Centre 3,Ajmer,Rajasthan,27.9682,76.4645,14,21,Operational
+PHC-RJ-AJM-067,Ajmer Primary Health Centre 4,Ajmer,Rajasthan,27.8703,77.1656,44,18,Operational
+PHC-RJ-AJM-068,Ajmer Primary Health Centre 5,Ajmer,Rajasthan,25.4701,76.7869,50,12,Operational
+PHC-RJ-AJM-069,Ajmer Primary Health Centre 6,Ajmer,Rajasthan,28.0566,76.1604,17,14,Warning
+PHC-RJ-AJM-070,Ajmer Primary Health Centre 7,Ajmer,Rajasthan,26.5073,74.6887,21,5,Operational
+PHC-RJ-AJM-071,Ajmer Primary Health Centre 8,Ajmer,Rajasthan,26.3377,74.5356,21,12,Operational
+PHC-RJ-AJM-072,Ajmer Primary Health Centre 9,Ajmer,Rajasthan,26.3211,74.6036,50,12,Operational
+PHC-RJ-AJM-073,Ajmer Primary Health Centre 10,Ajmer,Rajasthan,28.2495,74.4359,37,6,Operational
+PHC-RJ-AJM-074,Ajmer Primary Health Centre 11,Ajmer,Rajasthan,26.5312,74.6228,46,8,Operational
+PHC-RJ-AJM-075,Ajmer Primary Health Centre 12,Ajmer,Rajasthan,26.7665,74.2377,31,15,Operational
+PHC-RJ-AJM-076,Ajmer Primary Health Centre 13,Ajmer,Rajasthan,27.8064,74.5429,43,23,Operational
+PHC-RJ-AJM-077,Ajmer Primary Health Centre 14,Ajmer,Rajasthan,28.1784,76.445,24,24,Operational
+PHC-RJ-AJM-078,Ajmer Primary Health Centre 15,Ajmer,Rajasthan,25.998,74.203,28,24,Critical
+PHC-RJ-AJM-079,Ajmer Primary Health Centre 16,Ajmer,Rajasthan,27.9837,76.4987,50,19,Operational
+PHC-RJ-AJM-080,Ajmer Primary Health Centre 17,Ajmer,Rajasthan,28.0525,76.6314,24,22,Operational
+PHC-RJ-AJM-081,Ajmer Primary Health Centre 18,Ajmer,Rajasthan,27.2422,74.2136,22,24,Operational
+PHC-RJ-AJM-082,Ajmer Primary Health Centre 19,Ajmer,Rajasthan,27.1789,74.3836,48,25,Operational
+PHC-RJ-AJM-083,Ajmer Primary Health Centre 20,Ajmer,Rajasthan,26.702,76.3658,44,24,Operational
+PHC-RJ-AJM-084,Ajmer Primary Health Centre 21,Ajmer,Rajasthan,27.6942,76.9541,50,17,Operational
+PHC-RJ-KOT-085,Kota Primary Health Centre 1,Kota,Rajasthan,25.7749,74.3857,41,16,Operational
+PHC-RJ-KOT-086,Kota Primary Health Centre 2,Kota,Rajasthan,26.4454,77.0614,19,8,Operational
+PHC-RJ-KOT-087,Kota Primary Health Centre 3,Kota,Rajasthan,28.2585,74.7381,23,12,Warning
+PHC-RJ-KOT-088,Kota Primary Health Centre 4,Kota,Rajasthan,26.6505,74.6067,21,18,Operational
+PHC-RJ-KOT-089,Kota Primary Health Centre 5,Kota,Rajasthan,28.1849,75.9678,24,7,Operational
+PHC-RJ-KOT-090,Kota Primary Health Centre 6,Kota,Rajasthan,25.5099,75.9337,26,22,Operational
+PHC-RJ-KOT-091,Kota Primary Health Centre 7,Kota,Rajasthan,27.2516,74.2713,43,6,Operational
+PHC-RJ-KOT-092,Kota Primary Health Centre 8,Kota,Rajasthan,26.4346,74.3791,32,15,Warning
+PHC-RJ-KOT-093,Kota Primary Health Centre 9,Kota,Rajasthan,26.9165,74.5423,34,7,Operational
+PHC-RJ-KOT-094,Kota Primary Health Centre 10,Kota,Rajasthan,26.1761,76.231,20,20,Operational
+PHC-RJ-KOT-095,Kota Primary Health Centre 11,Kota,Rajasthan,25.5103,76.6329,48,16,Operational
+PHC-RJ-KOT-096,Kota Primary Health Centre 12,Kota,Rajasthan,27.9682,75.6674,12,5,Critical
+PHC-RJ-KOT-097,Kota Primary Health Centre 13,Kota,Rajasthan,25.9057,74.327,21,13,Operational
+PHC-RJ-KOT-098,Kota Primary Health Centre 14,Kota,Rajasthan,25.9064,76.8645,40,14,Warning
+PHC-RJ-KOT-099,Kota Primary Health Centre 15,Kota,Rajasthan,25.7398,76.1953,47,10,Critical
+PHC-RJ-KOT-100,Kota Primary Health Centre 16,Kota,Rajasthan,27.5497,75.4985,25,7,Operational
+PHC-RJ-KOT-101,Kota Primary Health Centre 17,Kota,Rajasthan,27.1371,75.666,12,9,Warning
+PHC-RJ-KOT-102,Kota Primary Health Centre 18,Kota,Rajasthan,27.5079,77.1963,48,9,Operational
+PHC-RJ-KOT-103,Kota Primary Health Centre 19,Kota,Rajasthan,25.4641,75.4766,34,23,Operational
+PHC-RJ-KOT-104,Kota Primary Health Centre 20,Kota,Rajasthan,28.3022,76.0482,30,9,Operational
+PHC-RJ-KOT-105,Kota Primary Health Centre 21,Kota,Rajasthan,28.0777,74.2697,36,20,Operational
+PHC-MH-PUN-106,Pune Primary Health Centre 1,Pune,Maharashtra,20.4755,72.1514,33,23,Operational
+PHC-MH-PUN-107,Pune Primary Health Centre 2,Pune,Maharashtra,20.0886,74.4216,20,12,Operational
+PHC-MH-PUN-108,Pune Primary Health Centre 3,Pune,Maharashtra,18.1005,72.499,38,23,Warning
+PHC-MH-PUN-109,Pune Primary Health Centre 4,Pune,Maharashtra,19.9476,73.0918,12,25,Operational
+PHC-MH-PUN-110,Pune Primary Health Centre 5,Pune,Maharashtra,18.1352,71.7743,40,7,Operational
+PHC-MH-PUN-111,Pune Primary Health Centre 6,Pune,Maharashtra,18.8846,73.7746,46,21,Operational
+PHC-MH-PUN-112,Pune Primary Health Centre 7,Pune,Maharashtra,19.9004,72.0366,19,16,Operational
+PHC-MH-PUN-113,Pune Primary Health Centre 8,Pune,Maharashtra,17.7771,72.8983,19,8,Operational
+PHC-MH-PUN-114,Pune Primary Health Centre 9,Pune,Maharashtra,18.7358,73.3329,29,5,Operational
+PHC-MH-PUN-115,Pune Primary Health Centre 10,Pune,Maharashtra,18.7969,74.3539,24,9,Operational
+PHC-MH-PUN-116,Pune Primary Health Centre 11,Pune,Maharashtra,19.2574,72.1333,14,20,Critical
+PHC-MH-PUN-117,Pune Primary Health Centre 12,Pune,Maharashtra,20.0999,72.4414,32,11,Operational
+PHC-MH-PUN-118,Pune Primary Health Centre 13,Pune,Maharashtra,19.4052,73.1177,17,20,Operational
+PHC-MH-PUN-119,Pune Primary Health Centre 14,Pune,Maharashtra,19.9561,73.6981,35,22,Operational
+PHC-MH-PUN-120,Pune Primary Health Centre 15,Pune,Maharashtra,18.0051,72.6147,43,13,Operational
+PHC-MH-PUN-121,Pune Primary Health Centre 16,Pune,Maharashtra,18.2692,73.7929,41,25,Warning
+PHC-MH-PUN-122,Pune Primary Health Centre 17,Pune,Maharashtra,19.8639,74.3703,35,17,Warning
+PHC-MH-PUN-123,Pune Primary Health Centre 18,Pune,Maharashtra,17.8703,72.812,50,17,Warning
+PHC-MH-PUN-124,Pune Primary Health Centre 19,Pune,Maharashtra,18.0685,72.1264,31,10,Warning
+PHC-MH-PUN-125,Pune Primary Health Centre 20,Pune,Maharashtra,19.543,71.848,30,21,Operational
+PHC-MH-PUN-126,Pune Primary Health Centre 21,Pune,Maharashtra,19.2083,74.0773,43,13,Operational
+PHC-MH-NAG-127,Nagpur Primary Health Centre 1,Nagpur,Maharashtra,18.3166,71.5709,47,5,Operational
+PHC-MH-NAG-128,Nagpur Primary Health Centre 2,Nagpur,Maharashtra,18.3227,72.7898,43,9,Operational
+PHC-MH-NAG-129,Nagpur Primary Health Centre 3,Nagpur,Maharashtra,17.9393,73.399,30,6,Operational
+PHC-MH-NAG-130,Nagpur Primary Health Centre 4,Nagpur,Maharashtra,17.6252,72.594,39,7,Operational
+PHC-MH-NAG-131,Nagpur Primary Health Centre 5,Nagpur,Maharashtra,19.0243,72.3719,24,20,Operational
+PHC-MH-NAG-132,Nagpur Primary Health Centre 6,Nagpur,Maharashtra,18.2006,71.7192,46,6,Operational
+PHC-MH-NAG-133,Nagpur Primary Health Centre 7,Nagpur,Maharashtra,18.7371,73.5026,33,25,Operational
+PHC-MH-NAG-134,Nagpur Primary Health Centre 8,Nagpur,Maharashtra,20.1172,74.0861,48,8,Operational
+PHC-MH-NAG-135,Nagpur Primary Health Centre 9,Nagpur,Maharashtra,19.805,72.7354,27,18,Operational
+PHC-MH-NAG-136,Nagpur Primary Health Centre 10,Nagpur,Maharashtra,18.2007,74.2215,30,7,Operational
+PHC-MH-NAG-137,Nagpur Primary Health Centre 11,Nagpur,Maharashtra,20.1545,74.4098,48,23,Operational
+PHC-MH-NAG-138,Nagpur Primary Health Centre 12,Nagpur,Maharashtra,20.4818,72.6046,42,5,Operational
+PHC-MH-NAG-139,Nagpur Primary Health Centre 13,Nagpur,Maharashtra,17.707,73.2967,49,9,Critical
+PHC-MH-NAG-140,Nagpur Primary Health Centre 14,Nagpur,Maharashtra,18.5786,71.9054,16,10,Operational
+PHC-MH-NAG-141,Nagpur Primary Health Centre 15,Nagpur,Maharashtra,20.134,73.7129,50,17,Warning
+PHC-MH-NAG-142,Nagpur Primary Health Centre 16,Nagpur,Maharashtra,19.5191,72.217,48,5,Operational
+PHC-MH-NAG-143,Nagpur Primary Health Centre 17,Nagpur,Maharashtra,17.5849,71.7457,22,12,Operational
+PHC-MH-NAG-144,Nagpur Primary Health Centre 18,Nagpur,Maharashtra,19.2513,73.6266,23,5,Operational
+PHC-MH-NAG-145,Nagpur Primary Health Centre 19,Nagpur,Maharashtra,18.2856,74.1369,34,7,Critical
+PHC-MH-NAG-146,Nagpur Primary Health Centre 20,Nagpur,Maharashtra,19.6999,74.0105,30,23,Operational
+PHC-MH-NAG-147,Nagpur Primary Health Centre 21,Nagpur,Maharashtra,18.5446,74.3839,22,18,Warning
+PHC-MH-NAS-148,Nashik Primary Health Centre 1,Nashik,Maharashtra,19.89,72.864,49,11,Operational
+PHC-MH-NAS-149,Nashik Primary Health Centre 2,Nashik,Maharashtra,18.5236,73.1273,26,6,Operational
+PHC-MH-NAS-150,Nashik Primary Health Centre 3,Nashik,Maharashtra,19.1089,72.4928,46,18,Operational
+PHC-MH-NAS-151,Nashik Primary Health Centre 4,Nashik,Maharashtra,18.7447,72.7894,15,10,Operational
+PHC-MH-NAS-152,Nashik Primary Health Centre 5,Nashik,Maharashtra,19.8873,73.7443,18,10,Operational
+PHC-MH-NAS-153,Nashik Primary Health Centre 6,Nashik,Maharashtra,19.4733,73.0559,11,23,Operational
+PHC-MH-NAS-154,Nashik Primary Health Centre 7,Nashik,Maharashtra,18.9811,73.5909,48,23,Critical
+PHC-MH-NAS-155,Nashik Primary Health Centre 8,Nashik,Maharashtra,18.0381,71.6922,17,7,Operational
+PHC-MH-NAS-156,Nashik Primary Health Centre 9,Nashik,Maharashtra,18.4704,72.2351,13,13,Warning
+PHC-MH-NAS-157,Nashik Primary Health Centre 10,Nashik,Maharashtra,17.816,73.8912,37,16,Operational
+PHC-MH-NAS-158,Nashik Primary Health Centre 11,Nashik,Maharashtra,19.4316,73.6531,39,18,Operational
+PHC-MH-NAS-159,Nashik Primary Health Centre 12,Nashik,Maharashtra,18.424,72.4308,36,9,Operational
+PHC-MH-NAS-160,Nashik Primary Health Centre 13,Nashik,Maharashtra,18.3793,72.1058,22,17,Operational
+PHC-MH-NAS-161,Nashik Primary Health Centre 14,Nashik,Maharashtra,18.1822,71.6359,31,13,Critical
+PHC-MH-NAS-162,Nashik Primary Health Centre 15,Nashik,Maharashtra,18.932,73.214,22,17,Warning
+PHC-MH-NAS-163,Nashik Primary Health Centre 16,Nashik,Maharashtra,17.5384,73.8157,32,25,Operational
+PHC-MH-NAS-164,Nashik Primary Health Centre 17,Nashik,Maharashtra,18.3728,72.2663,17,10,Operational
+PHC-MH-NAS-165,Nashik Primary Health Centre 18,Nashik,Maharashtra,20.2754,73.3789,47,19,Warning
+PHC-MH-NAS-166,Nashik Primary Health Centre 19,Nashik,Maharashtra,19.451,74.2581,50,15,Operational
+PHC-MH-NAS-167,Nashik Primary Health Centre 20,Nashik,Maharashtra,19.6832,71.512,40,17,Operational
+PHC-MH-NAS-168,Nashik Primary Health Centre 21,Nashik,Maharashtra,18.7958,73.2665,10,17,Warning
+PHC-MH-AUR-169,Aurangabad Primary Health Centre 1,Aurangabad,Maharashtra,17.8915,73.131,47,10,Warning
+PHC-MH-AUR-170,Aurangabad Primary Health Centre 2,Aurangabad,Maharashtra,19.1611,73.8273,45,20,Operational
+PHC-MH-AUR-171,Aurangabad Primary Health Centre 3,Aurangabad,Maharashtra,18.6041,72.9011,11,19,Warning
+PHC-MH-AUR-172,Aurangabad Primary Health Centre 4,Aurangabad,Maharashtra,17.9706,72.5554,24,8,Operational
+PHC-MH-AUR-173,Aurangabad Primary Health Centre 5,Aurangabad,Maharashtra,19.4944,71.9213,39,6,Operational
+PHC-MH-AUR-174,Aurangabad Primary Health Centre 6,Aurangabad,Maharashtra,18.1553,72.7833,46,25,Warning
+PHC-MH-AUR-175,Aurangabad Primary Health Centre 7,Aurangabad,Maharashtra,19.7774,73.0662,27,20,Operational
+PHC-MH-AUR-176,Aurangabad Primary Health Centre 8,Aurangabad,Maharashtra,19.6156,73.2093,43,6,Operational
+PHC-MH-AUR-177,Aurangabad Primary Health Centre 9,Aurangabad,Maharashtra,20.4764,72.9394,42,20,Operational
+PHC-MH-AUR-178,Aurangabad Primary Health Centre 10,Aurangabad,Maharashtra,18.6759,73.5276,19,12,Operational
+PHC-MH-AUR-179,Aurangabad Primary Health Centre 11,Aurangabad,Maharashtra,18.3808,72.789,31,24,Operational
+PHC-MH-AUR-180,Aurangabad Primary Health Centre 12,Aurangabad,Maharashtra,19.8798,73.9025,12,20,Operational
+PHC-MH-AUR-181,Aurangabad Primary Health Centre 13,Aurangabad,Maharashtra,17.6665,74.3078,13,23,Critical
+PHC-MH-AUR-182,Aurangabad Primary Health Centre 14,Aurangabad,Maharashtra,18.3621,73.3364,19,6,Operational
+PHC-MH-AUR-183,Aurangabad Primary Health Centre 15,Aurangabad,Maharashtra,18.2859,74.036,26,5,Operational
+PHC-MH-AUR-184,Aurangabad Primary Health Centre 16,Aurangabad,Maharashtra,18.3348,74.2344,36,13,Operational
+PHC-MH-AUR-185,Aurangabad Primary Health Centre 17,Aurangabad,Maharashtra,17.7691,74.1137,23,18,Warning
+PHC-MH-AUR-186,Aurangabad Primary Health Centre 18,Aurangabad,Maharashtra,18.8012,72.5908,30,23,Operational
+PHC-MH-AUR-187,Aurangabad Primary Health Centre 19,Aurangabad,Maharashtra,19.9904,72.4279,40,19,Operational
+PHC-MH-AUR-188,Aurangabad Primary Health Centre 20,Aurangabad,Maharashtra,19.9776,71.7372,16,5,Operational
+PHC-MH-AUR-189,Aurangabad Primary Health Centre 21,Aurangabad,Maharashtra,20.4696,72.8495,43,11,Operational
+PHC-MH-THA-190,Thane Primary Health Centre 1,Thane,Maharashtra,19.3847,73.855,41,9,Warning
+PHC-MH-THA-191,Thane Primary Health Centre 2,Thane,Maharashtra,19.7469,73.1087,41,13,Warning
+PHC-MH-THA-192,Thane Primary Health Centre 3,Thane,Maharashtra,19.2901,72.9426,25,21,Warning
+PHC-MH-THA-193,Thane Primary Health Centre 4,Thane,Maharashtra,19.2554,72.2062,34,13,Operational
+PHC-MH-THA-194,Thane Primary Health Centre 5,Thane,Maharashtra,18.0784,71.9362,14,7,Operational
+PHC-MH-THA-195,Thane Primary Health Centre 6,Thane,Maharashtra,18.4516,71.9077,15,22,Operational
+PHC-MH-THA-196,Thane Primary Health Centre 7,Thane,Maharashtra,18.4817,73.5779,46,8,Operational
+PHC-MH-THA-197,Thane Primary Health Centre 8,Thane,Maharashtra,18.9447,73.462,22,16,Operational
+PHC-MH-THA-198,Thane Primary Health Centre 9,Thane,Maharashtra,19.6912,73.9787,46,23,Operational
+PHC-MH-THA-199,Thane Primary Health Centre 10,Thane,Maharashtra,19.5696,72.1675,42,19,Operational
+PHC-MH-THA-200,Thane Primary Health Centre 11,Thane,Maharashtra,18.1008,73.642,39,14,Operational
+PHC-MH-THA-201,Thane Primary Health Centre 12,Thane,Maharashtra,19.6995,73.3752,35,21,Operational
+PHC-MH-THA-202,Thane Primary Health Centre 13,Thane,Maharashtra,18.0656,73.0451,30,20,Operational
+PHC-MH-THA-203,Thane Primary Health Centre 14,Thane,Maharashtra,18.8752,73.6508,24,22,Operational
+PHC-MH-THA-204,Thane Primary Health Centre 15,Thane,Maharashtra,17.8839,71.7721,27,22,Operational
+PHC-MH-THA-205,Thane Primary Health Centre 16,Thane,Maharashtra,20.3955,71.69,37,11,Warning
+PHC-MH-THA-206,Thane Primary Health Centre 17,Thane,Maharashtra,18.7414,71.6261,19,14,Operational
+PHC-MH-THA-207,Thane Primary Health Centre 18,Thane,Maharashtra,19.5816,74.1772,25,10,Operational
+PHC-MH-THA-208,Thane Primary Health Centre 19,Thane,Maharashtra,18.3744,74.4761,11,24,Warning
+PHC-MH-THA-209,Thane Primary Health Centre 20,Thane,Maharashtra,19.8803,72.7219,47,21,Operational
+PHC-MH-THA-210,Thane Primary Health Centre 21,Thane,Maharashtra,18.3274,72.5778,11,21,Operational
+PHC-KL-THI-211,Thiruvananthapuram Primary Health Centre 1,Thiruvananthapuram,Kerala,10.7153,76.6186,28,11,Operational
+PHC-KL-THI-212,Thiruvananthapuram Primary Health Centre 2,Thiruvananthapuram,Kerala,9.739,76.4232,24,19,Operational
+PHC-KL-THI-213,Thiruvananthapuram Primary Health Centre 3,Thiruvananthapuram,Kerala,9.761,76.5035,44,24,Operational
+PHC-KL-THI-214,Thiruvananthapuram Primary Health Centre 4,Thiruvananthapuram,Kerala,10.7429,76.0907,14,13,Operational
+PHC-KL-THI-215,Thiruvananthapuram Primary Health Centre 5,Thiruvananthapuram,Kerala,9.3999,77.4428,17,11,Warning
+PHC-KL-THI-216,Thiruvananthapuram Primary Health Centre 6,Thiruvananthapuram,Kerala,9.4862,75.5453,17,14,Operational
+PHC-KL-THI-217,Thiruvananthapuram Primary Health Centre 7,Thiruvananthapuram,Kerala,11.0684,75.1353,25,8,Operational
+PHC-KL-THI-218,Thiruvananthapuram Primary Health Centre 8,Thiruvananthapuram,Kerala,9.3529,75.8839,15,5,Operational
+PHC-KL-THI-219,Thiruvananthapuram Primary Health Centre 9,Thiruvananthapuram,Kerala,10.1623,76.7552,34,5,Operational
+PHC-KL-THI-220,Thiruvananthapuram Primary Health Centre 10,Thiruvananthapuram,Kerala,10.7891,76.3458,29,5,Operational
+PHC-KL-THI-221,Thiruvananthapuram Primary Health Centre 11,Thiruvananthapuram,Kerala,11.0592,77.2501,41,22,Operational
+PHC-KL-THI-222,Thiruvananthapuram Primary Health Centre 12,Thiruvananthapuram,Kerala,12.1943,74.7871,15,21,Warning
+PHC-KL-THI-223,Thiruvananthapuram Primary Health Centre 13,Thiruvananthapuram,Kerala,9.9901,77.5517,16,14,Operational
+PHC-KL-THI-224,Thiruvananthapuram Primary Health Centre 14,Thiruvananthapuram,Kerala,9.4522,75.7347,23,7,Operational
+PHC-KL-THI-225,Thiruvananthapuram Primary Health Centre 15,Thiruvananthapuram,Kerala,10.5225,76.7709,16,19,Operational
+PHC-KL-THI-226,Thiruvananthapuram Primary Health Centre 16,Thiruvananthapuram,Kerala,12.1242,76.1522,27,12,Operational
+PHC-KL-THI-227,Thiruvananthapuram Primary Health Centre 17,Thiruvananthapuram,Kerala,10.3177,76.3848,15,23,Operational
+PHC-KL-THI-228,Thiruvananthapuram Primary Health Centre 18,Thiruvananthapuram,Kerala,10.0881,77.6174,15,14,Operational
+PHC-KL-THI-229,Thiruvananthapuram Primary Health Centre 19,Thiruvananthapuram,Kerala,9.3364,75.1961,16,20,Operational
+PHC-KL-THI-230,Thiruvananthapuram Primary Health Centre 20,Thiruvananthapuram,Kerala,12.2996,74.8386,13,6,Warning
+PHC-KL-THI-231,Thiruvananthapuram Primary Health Centre 21,Thiruvananthapuram,Kerala,10.4685,75.0787,31,11,Operational
+PHC-KL-ERN-232,Ernakulam Primary Health Centre 1,Ernakulam,Kerala,10.1925,76.8597,21,15,Critical
+PHC-KL-ERN-233,Ernakulam Primary Health Centre 2,Ernakulam,Kerala,11.6023,76.5359,47,20,Operational
+PHC-KL-ERN-234,Ernakulam Primary Health Centre 3,Ernakulam,Kerala,9.7515,75.6952,36,25,Operational
+PHC-KL-ERN-235,Ernakulam Primary Health Centre 4,Ernakulam,Kerala,11.0875,76.6534,37,15,Operational
+PHC-KL-ERN-236,Ernakulam Primary Health Centre 5,Ernakulam,Kerala,11.1267,75.7353,39,5,Operational
+PHC-KL-ERN-237,Ernakulam Primary Health Centre 6,Ernakulam,Kerala,9.8381,77.4002,32,17,Warning
+PHC-KL-ERN-238,Ernakulam Primary Health Centre 7,Ernakulam,Kerala,11.4484,76.6756,41,18,Operational
+PHC-KL-ERN-239,Ernakulam Primary Health Centre 8,Ernakulam,Kerala,12.0762,75.1953,38,5,Operational
+PHC-KL-ERN-240,Ernakulam Primary Health Centre 9,Ernakulam,Kerala,9.6024,75.3842,29,14,Operational
+PHC-KL-ERN-241,Ernakulam Primary Health Centre 10,Ernakulam,Kerala,10.8789,76.194,23,25,Operational
+PHC-KL-ERN-242,Ernakulam Primary Health Centre 11,Ernakulam,Kerala,11.3691,76.5479,36,14,Warning
+PHC-KL-ERN-243,Ernakulam Primary Health Centre 12,Ernakulam,Kerala,9.348,76.9533,41,9,Warning
+PHC-KL-ERN-244,Ernakulam Primary Health Centre 13,Ernakulam,Kerala,11.039,77.3019,39,14,Operational
+PHC-KL-ERN-245,Ernakulam Primary Health Centre 14,Ernakulam,Kerala,9.734,75.223,18,13,Operational
+PHC-KL-ERN-246,Ernakulam Primary Health Centre 15,Ernakulam,Kerala,11.5788,76.2584,11,17,Operational
+PHC-KL-ERN-247,Ernakulam Primary Health Centre 16,Ernakulam,Kerala,11.1749,76.2236,31,12,Operational
+PHC-KL-ERN-248,Ernakulam Primary Health Centre 17,Ernakulam,Kerala,12.1433,75.3314,15,23,Operational
+PHC-KL-ERN-249,Ernakulam Primary Health Centre 18,Ernakulam,Kerala,9.6565,74.9439,18,9,Operational
+PHC-KL-ERN-250,Ernakulam Primary Health Centre 19,Ernakulam,Kerala,9.919,75.5077,49,20,Operational
+PHC-KL-ERN-251,Ernakulam Primary Health Centre 20,Ernakulam,Kerala,11.2166,75.9052,32,15,Operational
+PHC-KL-ERN-252,Ernakulam Primary Health Centre 21,Ernakulam,Kerala,11.644,75.5195,33,19,Operational
+PHC-KL-KOZ-253,Kozhikode Primary Health Centre 1,Kozhikode,Kerala,9.3771,75.6295,19,8,Warning
+PHC-KL-KOZ-254,Kozhikode Primary Health Centre 2,Kozhikode,Kerala,10.4796,76.1227,39,11,Warning
+PHC-KL-KOZ-255,Kozhikode Primary Health Centre 3,Kozhikode,Kerala,10.3968,76.4476,40,19,Operational
+PHC-KL-KOZ-256,Kozhikode Primary Health Centre 4,Kozhikode,Kerala,10.3535,74.7411,21,17,Operational
+PHC-KL-KOZ-257,Kozhikode Primary Health Centre 5,Kozhikode,Kerala,10.625,75.6651,10,24,Operational
+PHC-KL-KOZ-258,Kozhikode Primary Health Centre 6,Kozhikode,Kerala,9.3314,77.0974,16,25,Operational
+PHC-KL-KOZ-259,Kozhikode Primary Health Centre 7,Kozhikode,Kerala,11.324,74.9491,27,9,Operational
+PHC-KL-KOZ-260,Kozhikode Primary Health Centre 8,Kozhikode,Kerala,10.3778,77.6044,32,14,Warning
+PHC-KL-KOZ-261,Kozhikode Primary Health Centre 9,Kozhikode,Kerala,10.1013,76.1183,11,11,Operational
+PHC-KL-KOZ-262,Kozhikode Primary Health Centre 10,Kozhikode,Kerala,11.612,77.5562,38,21,Warning
+PHC-KL-KOZ-263,Kozhikode Primary Health Centre 11,Kozhikode,Kerala,10.3054,76.2498,41,6,Critical
+PHC-KL-KOZ-264,Kozhikode Primary Health Centre 12,Kozhikode,Kerala,12.2066,76.7878,19,12,Operational
+PHC-KL-KOZ-265,Kozhikode Primary Health Centre 13,Kozhikode,Kerala,12.2657,77.1982,17,16,Operational
+PHC-KL-KOZ-266,Kozhikode Primary Health Centre 14,Kozhikode,Kerala,9.5082,76.1771,22,13,Operational
+PHC-KL-KOZ-267,Kozhikode Primary Health Centre 15,Kozhikode,Kerala,11.7487,75.9296,24,14,Operational
+PHC-KL-KOZ-268,Kozhikode Primary Health Centre 16,Kozhikode,Kerala,9.9538,76.8053,11,9,Operational
+PHC-KL-KOZ-269,Kozhikode Primary Health Centre 17,Kozhikode,Kerala,10.5311,77.1777,30,22,Operational
+PHC-KL-KOZ-270,Kozhikode Primary Health Centre 18,Kozhikode,Kerala,10.1885,77.1179,39,22,Warning
+PHC-KL-KOZ-271,Kozhikode Primary Health Centre 19,Kozhikode,Kerala,11.1524,76.8268,31,25,Operational
+PHC-KL-KOZ-272,Kozhikode Primary Health Centre 20,Kozhikode,Kerala,10.3691,74.8148,27,12,Operational
+PHC-KL-KOZ-273,Kozhikode Primary Health Centre 21,Kozhikode,Kerala,10.0412,74.9491,31,21,Critical
+PHC-KL-THR-274,Thrissur Primary Health Centre 1,Thrissur,Kerala,10.6393,76.2307,24,16,Operational
+PHC-KL-THR-275,Thrissur Primary Health Centre 2,Thrissur,Kerala,10.8376,76.0015,13,24,Warning
+PHC-KL-THR-276,Thrissur Primary Health Centre 3,Thrissur,Kerala,9.6448,74.79,19,10,Operational
+PHC-KL-THR-277,Thrissur Primary Health Centre 4,Thrissur,Kerala,9.4855,75.311,22,9,Operational
+PHC-KL-THR-278,Thrissur Primary Health Centre 5,Thrissur,Kerala,10.7072,76.4582,44,21,Operational
+PHC-KL-THR-279,Thrissur Primary Health Centre 6,Thrissur,Kerala,11.1018,76.0485,33,21,Operational
+PHC-KL-THR-280,Thrissur Primary Health Centre 7,Thrissur,Kerala,11.3502,74.9902,45,18,Operational
+PHC-KL-THR-281,Thrissur Primary Health Centre 8,Thrissur,Kerala,11.0449,75.9798,29,23,Operational
+PHC-KL-THR-282,Thrissur Primary Health Centre 9,Thrissur,Kerala,10.3855,76.8414,12,12,Operational
+PHC-KL-THR-283,Thrissur Primary Health Centre 10,Thrissur,Kerala,10.0411,77.2265,16,6,Warning
+PHC-KL-THR-284,Thrissur Primary Health Centre 11,Thrissur,Kerala,11.9483,77.4704,39,8,Operational
+PHC-KL-THR-285,Thrissur Primary Health Centre 12,Thrissur,Kerala,11.1958,76.5888,21,6,Operational
+PHC-KL-THR-286,Thrissur Primary Health Centre 13,Thrissur,Kerala,11.8337,74.7314,34,21,Operational
+PHC-KL-THR-287,Thrissur Primary Health Centre 14,Thrissur,Kerala,10.4542,75.3378,22,21,Operational
+PHC-KL-THR-288,Thrissur Primary Health Centre 15,Thrissur,Kerala,10.5274,76.7665,10,25,Operational
+PHC-KL-THR-289,Thrissur Primary Health Centre 16,Thrissur,Kerala,11.1477,75.9624,50,15,Operational
+PHC-KL-THR-290,Thrissur Primary Health Centre 17,Thrissur,Kerala,11.524,77.2078,13,22,Warning
+PHC-KL-THR-291,Thrissur Primary Health Centre 18,Thrissur,Kerala,11.3308,75.2033,41,5,Operational
+PHC-KL-THR-292,Thrissur Primary Health Centre 19,Thrissur,Kerala,10.0035,75.2707,40,24,Operational
+PHC-KL-THR-293,Thrissur Primary Health Centre 20,Thrissur,Kerala,9.9697,75.4985,15,24,Operational
+PHC-KL-THR-294,Thrissur Primary Health Centre 21,Thrissur,Kerala,9.8534,75.4875,50,11,Warning
+PHC-TN-CHE-295,Chennai Primary Health Centre 1,Chennai,Tamil Nadu,12.415,77.7545,12,7,Critical
+PHC-TN-CHE-296,Chennai Primary Health Centre 2,Chennai,Tamil Nadu,9.7699,77.7369,35,20,Operational
+PHC-TN-CHE-297,Chennai Primary Health Centre 3,Chennai,Tamil Nadu,10.875,77.276,42,15,Operational
+PHC-TN-CHE-298,Chennai Primary Health Centre 4,Chennai,Tamil Nadu,12.5772,78.685,38,7,Operational
+PHC-TN-CHE-299,Chennai Primary Health Centre 5,Chennai,Tamil Nadu,11.5241,77.5037,30,10,Operational
+PHC-TN-CHE-300,Chennai Primary Health Centre 6,Chennai,Tamil Nadu,12.1569,77.9656,33,6,Operational
+PHC-TN-CHE-301,Chennai Primary Health Centre 7,Chennai,Tamil Nadu,11.1757,78.6968,16,14,Critical
+PHC-TN-CHE-302,Chennai Primary Health Centre 8,Chennai,Tamil Nadu,10.6323,77.5272,44,7,Warning
+PHC-TN-CHE-303,Chennai Primary Health Centre 9,Chennai,Tamil Nadu,11.9628,77.7689,42,18,Operational
+PHC-TN-CHE-304,Chennai Primary Health Centre 10,Chennai,Tamil Nadu,10.9796,79.46,27,14,Operational
+PHC-TN-CHE-305,Chennai Primary Health Centre 11,Chennai,Tamil Nadu,12.0266,78.2961,36,9,Operational
+PHC-TN-CHE-306,Chennai Primary Health Centre 12,Chennai,Tamil Nadu,11.4946,78.5584,37,24,Warning
+PHC-TN-CHE-307,Chennai Primary Health Centre 13,Chennai,Tamil Nadu,10.7007,79.1762,44,25,Operational
+PHC-TN-CHE-308,Chennai Primary Health Centre 14,Chennai,Tamil Nadu,11.4137,80.0884,41,6,Warning
+PHC-TN-CHE-309,Chennai Primary Health Centre 15,Chennai,Tamil Nadu,10.2363,77.4422,15,16,Warning
+PHC-TN-CHE-310,Chennai Primary Health Centre 16,Chennai,Tamil Nadu,11.5838,79.1675,44,10,Critical
+PHC-TN-CHE-311,Chennai Primary Health Centre 17,Chennai,Tamil Nadu,10.9223,77.6323,11,12,Warning
+PHC-TN-CHE-312,Chennai Primary Health Centre 18,Chennai,Tamil Nadu,12.4617,80.0551,20,17,Warning
+PHC-TN-CHE-313,Chennai Primary Health Centre 19,Chennai,Tamil Nadu,11.0934,79.559,11,6,Operational
+PHC-TN-CHE-314,Chennai Primary Health Centre 20,Chennai,Tamil Nadu,12.1678,77.7756,27,15,Operational
+PHC-TN-CHE-315,Chennai Primary Health Centre 21,Chennai,Tamil Nadu,11.0537,79.6927,17,7,Warning
+PHC-TN-COI-316,Coimbatore Primary Health Centre 1,Coimbatore,Tamil Nadu,11.7165,78.2232,37,25,Operational
+PHC-TN-COI-317,Coimbatore Primary Health Centre 2,Coimbatore,Tamil Nadu,12.047,79.7917,47,18,Operational
+PHC-TN-COI-318,Coimbatore Primary Health Centre 3,Coimbatore,Tamil Nadu,9.9743,78.4285,46,15,Operational
+PHC-TN-COI-319,Coimbatore Primary Health Centre 4,Coimbatore,Tamil Nadu,11.7938,77.1368,40,20,Operational
+PHC-TN-COI-320,Coimbatore Primary Health Centre 5,Coimbatore,Tamil Nadu,11.0018,77.1667,33,22,Operational
+PHC-TN-COI-321,Coimbatore Primary Health Centre 6,Coimbatore,Tamil Nadu,11.8549,79.2481,33,16,Warning
+PHC-TN-COI-322,Coimbatore Primary Health Centre 7,Coimbatore,Tamil Nadu,10.1026,77.5795,38,11,Operational
+PHC-TN-COI-323,Coimbatore Primary Health Centre 8,Coimbatore,Tamil Nadu,11.5133,78.1126,26,10,Operational
+PHC-TN-COI-324,Coimbatore Primary Health Centre 9,Coimbatore,Tamil Nadu,10.7811,77.6238,36,16,Operational
+PHC-TN-COI-325,Coimbatore Primary Health Centre 10,Coimbatore,Tamil Nadu,10.6484,78.2418,31,18,Operational
+PHC-TN-COI-326,Coimbatore Primary Health Centre 11,Coimbatore,Tamil Nadu,10.8935,79.2263,50,7,Operational
+PHC-TN-COI-327,Coimbatore Primary Health Centre 12,Coimbatore,Tamil Nadu,9.6693,79.4023,10,19,Critical
+PHC-TN-COI-328,Coimbatore Primary Health Centre 13,Coimbatore,Tamil Nadu,11.999,77.6898,28,5,Operational
+PHC-TN-COI-329,Coimbatore Primary Health Centre 14,Coimbatore,Tamil Nadu,12.1051,78.9713,20,7,Critical
+PHC-TN-COI-330,Coimbatore Primary Health Centre 15,Coimbatore,Tamil Nadu,10.4606,77.9023,47,5,Operational
+PHC-TN-COI-331,Coimbatore Primary Health Centre 16,Coimbatore,Tamil Nadu,10.5815,77.6817,11,18,Operational
+PHC-TN-COI-332,Coimbatore Primary Health Centre 17,Coimbatore,Tamil Nadu,11.458,79.8322,45,14,Operational
+PHC-TN-COI-333,Coimbatore Primary Health Centre 18,Coimbatore,Tamil Nadu,10.1855,77.5168,30,14,Operational
+PHC-TN-COI-334,Coimbatore Primary Health Centre 19,Coimbatore,Tamil Nadu,12.0379,77.3774,36,10,Operational
+PHC-TN-COI-335,Coimbatore Primary Health Centre 20,Coimbatore,Tamil Nadu,10.5286,78.9325,49,9,Warning
+PHC-TN-COI-336,Coimbatore Primary Health Centre 21,Coimbatore,Tamil Nadu,11.8725,79.888,41,5,Warning
+PHC-TN-MAD-337,Madurai Primary Health Centre 1,Madurai,Tamil Nadu,9.9969,77.7789,27,24,Critical
+PHC-TN-MAD-338,Madurai Primary Health Centre 2,Madurai,Tamil Nadu,12.0878,77.5015,33,13,Operational
+PHC-TN-MAD-339,Madurai Primary Health Centre 3,Madurai,Tamil Nadu,9.8112,79.1773,48,20,Critical
+PHC-TN-MAD-340,Madurai Primary Health Centre 4,Madurai,Tamil Nadu,9.9038,79.559,47,17,Operational
+PHC-TN-MAD-341,Madurai Primary Health Centre 5,Madurai,Tamil Nadu,11.9169,79.9997,12,24,Critical
+PHC-TN-MAD-342,Madurai Primary Health Centre 6,Madurai,Tamil Nadu,12.2566,78.6644,36,22,Operational
+PHC-TN-MAD-343,Madurai Primary Health Centre 7,Madurai,Tamil Nadu,12.0909,79.9035,25,23,Operational
+PHC-TN-MAD-344,Madurai Primary Health Centre 8,Madurai,Tamil Nadu,12.0032,77.224,25,20,Operational
+PHC-TN-MAD-345,Madurai Primary Health Centre 9,Madurai,Tamil Nadu,11.8363,79.9262,19,25,Operational
+PHC-TN-MAD-346,Madurai Primary Health Centre 10,Madurai,Tamil Nadu,10.2836,79.099,16,13,Warning
+PHC-TN-MAD-347,Madurai Primary Health Centre 11,Madurai,Tamil Nadu,11.3731,79.641,47,9,Warning
+PHC-TN-MAD-348,Madurai Primary Health Centre 12,Madurai,Tamil Nadu,9.9366,79.1942,22,14,Operational
+PHC-TN-MAD-349,Madurai Primary Health Centre 13,Madurai,Tamil Nadu,9.9488,79.4021,31,24,Warning
+PHC-TN-MAD-350,Madurai Primary Health Centre 14,Madurai,Tamil Nadu,10.4009,78.5106,32,23,Operational
+PHC-TN-MAD-351,Madurai Primary Health Centre 15,Madurai,Tamil Nadu,9.818,79.9611,15,11,Operational
+PHC-TN-MAD-352,Madurai Primary Health Centre 16,Madurai,Tamil Nadu,10.6104,77.9103,43,21,Operational
+PHC-TN-MAD-353,Madurai Primary Health Centre 17,Madurai,Tamil Nadu,12.0259,79.6286,23,5,Critical
+PHC-TN-MAD-354,Madurai Primary Health Centre 18,Madurai,Tamil Nadu,11.9887,79.8244,49,7,Operational
+PHC-TN-MAD-355,Madurai Primary Health Centre 19,Madurai,Tamil Nadu,12.4948,78.8314,24,14,Operational
+PHC-TN-MAD-356,Madurai Primary Health Centre 20,Madurai,Tamil Nadu,12.5866,79.448,50,25,Operational
+PHC-TN-MAD-357,Madurai Primary Health Centre 21,Madurai,Tamil Nadu,11.966,78.0284,32,23,Operational
+PHC-TN-SAL-358,Salem Primary Health Centre 1,Salem,Tamil Nadu,12.4636,80.0024,16,11,Operational
+PHC-TN-SAL-359,Salem Primary Health Centre 2,Salem,Tamil Nadu,11.4548,77.3098,39,23,Operational
+PHC-TN-SAL-360,Salem Primary Health Centre 3,Salem,Tamil Nadu,12.3146,77.7943,16,7,Operational
+PHC-TN-SAL-361,Salem Primary Health Centre 4,Salem,Tamil Nadu,11.4753,78.1212,46,9,Operational
+PHC-TN-SAL-362,Salem Primary Health Centre 5,Salem,Tamil Nadu,10.9556,78.4866,19,20,Operational
+PHC-TN-SAL-363,Salem Primary Health Centre 6,Salem,Tamil Nadu,10.5258,79.6067,18,10,Operational
+PHC-TN-SAL-364,Salem Primary Health Centre 7,Salem,Tamil Nadu,10.1397,78.8974,36,14,Warning
+PHC-TN-SAL-365,Salem Primary Health Centre 8,Salem,Tamil Nadu,9.9265,79.1045,37,24,Operational
+PHC-TN-SAL-366,Salem Primary Health Centre 9,Salem,Tamil Nadu,10.6014,77.6829,16,9,Operational
+PHC-TN-SAL-367,Salem Primary Health Centre 10,Salem,Tamil Nadu,10.0147,80.0219,16,14,Operational
+PHC-TN-SAL-368,Salem Primary Health Centre 11,Salem,Tamil Nadu,11.679,78.219,17,22,Operational
+PHC-TN-SAL-369,Salem Primary Health Centre 12,Salem,Tamil Nadu,10.1353,78.1879,40,7,Operational
+PHC-TN-SAL-370,Salem Primary Health Centre 13,Salem,Tamil Nadu,9.9935,77.3382,48,14,Warning
+PHC-TN-SAL-371,Salem Primary Health Centre 14,Salem,Tamil Nadu,11.815,77.4405,28,14,Operational
+PHC-TN-SAL-372,Salem Primary Health Centre 15,Salem,Tamil Nadu,10.7479,78.9199,45,20,Operational
+PHC-TN-SAL-373,Salem Primary Health Centre 16,Salem,Tamil Nadu,11.496,77.836,45,5,Critical
+PHC-TN-SAL-374,Salem Primary Health Centre 17,Salem,Tamil Nadu,10.0986,78.0767,37,10,Operational
+PHC-TN-SAL-375,Salem Primary Health Centre 18,Salem,Tamil Nadu,10.269,79.4026,48,19,Operational
+PHC-TN-SAL-376,Salem Primary Health Centre 19,Salem,Tamil Nadu,11.5366,79.6611,18,13,Operational
+PHC-TN-SAL-377,Salem Primary Health Centre 20,Salem,Tamil Nadu,12.0734,79.8434,27,13,Operational
+PHC-TN-SAL-378,Salem Primary Health Centre 21,Salem,Tamil Nadu,10.4324,77.5131,17,17,Operational
+PHC-TN-TIR-379,Tiruchirappalli Primary Health Centre 1,Tiruchirappalli,Tamil Nadu,10.4624,79.1179,23,15,Operational
+PHC-TN-TIR-380,Tiruchirappalli Primary Health Centre 2,Tiruchirappalli,Tamil Nadu,11.9537,77.9414,42,14,Warning
+PHC-TN-TIR-381,Tiruchirappalli Primary Health Centre 3,Tiruchirappalli,Tamil Nadu,11.3001,79.142,20,15,Operational
+PHC-TN-TIR-382,Tiruchirappalli Primary Health Centre 4,Tiruchirappalli,Tamil Nadu,11.8321,78.3291,25,25,Operational
+PHC-TN-TIR-383,Tiruchirappalli Primary Health Centre 5,Tiruchirappalli,Tamil Nadu,9.8179,79.332,16,18,Warning
+PHC-TN-TIR-384,Tiruchirappalli Primary Health Centre 6,Tiruchirappalli,Tamil Nadu,10.8566,78.7568,26,10,Warning
+PHC-TN-TIR-385,Tiruchirappalli Primary Health Centre 7,Tiruchirappalli,Tamil Nadu,11.4891,79.0902,40,21,Operational
+PHC-TN-TIR-386,Tiruchirappalli Primary Health Centre 8,Tiruchirappalli,Tamil Nadu,11.3122,79.3368,30,19,Critical
+PHC-TN-TIR-387,Tiruchirappalli Primary Health Centre 9,Tiruchirappalli,Tamil Nadu,12.0099,78.9221,18,23,Operational
+PHC-TN-TIR-388,Tiruchirappalli Primary Health Centre 10,Tiruchirappalli,Tamil Nadu,10.1377,79.9476,36,12,Warning
+PHC-TN-TIR-389,Tiruchirappalli Primary Health Centre 11,Tiruchirappalli,Tamil Nadu,11.4061,78.1181,37,16,Critical
+PHC-TN-TIR-390,Tiruchirappalli Primary Health Centre 12,Tiruchirappalli,Tamil Nadu,10.8474,77.5824,17,14,Operational
+PHC-TN-TIR-391,Tiruchirappalli Primary Health Centre 13,Tiruchirappalli,Tamil Nadu,11.7057,79.8366,48,8,Operational
+PHC-TN-TIR-392,Tiruchirappalli Primary Health Centre 14,Tiruchirappalli,Tamil Nadu,10.7407,77.8302,27,24,Critical
+PHC-TN-TIR-393,Tiruchirappalli Primary Health Centre 15,Tiruchirappalli,Tamil Nadu,10.4785,78.5898,28,22,Operational
+PHC-TN-TIR-394,Tiruchirappalli Primary Health Centre 16,Tiruchirappalli,Tamil Nadu,12.1392,77.1704,30,14,Operational
+PHC-TN-TIR-395,Tiruchirappalli Primary Health Centre 17,Tiruchirappalli,Tamil Nadu,12.0737,79.348,24,17,Operational
+PHC-TN-TIR-396,Tiruchirappalli Primary Health Centre 18,Tiruchirappalli,Tamil Nadu,11.0318,79.5216,36,18,Operational
+PHC-TN-TIR-397,Tiruchirappalli Primary Health Centre 19,Tiruchirappalli,Tamil Nadu,11.1312,78.3258,38,5,Operational
+PHC-TN-TIR-398,Tiruchirappalli Primary Health Centre 20,Tiruchirappalli,Tamil Nadu,10.3219,77.333,44,14,Critical
+PHC-TN-TIR-399,Tiruchirappalli Primary Health Centre 21,Tiruchirappalli,Tamil Nadu,11.5886,77.6543,42,17,Operational
+PHC-WB-KOL-400,Kolkata Primary Health Centre 1,Kolkata,West Bengal,22.7687,87.3848,18,25,Operational
+PHC-WB-KOL-401,Kolkata Primary Health Centre 2,Kolkata,West Bengal,23.9735,86.3583,11,13,Operational
+PHC-WB-KOL-402,Kolkata Primary Health Centre 3,Kolkata,West Bengal,23.0109,88.0753,37,8,Operational
+PHC-WB-KOL-403,Kolkata Primary Health Centre 4,Kolkata,West Bengal,22.3022,87.5525,33,21,Operational
+PHC-WB-KOL-404,Kolkata Primary Health Centre 5,Kolkata,West Bengal,22.0544,88.5457,41,21,Operational
+PHC-WB-KOL-405,Kolkata Primary Health Centre 6,Kolkata,West Bengal,22.1821,88.2458,42,19,Warning
+PHC-WB-KOL-406,Kolkata Primary Health Centre 7,Kolkata,West Bengal,24.3217,87.3338,49,14,Operational
+PHC-WB-KOL-407,Kolkata Primary Health Centre 8,Kolkata,West Bengal,23.4323,88.2585,38,19,Operational
+PHC-WB-KOL-408,Kolkata Primary Health Centre 9,Kolkata,West Bengal,23.0921,88.9232,26,21,Warning
+PHC-WB-KOL-409,Kolkata Primary Health Centre 10,Kolkata,West Bengal,22.7139,87.4086,10,25,Operational
+PHC-WB-KOL-410,Kolkata Primary Health Centre 11,Kolkata,West Bengal,22.5169,86.4874,27,7,Warning
+PHC-WB-KOL-411,Kolkata Primary Health Centre 12,Kolkata,West Bengal,23.8327,88.4652,38,12,Operational
+PHC-WB-KOL-412,Kolkata Primary Health Centre 13,Kolkata,West Bengal,21.6147,86.7318,24,20,Operational
+PHC-WB-KOL-413,Kolkata Primary Health Centre 14,Kolkata,West Bengal,22.5237,86.5551,14,15,Operational
+PHC-WB-KOL-414,Kolkata Primary Health Centre 15,Kolkata,West Bengal,24.0444,89.1164,13,16,Operational
+PHC-WB-KOL-415,Kolkata Primary Health Centre 16,Kolkata,West Bengal,23.9366,87.9742,41,24,Warning
+PHC-WB-KOL-416,Kolkata Primary Health Centre 17,Kolkata,West Bengal,21.6453,86.9158,22,8,Operational
+PHC-WB-KOL-417,Kolkata Primary Health Centre 18,Kolkata,West Bengal,24.1326,89.2903,33,13,Critical
+PHC-WB-KOL-418,Kolkata Primary Health Centre 19,Kolkata,West Bengal,22.8069,87.4885,23,20,Critical
+PHC-WB-KOL-419,Kolkata Primary Health Centre 20,Kolkata,West Bengal,23.0559,86.3134,15,14,Operational
+PHC-WB-KOL-420,Kolkata Primary Health Centre 21,Kolkata,West Bengal,22.3405,88.7711,47,24,Operational
+PHC-WB-HOW-421,Howrah Primary Health Centre 1,Howrah,West Bengal,22.6642,88.0739,16,15,Operational
+PHC-WB-HOW-422,Howrah Primary Health Centre 2,Howrah,West Bengal,22.363,86.5584,33,20,Operational
+PHC-WB-HOW-423,Howrah Primary Health Centre 3,Howrah,West Bengal,22.5552,88.749,24,9,Operational
+PHC-WB-HOW-424,Howrah Primary Health Centre 4,Howrah,West Bengal,21.7701,88.9899,11,19,Operational
+PHC-WB-HOW-425,Howrah Primary Health Centre 5,Howrah,West Bengal,22.0832,88.7424,33,18,Operational
+PHC-WB-HOW-426,Howrah Primary Health Centre 6,Howrah,West Bengal,24.0535,87.7858,46,6,Operational
+PHC-WB-HOW-427,Howrah Primary Health Centre 7,Howrah,West Bengal,22.0852,86.4837,33,16,Operational
+PHC-WB-HOW-428,Howrah Primary Health Centre 8,Howrah,West Bengal,21.7229,87.7777,50,8,Operational
+PHC-WB-HOW-429,Howrah Primary Health Centre 9,Howrah,West Bengal,23.4487,87.0051,26,10,Critical
+PHC-WB-HOW-430,Howrah Primary Health Centre 10,Howrah,West Bengal,21.8391,86.7661,45,8,Operational
+PHC-WB-HOW-431,Howrah Primary Health Centre 11,Howrah,West Bengal,24.2196,87.7849,45,7,Warning
+PHC-WB-HOW-432,Howrah Primary Health Centre 12,Howrah,West Bengal,24.2851,87.6003,32,22,Operational
+PHC-WB-HOW-433,Howrah Primary Health Centre 13,Howrah,West Bengal,23.4143,86.323,30,25,Operational
+PHC-WB-HOW-434,Howrah Primary Health Centre 14,Howrah,West Bengal,21.8055,86.739,34,12,Operational
+PHC-WB-HOW-435,Howrah Primary Health Centre 15,Howrah,West Bengal,24.2723,88.7241,13,14,Operational
+PHC-WB-HOW-436,Howrah Primary Health Centre 16,Howrah,West Bengal,24.3771,87.0367,33,12,Warning
+PHC-WB-HOW-437,Howrah Primary Health Centre 17,Howrah,West Bengal,21.8809,88.8555,32,20,Operational
+PHC-WB-HOW-438,Howrah Primary Health Centre 18,Howrah,West Bengal,23.8242,88.7194,46,5,Operational
+PHC-WB-HOW-439,Howrah Primary Health Centre 19,Howrah,West Bengal,22.8523,86.7366,47,14,Operational
+PHC-WB-HOW-440,Howrah Primary Health Centre 20,Howrah,West Bengal,23.7039,87.3785,21,13,Warning
+PHC-WB-HOW-441,Howrah Primary Health Centre 21,Howrah,West Bengal,24.2075,87.8758,37,16,Operational
+PHC-WB-DAR-442,Darjeeling Primary Health Centre 1,Darjeeling,West Bengal,22.0661,86.3745,15,10,Operational
+PHC-WB-DAR-443,Darjeeling Primary Health Centre 2,Darjeeling,West Bengal,24.2904,88.2804,22,14,Operational
+PHC-WB-DAR-444,Darjeeling Primary Health Centre 3,Darjeeling,West Bengal,22.267,86.5822,10,25,Operational
+PHC-WB-DAR-445,Darjeeling Primary Health Centre 4,Darjeeling,West Bengal,21.9106,88.4327,36,18,Operational
+PHC-WB-DAR-446,Darjeeling Primary Health Centre 5,Darjeeling,West Bengal,22.4714,88.4269,37,21,Critical
+PHC-WB-DAR-447,Darjeeling Primary Health Centre 6,Darjeeling,West Bengal,21.8761,87.1466,22,10,Operational
+PHC-WB-DAR-448,Darjeeling Primary Health Centre 7,Darjeeling,West Bengal,23.1184,87.4593,15,6,Operational
+PHC-WB-DAR-449,Darjeeling Primary Health Centre 8,Darjeeling,West Bengal,21.8811,86.933,20,13,Operational
+PHC-WB-DAR-450,Darjeeling Primary Health Centre 9,Darjeeling,West Bengal,23.6095,88.2382,44,25,Warning
+PHC-WB-DAR-451,Darjeeling Primary Health Centre 10,Darjeeling,West Bengal,22.906,87.7523,45,22,Operational
+PHC-WB-DAR-452,Darjeeling Primary Health Centre 11,Darjeeling,West Bengal,23.1076,87.0614,45,15,Warning
+PHC-WB-DAR-453,Darjeeling Primary Health Centre 12,Darjeeling,West Bengal,23.2978,88.1573,16,16,Operational
+PHC-WB-DAR-454,Darjeeling Primary Health Centre 13,Darjeeling,West Bengal,24.2818,88.0734,45,11,Operational
+PHC-WB-DAR-455,Darjeeling Primary Health Centre 14,Darjeeling,West Bengal,22.2508,88.6592,45,16,Operational
+PHC-WB-DAR-456,Darjeeling Primary Health Centre 15,Darjeeling,West Bengal,23.1751,87.6681,11,25,Operational
+PHC-WB-DAR-457,Darjeeling Primary Health Centre 16,Darjeeling,West Bengal,22.9249,88.9336,22,20,Operational
+PHC-WB-DAR-458,Darjeeling Primary Health Centre 17,Darjeeling,West Bengal,22.9062,86.4417,17,22,Critical
+PHC-WB-DAR-459,Darjeeling Primary Health Centre 18,Darjeeling,West Bengal,22.0726,86.4304,26,10,Critical
+PHC-WB-DAR-460,Darjeeling Primary Health Centre 19,Darjeeling,West Bengal,24.134,88.899,24,17,Operational
+PHC-WB-DAR-461,Darjeeling Primary Health Centre 20,Darjeeling,West Bengal,22.631,86.6675,29,22,Operational
+PHC-WB-DAR-462,Darjeeling Primary Health Centre 21,Darjeeling,West Bengal,22.502,88.0355,37,19,Operational
+PHC-WB-MUR-463,Murshidabad Primary Health Centre 1,Murshidabad,West Bengal,21.671,88.4431,46,22,Warning
+PHC-WB-MUR-464,Murshidabad Primary Health Centre 2,Murshidabad,West Bengal,22.9094,88.7607,50,24,Operational
+PHC-WB-MUR-465,Murshidabad Primary Health Centre 3,Murshidabad,West Bengal,23.5079,87.6633,38,12,Operational
+PHC-WB-MUR-466,Murshidabad Primary Health Centre 4,Murshidabad,West Bengal,21.9003,88.6893,15,24,Warning
+PHC-WB-MUR-467,Murshidabad Primary Health Centre 5,Murshidabad,West Bengal,24.1991,87.0181,39,8,Operational
+PHC-WB-MUR-468,Murshidabad Primary Health Centre 6,Murshidabad,West Bengal,23.8307,88.6627,44,18,Operational
+PHC-WB-MUR-469,Murshidabad Primary Health Centre 7,Murshidabad,West Bengal,21.564,87.9117,33,14,Warning
+PHC-WB-MUR-470,Murshidabad Primary Health Centre 8,Murshidabad,West Bengal,22.0913,87.418,48,24,Operational
+PHC-WB-MUR-471,Murshidabad Primary Health Centre 9,Murshidabad,West Bengal,23.5379,89.1815,26,20,Operational
+PHC-WB-MUR-472,Murshidabad Primary Health Centre 10,Murshidabad,West Bengal,21.8029,88.5509,42,15,Critical
+PHC-WB-MUR-473,Murshidabad Primary Health Centre 11,Murshidabad,West Bengal,22.3067,88.1982,26,11,Operational
+PHC-WB-MUR-474,Murshidabad Primary Health Centre 12,Murshidabad,West Bengal,22.7455,89.1897,48,6,Operational
+PHC-WB-MUR-475,Murshidabad Primary Health Centre 13,Murshidabad,West Bengal,23.9079,88.6001,25,15,Operational
+PHC-WB-MUR-476,Murshidabad Primary Health Centre 14,Murshidabad,West Bengal,23.6453,86.4746,43,17,Operational
+PHC-WB-MUR-477,Murshidabad Primary Health Centre 15,Murshidabad,West Bengal,22.3574,88.9264,49,20,Operational
+PHC-WB-MUR-478,Murshidabad Primary Health Centre 16,Murshidabad,West Bengal,21.6382,89.0844,46,22,Operational
+PHC-WB-MUR-479,Murshidabad Primary Health Centre 17,Murshidabad,West Bengal,21.5887,87.1969,32,13,Critical
+PHC-WB-MUR-480,Murshidabad Primary Health Centre 18,Murshidabad,West Bengal,21.7681,87.1299,14,16,Operational
+PHC-WB-MUR-481,Murshidabad Primary Health Centre 19,Murshidabad,West Bengal,22.7112,86.6699,24,15,Operational
+PHC-WB-MUR-482,Murshidabad Primary Health Centre 20,Murshidabad,West Bengal,22.9337,87.711,12,9,Operational
+PHC-WB-MUR-483,Murshidabad Primary Health Centre 21,Murshidabad,West Bengal,22.5599,88.5673,14,12,Operational
+PHC-WB-BAR-484,Bardhaman Primary Health Centre 1,Bardhaman,West Bengal,23.0027,87.554,23,6,Critical
+PHC-WB-BAR-485,Bardhaman Primary Health Centre 2,Bardhaman,West Bengal,22.5811,88.9552,34,16,Operational
+PHC-WB-BAR-486,Bardhaman Primary Health Centre 3,Bardhaman,West Bengal,23.1803,87.4771,29,21,Operational
+PHC-WB-BAR-487,Bardhaman Primary Health Centre 4,Bardhaman,West Bengal,23.705,87.8386,43,21,Operational
+PHC-WB-BAR-488,Bardhaman Primary Health Centre 5,Bardhaman,West Bengal,22.4953,88.3969,35,21,Warning
+PHC-WB-BAR-489,Bardhaman Primary Health Centre 6,Bardhaman,West Bengal,24.1488,88.4693,49,19,Operational
+PHC-WB-BAR-490,Bardhaman Primary Health Centre 7,Bardhaman,West Bengal,22.1957,87.3575,36,22,Operational
+PHC-WB-BAR-491,Bardhaman Primary Health Centre 8,Bardhaman,West Bengal,23.8805,88.548,21,19,Operational
+PHC-WB-BAR-492,Bardhaman Primary Health Centre 9,Bardhaman,West Bengal,23.5232,87.3608,15,6,Operational
+PHC-WB-BAR-493,Bardhaman Primary Health Centre 10,Bardhaman,West Bengal,23.5239,89.233,39,22,Warning
+PHC-WB-BAR-494,Bardhaman Primary Health Centre 11,Bardhaman,West Bengal,21.7873,87.4067,45,18,Operational
+PHC-WB-BAR-495,Bardhaman Primary Health Centre 12,Bardhaman,West Bengal,22.5106,87.4173,45,18,Critical
+PHC-WB-BAR-496,Bardhaman Primary Health Centre 13,Bardhaman,West Bengal,24.0022,88.4196,17,15,Operational
+PHC-WB-BAR-497,Bardhaman Primary Health Centre 14,Bardhaman,West Bengal,24.2997,88.0606,36,16,Warning
+PHC-WB-BAR-498,Bardhaman Primary Health Centre 15,Bardhaman,West Bengal,22.7537,88.409,41,21,Warning
+PHC-WB-BAR-499,Bardhaman Primary Health Centre 16,Bardhaman,West Bengal,22.2817,87.6664,26,22,Critical
+PHC-WB-BAR-500,Bardhaman Primary Health Centre 17,Bardhaman,West Bengal,23.6016,86.915,24,5,Operational
+PHC-WB-BAR-501,Bardhaman Primary Health Centre 18,Bardhaman,West Bengal,24.2807,87.4516,23,5,Operational
+PHC-WB-BAR-502,Bardhaman Primary Health Centre 19,Bardhaman,West Bengal,22.9569,89.0339,28,23,Critical
+PHC-WB-BAR-503,Bardhaman Primary Health Centre 20,Bardhaman,West Bengal,23.6899,87.0885,24,10,Operational
+PHC-WB-BAR-504,Bardhaman Primary Health Centre 21,Bardhaman,West Bengal,24.2111,86.4474,10,25,Operational
+PHC-UP-LUC-505,Lucknow Primary Health Centre 1,Lucknow,Uttar Pradesh,28.1774,80.6326,27,7,Operational
+PHC-UP-LUC-506,Lucknow Primary Health Centre 2,Lucknow,Uttar Pradesh,28.2677,80.1724,48,11,Operational
+PHC-UP-LUC-507,Lucknow Primary Health Centre 3,Lucknow,Uttar Pradesh,28.2978,79.6101,25,9,Operational
+PHC-UP-LUC-508,Lucknow Primary Health Centre 4,Lucknow,Uttar Pradesh,25.8421,80.6984,16,16,Operational
+PHC-UP-LUC-509,Lucknow Primary Health Centre 5,Lucknow,Uttar Pradesh,25.4077,80.7141,11,12,Operational
+PHC-UP-LUC-510,Lucknow Primary Health Centre 6,Lucknow,Uttar Pradesh,27.8508,79.9728,31,24,Operational
+PHC-UP-LUC-511,Lucknow Primary Health Centre 7,Lucknow,Uttar Pradesh,27.5633,79.8099,50,13,Operational
+PHC-UP-LUC-512,Lucknow Primary Health Centre 8,Lucknow,Uttar Pradesh,25.3241,80.0783,31,7,Operational
+PHC-UP-LUC-513,Lucknow Primary Health Centre 9,Lucknow,Uttar Pradesh,27.095,80.8896,16,8,Operational
+PHC-UP-LUC-514,Lucknow Primary Health Centre 10,Lucknow,Uttar Pradesh,26.2247,80.6135,23,8,Operational
+PHC-UP-LUC-515,Lucknow Primary Health Centre 11,Lucknow,Uttar Pradesh,26.678,81.7876,14,19,Operational
+PHC-UP-LUC-516,Lucknow Primary Health Centre 12,Lucknow,Uttar Pradesh,27.6578,82.3124,20,19,Warning
+PHC-UP-LUC-517,Lucknow Primary Health Centre 13,Lucknow,Uttar Pradesh,27.6939,79.7907,35,24,Warning
+PHC-UP-LUC-518,Lucknow Primary Health Centre 14,Lucknow,Uttar Pradesh,25.9719,80.0459,41,10,Operational
+PHC-UP-LUC-519,Lucknow Primary Health Centre 15,Lucknow,Uttar Pradesh,26.5727,82.3935,13,17,Operational
+PHC-UP-LUC-520,Lucknow Primary Health Centre 16,Lucknow,Uttar Pradesh,27.8583,79.9269,11,17,Operational
+PHC-UP-LUC-521,Lucknow Primary Health Centre 17,Lucknow,Uttar Pradesh,27.5047,80.943,47,21,Critical
+PHC-UP-LUC-522,Lucknow Primary Health Centre 18,Lucknow,Uttar Pradesh,26.7664,80.4381,45,17,Operational
+PHC-UP-LUC-523,Lucknow Primary Health Centre 19,Lucknow,Uttar Pradesh,27.7194,79.9665,46,23,Operational
+PHC-UP-LUC-524,Lucknow Primary Health Centre 20,Lucknow,Uttar Pradesh,26.6349,79.6688,47,17,Critical
+PHC-UP-LUC-525,Lucknow Primary Health Centre 21,Lucknow,Uttar Pradesh,26.9415,81.7351,42,15,Critical
+PHC-UP-VAR-526,Varanasi Primary Health Centre 1,Varanasi,Uttar Pradesh,27.4721,80.4267,22,24,Operational
+PHC-UP-VAR-527,Varanasi Primary Health Centre 2,Varanasi,Uttar Pradesh,27.8485,79.8429,15,17,Operational
+PHC-UP-VAR-528,Varanasi Primary Health Centre 3,Varanasi,Uttar Pradesh,27.0892,81.8022,42,16,Operational
+PHC-UP-VAR-529,Varanasi Primary Health Centre 4,Varanasi,Uttar Pradesh,26.4728,81.3016,19,18,Operational
+PHC-UP-VAR-530,Varanasi Primary Health Centre 5,Varanasi,Uttar Pradesh,27.686,81.1432,19,8,Operational
+PHC-UP-VAR-531,Varanasi Primary Health Centre 6,Varanasi,Uttar Pradesh,26.2085,82.2193,40,8,Operational
+PHC-UP-VAR-532,Varanasi Primary Health Centre 7,Varanasi,Uttar Pradesh,27.832,81.0029,22,9,Warning
+PHC-UP-VAR-533,Varanasi Primary Health Centre 8,Varanasi,Uttar Pradesh,25.6536,80.5481,37,17,Operational
+PHC-UP-VAR-534,Varanasi Primary Health Centre 9,Varanasi,Uttar Pradesh,26.2795,79.9533,35,6,Operational
+PHC-UP-VAR-535,Varanasi Primary Health Centre 10,Varanasi,Uttar Pradesh,26.5004,79.9021,38,21,Operational
+PHC-UP-VAR-536,Varanasi Primary Health Centre 11,Varanasi,Uttar Pradesh,27.7497,80.9008,28,23,Operational
+PHC-UP-VAR-537,Varanasi Primary Health Centre 12,Varanasi,Uttar Pradesh,26.3556,79.978,14,16,Critical
+PHC-UP-VAR-538,Varanasi Primary Health Centre 13,Varanasi,Uttar Pradesh,26.9527,80.1546,36,21,Operational
+PHC-UP-VAR-539,Varanasi Primary Health Centre 14,Varanasi,Uttar Pradesh,25.9173,79.8004,50,6,Operational
+PHC-UP-VAR-540,Varanasi Primary Health Centre 15,Varanasi,Uttar Pradesh,27.2157,79.5518,17,23,Operational
+PHC-UP-VAR-541,Varanasi Primary Health Centre 16,Varanasi,Uttar Pradesh,25.4558,80.7268,12,15,Operational
+PHC-UP-VAR-542,Varanasi Primary Health Centre 17,Varanasi,Uttar Pradesh,27.8948,80.1137,46,19,Operational
+PHC-UP-VAR-543,Varanasi Primary Health Centre 18,Varanasi,Uttar Pradesh,25.4576,79.5696,50,17,Critical
+PHC-UP-VAR-544,Varanasi Primary Health Centre 19,Varanasi,Uttar Pradesh,27.37,79.4095,41,17,Critical
+PHC-UP-VAR-545,Varanasi Primary Health Centre 20,Varanasi,Uttar Pradesh,26.8434,82.066,44,9,Warning
+PHC-UP-VAR-546,Varanasi Primary Health Centre 21,Varanasi,Uttar Pradesh,26.5174,80.8759,49,7,Warning
+PHC-UP-AGR-547,Agra Primary Health Centre 1,Agra,Uttar Pradesh,27.1939,79.97,45,23,Critical
+PHC-UP-AGR-548,Agra Primary Health Centre 2,Agra,Uttar Pradesh,28.0785,81.6748,27,14,Operational
+PHC-UP-AGR-549,Agra Primary Health Centre 3,Agra,Uttar Pradesh,26.1037,81.5282,21,20,Operational
+PHC-UP-AGR-550,Agra Primary Health Centre 4,Agra,Uttar Pradesh,26.7541,81.3004,43,22,Operational
+PHC-UP-AGR-551,Agra Primary Health Centre 5,Agra,Uttar Pradesh,26.6702,80.8734,14,7,Operational
+PHC-UP-AGR-552,Agra Primary Health Centre 6,Agra,Uttar Pradesh,27.7549,79.5698,30,18,Warning
+PHC-UP-AGR-553,Agra Primary Health Centre 7,Agra,Uttar Pradesh,26.5081,79.9036,25,8,Operational
+PHC-UP-AGR-554,Agra Primary Health Centre 8,Agra,Uttar Pradesh,27.468,79.5549,49,11,Operational
+PHC-UP-AGR-555,Agra Primary Health Centre 9,Agra,Uttar Pradesh,25.4423,79.486,43,19,Warning
+PHC-UP-AGR-556,Agra Primary Health Centre 10,Agra,Uttar Pradesh,27.9911,80.8774,22,22,Operational
+PHC-UP-AGR-557,Agra Primary Health Centre 11,Agra,Uttar Pradesh,27.2046,81.2344,15,25,Operational
+PHC-UP-AGR-558,Agra Primary Health Centre 12,Agra,Uttar Pradesh,27.8591,80.7479,21,17,Operational
+PHC-UP-AGR-559,Agra Primary Health Centre 13,Agra,Uttar Pradesh,26.1331,80.7568,45,12,Warning
+PHC-UP-AGR-560,Agra Primary Health Centre 14,Agra,Uttar Pradesh,26.5035,79.6911,13,15,Warning
+PHC-UP-AGR-561,Agra Primary Health Centre 15,Agra,Uttar Pradesh,25.8042,79.7807,19,15,Operational
+PHC-UP-AGR-562,Agra Primary Health Centre 16,Agra,Uttar Pradesh,27.7679,81.961,15,13,Warning
+PHC-UP-AGR-563,Agra Primary Health Centre 17,Agra,Uttar Pradesh,27.4122,80.7429,37,13,Operational
+PHC-UP-AGR-564,Agra Primary Health Centre 18,Agra,Uttar Pradesh,27.1084,81.689,46,9,Operational
+PHC-UP-AGR-565,Agra Primary Health Centre 19,Agra,Uttar Pradesh,27.0471,80.5254,26,19,Warning
+PHC-UP-AGR-566,Agra Primary Health Centre 20,Agra,Uttar Pradesh,25.531,82.2989,29,18,Operational
+PHC-UP-AGR-567,Agra Primary Health Centre 21,Agra,Uttar Pradesh,26.0317,81.4799,30,25,Operational
+PHC-UP-KAN-568,Kanpur Primary Health Centre 1,Kanpur,Uttar Pradesh,26.6297,82.1447,39,11,Operational
+PHC-UP-KAN-569,Kanpur Primary Health Centre 2,Kanpur,Uttar Pradesh,26.8752,79.5714,11,20,Operational
+PHC-UP-KAN-570,Kanpur Primary Health Centre 3,Kanpur,Uttar Pradesh,26.1575,81.9451,20,6,Operational
+PHC-UP-KAN-571,Kanpur Primary Health Centre 4,Kanpur,Uttar Pradesh,27.3613,80.7256,22,17,Operational
+PHC-UP-KAN-572,Kanpur Primary Health Centre 5,Kanpur,Uttar Pradesh,25.5982,80.485,47,9,Operational
+PHC-UP-KAN-573,Kanpur Primary Health Centre 6,Kanpur,Uttar Pradesh,27.8001,80.4179,11,10,Operational
+PHC-UP-KAN-574,Kanpur Primary Health Centre 7,Kanpur,Uttar Pradesh,26.9455,79.7782,33,22,Operational
+PHC-UP-KAN-575,Kanpur Primary Health Centre 8,Kanpur,Uttar Pradesh,26.3145,81.4622,46,18,Operational
+PHC-UP-KAN-576,Kanpur Primary Health Centre 9,Kanpur,Uttar Pradesh,27.2012,80.8301,19,11,Operational
+PHC-UP-KAN-577,Kanpur Primary Health Centre 10,Kanpur,Uttar Pradesh,27.4235,81.0131,25,11,Critical
+PHC-UP-KAN-578,Kanpur Primary Health Centre 11,Kanpur,Uttar Pradesh,27.3385,80.9528,15,14,Warning
+PHC-UP-KAN-579,Kanpur Primary Health Centre 12,Kanpur,Uttar Pradesh,26.5441,81.6725,31,7,Operational
+PHC-UP-KAN-580,Kanpur Primary Health Centre 13,Kanpur,Uttar Pradesh,26.3935,79.6789,41,13,Warning
+PHC-UP-KAN-581,Kanpur Primary Health Centre 14,Kanpur,Uttar Pradesh,26.5646,79.4085,28,8,Critical
+PHC-UP-KAN-582,Kanpur Primary Health Centre 15,Kanpur,Uttar Pradesh,27.3613,79.7907,24,5,Operational
+PHC-UP-KAN-583,Kanpur Primary Health Centre 16,Kanpur,Uttar Pradesh,26.7596,80.4337,28,24,Operational
+PHC-UP-KAN-584,Kanpur Primary Health Centre 17,Kanpur,Uttar Pradesh,25.8919,79.4403,37,13,Operational
+PHC-UP-KAN-585,Kanpur Primary Health Centre 18,Kanpur,Uttar Pradesh,27.9477,80.9204,23,9,Operational
+PHC-UP-KAN-586,Kanpur Primary Health Centre 19,Kanpur,Uttar Pradesh,26.613,81.0624,11,5,Warning
+PHC-UP-KAN-587,Kanpur Primary Health Centre 20,Kanpur,Uttar Pradesh,26.783,82.3347,37,23,Warning
+PHC-UP-KAN-588,Kanpur Primary Health Centre 21,Kanpur,Uttar Pradesh,25.781,81.1797,44,15,Operational
+PHC-UP-PRA-589,Prayagraj Primary Health Centre 1,Prayagraj,Uttar Pradesh,25.8015,79.8201,23,8,Operational
+PHC-UP-PRA-590,Prayagraj Primary Health Centre 2,Prayagraj,Uttar Pradesh,26.2323,81.9447,50,22,Operational
+PHC-UP-PRA-591,Prayagraj Primary Health Centre 3,Prayagraj,Uttar Pradesh,28.1188,80.4629,43,14,Operational
+PHC-UP-PRA-592,Prayagraj Primary Health Centre 4,Prayagraj,Uttar Pradesh,27.6079,81.9508,18,17,Operational
+PHC-UP-PRA-593,Prayagraj Primary Health Centre 5,Prayagraj,Uttar Pradesh,28.1885,81.9185,18,23,Critical
+PHC-UP-PRA-594,Prayagraj Primary Health Centre 6,Prayagraj,Uttar Pradesh,28.1893,81.2351,15,16,Operational
+PHC-UP-PRA-595,Prayagraj Primary Health Centre 7,Prayagraj,Uttar Pradesh,27.5933,81.9161,15,10,Operational
+PHC-UP-PRA-596,Prayagraj Primary Health Centre 8,Prayagraj,Uttar Pradesh,25.846,80.0657,17,24,Operational
+PHC-UP-PRA-597,Prayagraj Primary Health Centre 9,Prayagraj,Uttar Pradesh,26.3758,82.0254,26,5,Operational
+PHC-UP-PRA-598,Prayagraj Primary Health Centre 10,Prayagraj,Uttar Pradesh,28.2368,79.5772,45,20,Operational
+PHC-UP-PRA-599,Prayagraj Primary Health Centre 11,Prayagraj,Uttar Pradesh,26.1736,80.359,10,5,Operational
+PHC-UP-PRA-600,Prayagraj Primary Health Centre 12,Prayagraj,Uttar Pradesh,27.8852,80.4233,11,20,Operational
+PHC-UP-PRA-601,Prayagraj Primary Health Centre 13,Prayagraj,Uttar Pradesh,26.6654,81.7133,21,16,Operational
+PHC-UP-PRA-602,Prayagraj Primary Health Centre 14,Prayagraj,Uttar Pradesh,26.546,79.6039,50,12,Operational
+PHC-UP-PRA-603,Prayagraj Primary Health Centre 15,Prayagraj,Uttar Pradesh,28.0225,81.7221,12,9,Operational
+PHC-UP-PRA-604,Prayagraj Primary Health Centre 16,Prayagraj,Uttar Pradesh,26.0418,79.6909,12,13,Warning
+PHC-UP-PRA-605,Prayagraj Primary Health Centre 17,Prayagraj,Uttar Pradesh,27.9835,79.5455,46,12,Operational
+PHC-UP-PRA-606,Prayagraj Primary Health Centre 18,Prayagraj,Uttar Pradesh,25.3917,80.9796,24,22,Warning
+PHC-UP-PRA-607,Prayagraj Primary Health Centre 19,Prayagraj,Uttar Pradesh,25.6733,80.6177,20,24,Operational
+PHC-UP-PRA-608,Prayagraj Primary Health Centre 20,Prayagraj,Uttar Pradesh,28.153,80.1074,44,21,Warning
+PHC-UP-PRA-609,Prayagraj Primary Health Centre 21,Prayagraj,Uttar Pradesh,27.8679,82.0585,22,20,Warning
+PHC-BR-PAT-610,Patna Primary Health Centre 1,Patna,Bihar,24.6951,86.1037,38,14,Warning
+PHC-BR-PAT-611,Patna Primary Health Centre 2,Patna,Bihar,25.3677,84.4927,16,19,Operational
+PHC-BR-PAT-612,Patna Primary Health Centre 3,Patna,Bihar,23.8686,85.2849,24,20,Operational
+PHC-BR-PAT-613,Patna Primary Health Centre 4,Patna,Bihar,24.9581,84.7844,33,19,Operational
+PHC-BR-PAT-614,Patna Primary Health Centre 5,Patna,Bihar,25.6124,84.1567,33,15,Warning
+PHC-BR-PAT-615,Patna Primary Health Centre 6,Patna,Bihar,24.9649,84.7793,32,13,Warning
+PHC-BR-PAT-616,Patna Primary Health Centre 7,Patna,Bihar,25.307,86.2196,40,9,Operational
+PHC-BR-PAT-617,Patna Primary Health Centre 8,Patna,Bihar,25.3994,85.9131,33,25,Operational
+PHC-BR-PAT-618,Patna Primary Health Centre 9,Patna,Bihar,25.9731,86.3532,46,15,Critical
+PHC-BR-PAT-619,Patna Primary Health Centre 10,Patna,Bihar,26.0621,85.8345,12,22,Operational
+PHC-BR-PAT-620,Patna Primary Health Centre 11,Patna,Bihar,24.9312,86.2878,48,5,Operational
+PHC-BR-PAT-621,Patna Primary Health Centre 12,Patna,Bihar,26.3248,86.3762,24,12,Warning
+PHC-BR-PAT-622,Patna Primary Health Centre 13,Patna,Bihar,26.34,86.3444,50,24,Operational
+PHC-BR-PAT-623,Patna Primary Health Centre 14,Patna,Bihar,26.3785,86.6359,33,25,Warning
+PHC-BR-PAT-624,Patna Primary Health Centre 15,Patna,Bihar,23.5731,86.2126,29,24,Operational
+PHC-BR-PAT-625,Patna Primary Health Centre 16,Patna,Bihar,26.1943,83.8094,42,23,Operational
+PHC-BR-PAT-626,Patna Primary Health Centre 17,Patna,Bihar,23.5065,84.4222,19,7,Operational
+PHC-BR-PAT-627,Patna Primary Health Centre 18,Patna,Bihar,26.1015,85.0485,10,15,Operational
+PHC-BR-PAT-628,Patna Primary Health Centre 19,Patna,Bihar,25.2996,85.9065,45,24,Warning
+PHC-BR-PAT-629,Patna Primary Health Centre 20,Patna,Bihar,26.4166,85.5696,34,18,Operational
+PHC-BR-PAT-630,Patna Primary Health Centre 21,Patna,Bihar,25.6825,85.4374,15,20,Operational
+PHC-BR-GAY-631,Gaya Primary Health Centre 1,Gaya,Bihar,25.672,84.2287,32,12,Operational
+PHC-BR-GAY-632,Gaya Primary Health Centre 2,Gaya,Bihar,24.1831,86.0816,32,15,Operational
+PHC-BR-GAY-633,Gaya Primary Health Centre 3,Gaya,Bihar,23.564,86.6289,26,13,Operational
+PHC-BR-GAY-634,Gaya Primary Health Centre 4,Gaya,Bihar,24.9755,85.157,32,17,Operational
+PHC-BR-GAY-635,Gaya Primary Health Centre 5,Gaya,Bihar,23.9091,84.1034,10,25,Operational
+PHC-BR-GAY-636,Gaya Primary Health Centre 6,Gaya,Bihar,23.8491,85.6099,49,15,Operational
+PHC-BR-GAY-637,Gaya Primary Health Centre 7,Gaya,Bihar,25.1688,83.833,40,11,Operational
+PHC-BR-GAY-638,Gaya Primary Health Centre 8,Gaya,Bihar,25.5689,85.5076,35,21,Operational
+PHC-BR-GAY-639,Gaya Primary Health Centre 9,Gaya,Bihar,23.9486,84.4974,31,12,Warning
+PHC-BR-GAY-640,Gaya Primary Health Centre 10,Gaya,Bihar,24.7092,84.1399,39,8,Operational
+PHC-BR-GAY-641,Gaya Primary Health Centre 11,Gaya,Bihar,26.0689,85.9905,50,10,Warning
+PHC-BR-GAY-642,Gaya Primary Health Centre 12,Gaya,Bihar,25.0941,84.2645,23,9,Warning
+PHC-BR-GAY-643,Gaya Primary Health Centre 13,Gaya,Bihar,25.7772,86.0201,16,24,Operational
+PHC-BR-GAY-644,Gaya Primary Health Centre 14,Gaya,Bihar,23.8562,84.1876,11,9,Warning
+PHC-BR-GAY-645,Gaya Primary Health Centre 15,Gaya,Bihar,24.4152,86.2265,12,10,Operational
+PHC-BR-GAY-646,Gaya Primary Health Centre 16,Gaya,Bihar,25.9899,85.612,15,10,Operational
+PHC-BR-GAY-647,Gaya Primary Health Centre 17,Gaya,Bihar,24.3289,86.6174,25,14,Warning
+PHC-BR-GAY-648,Gaya Primary Health Centre 18,Gaya,Bihar,24.724,84.9174,42,21,Operational
+PHC-BR-GAY-649,Gaya Primary Health Centre 19,Gaya,Bihar,25.3801,85.9895,49,16,Operational
+PHC-BR-GAY-650,Gaya Primary Health Centre 20,Gaya,Bihar,26.3719,85.8687,16,8,Operational
+PHC-BR-GAY-651,Gaya Primary Health Centre 21,Gaya,Bihar,24.4907,84.66,32,6,Operational
+PHC-BR-MUZ-652,Muzaffarpur Primary Health Centre 1,Muzaffarpur,Bihar,24.6527,84.369,22,25,Operational
+PHC-BR-MUZ-653,Muzaffarpur Primary Health Centre 2,Muzaffarpur,Bihar,25.4647,84.1803,30,12,Operational
+PHC-BR-MUZ-654,Muzaffarpur Primary Health Centre 3,Muzaffarpur,Bihar,23.782,85.7423,28,6,Operational
+PHC-BR-MUZ-655,Muzaffarpur Primary Health Centre 4,Muzaffarpur,Bihar,25.0226,84.1527,43,15,Operational
+PHC-BR-MUZ-656,Muzaffarpur Primary Health Centre 5,Muzaffarpur,Bihar,26.0253,85.4241,44,5,Operational
+PHC-BR-MUZ-657,Muzaffarpur Primary Health Centre 6,Muzaffarpur,Bihar,25.0896,83.8768,40,12,Operational
+PHC-BR-MUZ-658,Muzaffarpur Primary Health Centre 7,Muzaffarpur,Bihar,24.7076,86.0522,26,8,Operational
+PHC-BR-MUZ-659,Muzaffarpur Primary Health Centre 8,Muzaffarpur,Bihar,26.2979,86.4608,46,25,Operational
+PHC-BR-MUZ-660,Muzaffarpur Primary Health Centre 9,Muzaffarpur,Bihar,25.5538,84.3989,15,9,Operational
+PHC-BR-MUZ-661,Muzaffarpur Primary Health Centre 10,Muzaffarpur,Bihar,26.4622,85.209,38,19,Operational
+PHC-BR-MUZ-662,Muzaffarpur Primary Health Centre 11,Muzaffarpur,Bihar,24.2858,86.5349,14,11,Operational
+PHC-BR-MUZ-663,Muzaffarpur Primary Health Centre 12,Muzaffarpur,Bihar,25.0724,84.987,19,17,Operational
+PHC-BR-MUZ-664,Muzaffarpur Primary Health Centre 13,Muzaffarpur,Bihar,26.3623,84.5975,21,7,Operational
+PHC-BR-MUZ-665,Muzaffarpur Primary Health Centre 14,Muzaffarpur,Bihar,24.53,86.2211,47,16,Operational
+PHC-BR-MUZ-666,Muzaffarpur Primary Health Centre 15,Muzaffarpur,Bihar,25.4821,85.5525,41,17,Critical
+PHC-BR-MUZ-667,Muzaffarpur Primary Health Centre 16,Muzaffarpur,Bihar,23.5591,86.4247,13,10,Operational
+PHC-BR-MUZ-668,Muzaffarpur Primary Health Centre 17,Muzaffarpur,Bihar,23.688,86.7204,13,5,Operational
+PHC-BR-MUZ-669,Muzaffarpur Primary Health Centre 18,Muzaffarpur,Bihar,24.5498,85.9322,44,15,Operational
+PHC-BR-MUZ-670,Muzaffarpur Primary Health Centre 19,Muzaffarpur,Bihar,23.5288,86.5855,39,10,Operational
+PHC-BR-MUZ-671,Muzaffarpur Primary Health Centre 20,Muzaffarpur,Bihar,25.4457,85.1955,24,9,Operational
+PHC-BR-MUZ-672,Muzaffarpur Primary Health Centre 21,Muzaffarpur,Bihar,24.7085,84.4569,28,15,Critical
+PHC-BR-BHA-673,Bhagalpur Primary Health Centre 1,Bhagalpur,Bihar,26.0652,85.5533,31,11,Warning
+PHC-BR-BHA-674,Bhagalpur Primary Health Centre 2,Bhagalpur,Bihar,24.407,85.8606,16,17,Operational
+PHC-BR-BHA-675,Bhagalpur Primary Health Centre 3,Bhagalpur,Bihar,24.016,85.7166,24,7,Operational
+PHC-BR-BHA-676,Bhagalpur Primary Health Centre 4,Bhagalpur,Bihar,26.1512,85.4921,15,23,Operational
+PHC-BR-BHA-677,Bhagalpur Primary Health Centre 5,Bhagalpur,Bihar,26.2683,86.5842,37,25,Critical
+PHC-BR-BHA-678,Bhagalpur Primary Health Centre 6,Bhagalpur,Bihar,25.3846,83.9332,23,9,Operational
+PHC-BR-BHA-679,Bhagalpur Primary Health Centre 7,Bhagalpur,Bihar,26.0364,84.2431,10,24,Operational
+PHC-BR-BHA-680,Bhagalpur Primary Health Centre 8,Bhagalpur,Bihar,24.9149,84.6383,13,9,Operational
+PHC-BR-BHA-681,Bhagalpur Primary Health Centre 9,Bhagalpur,Bihar,24.807,85.2978,41,16,Operational
+PHC-BR-BHA-682,Bhagalpur Primary Health Centre 10,Bhagalpur,Bihar,23.5239,85.2968,13,23,Operational
+PHC-BR-BHA-683,Bhagalpur Primary Health Centre 11,Bhagalpur,Bihar,24.4375,84.5376,43,17,Operational
+PHC-BR-BHA-684,Bhagalpur Primary Health Centre 12,Bhagalpur,Bihar,26.2536,84.4083,22,11,Operational
+PHC-BR-BHA-685,Bhagalpur Primary Health Centre 13,Bhagalpur,Bihar,25.4413,86.3987,50,18,Operational
+PHC-BR-BHA-686,Bhagalpur Primary Health Centre 14,Bhagalpur,Bihar,24.2733,86.1663,44,8,Warning
+PHC-BR-BHA-687,Bhagalpur Primary Health Centre 15,Bhagalpur,Bihar,26.2764,86.2571,34,10,Operational
+PHC-BR-BHA-688,Bhagalpur Primary Health Centre 16,Bhagalpur,Bihar,23.6566,86.7288,46,10,Warning
+PHC-BR-BHA-689,Bhagalpur Primary Health Centre 17,Bhagalpur,Bihar,24.3854,85.8233,14,20,Warning
+PHC-BR-BHA-690,Bhagalpur Primary Health Centre 18,Bhagalpur,Bihar,24.8286,86.1146,40,6,Operational
+PHC-BR-BHA-691,Bhagalpur Primary Health Centre 19,Bhagalpur,Bihar,24.3361,84.8699,23,6,Operational
+PHC-BR-BHA-692,Bhagalpur Primary Health Centre 20,Bhagalpur,Bihar,25.4683,85.4485,23,9,Critical
+PHC-BR-BHA-693,Bhagalpur Primary Health Centre 21,Bhagalpur,Bihar,25.8721,84.1381,29,22,Critical
+PHC-BR-DAR-694,Darbhanga Primary Health Centre 1,Darbhanga,Bihar,25.17,85.7191,16,18,Operational
+PHC-BR-DAR-695,Darbhanga Primary Health Centre 2,Darbhanga,Bihar,25.2696,86.63,25,6,Warning
+PHC-BR-DAR-696,Darbhanga Primary Health Centre 3,Darbhanga,Bihar,23.8643,86.185,39,21,Operational
+PHC-BR-DAR-697,Darbhanga Primary Health Centre 4,Darbhanga,Bihar,26.2067,85.6619,11,25,Operational
+PHC-BR-DAR-698,Darbhanga Primary Health Centre 5,Darbhanga,Bihar,23.6658,84.2938,49,18,Warning
+PHC-BR-DAR-699,Darbhanga Primary Health Centre 6,Darbhanga,Bihar,23.8982,84.3242,35,8,Critical
+PHC-BR-DAR-700,Darbhanga Primary Health Centre 7,Darbhanga,Bihar,25.5165,85.8912,20,21,Operational
+PHC-BR-DAR-701,Darbhanga Primary Health Centre 8,Darbhanga,Bihar,24.6594,83.8984,30,10,Warning
+PHC-BR-DAR-702,Darbhanga Primary Health Centre 9,Darbhanga,Bihar,26.3888,86.7898,28,11,Critical
+PHC-BR-DAR-703,Darbhanga Primary Health Centre 10,Darbhanga,Bihar,23.8605,85.0064,48,11,Operational
+PHC-BR-DAR-704,Darbhanga Primary Health Centre 11,Darbhanga,Bihar,25.8969,85.3897,33,19,Warning
+PHC-BR-DAR-705,Darbhanga Primary Health Centre 12,Darbhanga,Bihar,24.6566,84.8174,45,21,Operational
+PHC-BR-DAR-706,Darbhanga Primary Health Centre 13,Darbhanga,Bihar,25.347,85.6002,35,11,Operational
+PHC-BR-DAR-707,Darbhanga Primary Health Centre 14,Darbhanga,Bihar,26.4437,84.7616,41,24,Operational
+PHC-BR-DAR-708,Darbhanga Primary Health Centre 15,Darbhanga,Bihar,24.7751,84.9153,38,10,Operational
+PHC-BR-DAR-709,Darbhanga Primary Health Centre 16,Darbhanga,Bihar,26.0152,85.1904,35,8,Operational
+PHC-BR-DAR-710,Darbhanga Primary Health Centre 17,Darbhanga,Bihar,25.6256,84.0448,44,17,Warning
+PHC-BR-DAR-711,Darbhanga Primary Health Centre 18,Darbhanga,Bihar,23.7831,84.402,17,12,Operational
+PHC-BR-DAR-712,Darbhanga Primary Health Centre 19,Darbhanga,Bihar,23.9402,86.2045,36,13,Operational
+PHC-BR-DAR-713,Darbhanga Primary Health Centre 20,Darbhanga,Bihar,24.383,85.3585,38,8,Operational
+PHC-BR-DAR-714,Darbhanga Primary Health Centre 21,Darbhanga,Bihar,25.2567,84.4864,35,25,Operational
+PHC-KA-BEN-715,Bengaluru Primary Health Centre 1,Bengaluru,Karnataka,16.2176,74.5629,41,16,Warning
+PHC-KA-BEN-716,Bengaluru Primary Health Centre 2,Bengaluru,Karnataka,15.691,74.5671,34,21,Warning
+PHC-KA-BEN-717,Bengaluru Primary Health Centre 3,Bengaluru,Karnataka,14.4285,76.0396,45,22,Operational
+PHC-KA-BEN-718,Bengaluru Primary Health Centre 4,Bengaluru,Karnataka,14.7585,76.9411,41,17,Operational
+PHC-KA-BEN-719,Bengaluru Primary Health Centre 5,Bengaluru,Karnataka,16.3769,75.8425,13,20,Operational
+PHC-KA-BEN-720,Bengaluru Primary Health Centre 6,Bengaluru,Karnataka,16.5056,76.3246,16,6,Operational
+PHC-KA-BEN-721,Bengaluru Primary Health Centre 7,Bengaluru,Karnataka,13.9028,75.6517,10,9,Operational
+PHC-KA-BEN-722,Bengaluru Primary Health Centre 8,Bengaluru,Karnataka,15.7586,76.9634,27,9,Operational
+PHC-KA-BEN-723,Bengaluru Primary Health Centre 9,Bengaluru,Karnataka,15.4302,75.8837,45,15,Operational
+PHC-KA-BEN-724,Bengaluru Primary Health Centre 10,Bengaluru,Karnataka,15.2458,77.1278,50,23,Critical
+PHC-KA-BEN-725,Bengaluru Primary Health Centre 11,Bengaluru,Karnataka,16.1812,75.0349,47,13,Critical
+PHC-KA-BEN-726,Bengaluru Primary Health Centre 12,Bengaluru,Karnataka,16.5366,76.5559,43,24,Operational
+PHC-KA-BEN-727,Bengaluru Primary Health Centre 13,Bengaluru,Karnataka,16.6902,76.9562,19,5,Operational
+PHC-KA-BEN-728,Bengaluru Primary Health Centre 14,Bengaluru,Karnataka,16.0349,76.9007,32,16,Operational
+PHC-KA-BEN-729,Bengaluru Primary Health Centre 15,Bengaluru,Karnataka,13.941,77.0553,16,12,Operational
+PHC-KA-BEN-730,Bengaluru Primary Health Centre 16,Bengaluru,Karnataka,15.3045,76.5611,13,14,Operational
+PHC-KA-BEN-731,Bengaluru Primary Health Centre 17,Bengaluru,Karnataka,15.2542,74.6527,42,14,Operational
+PHC-KA-BEN-732,Bengaluru Primary Health Centre 18,Bengaluru,Karnataka,14.862,76.773,33,20,Warning
+PHC-KA-BEN-733,Bengaluru Primary Health Centre 19,Bengaluru,Karnataka,15.2756,74.6765,40,14,Critical
+PHC-KA-BEN-734,Bengaluru Primary Health Centre 20,Bengaluru,Karnataka,16.5027,75.379,42,16,Operational
+PHC-KA-BEN-735,Bengaluru Primary Health Centre 21,Bengaluru,Karnataka,15.8294,74.7876,29,19,Operational
+PHC-KA-MYS-736,Mysuru Primary Health Centre 1,Mysuru,Karnataka,14.4324,76.8612,13,17,Operational
+PHC-KA-MYS-737,Mysuru Primary Health Centre 2,Mysuru,Karnataka,15.046,76.9554,29,17,Operational
+PHC-KA-MYS-738,Mysuru Primary Health Centre 3,Mysuru,Karnataka,14.521,76.4347,30,23,Operational
+PHC-KA-MYS-739,Mysuru Primary Health Centre 4,Mysuru,Karnataka,16.6324,76.2901,41,23,Warning
+PHC-KA-MYS-740,Mysuru Primary Health Centre 5,Mysuru,Karnataka,15.2501,75.4136,49,19,Warning
+PHC-KA-MYS-741,Mysuru Primary Health Centre 6,Mysuru,Karnataka,14.2948,76.197,27,14,Operational
+PHC-KA-MYS-742,Mysuru Primary Health Centre 7,Mysuru,Karnataka,16.7951,76.0599,34,15,Operational
+PHC-KA-MYS-743,Mysuru Primary Health Centre 8,Mysuru,Karnataka,14.2182,77.074,33,13,Operational
+PHC-KA-MYS-744,Mysuru Primary Health Centre 9,Mysuru,Karnataka,15.7047,76.3102,41,17,Operational
+PHC-KA-MYS-745,Mysuru Primary Health Centre 10,Mysuru,Karnataka,14.4581,75.4413,10,10,Critical
+PHC-KA-MYS-746,Mysuru Primary Health Centre 11,Mysuru,Karnataka,15.4688,74.4697,21,5,Operational
+PHC-KA-MYS-747,Mysuru Primary Health Centre 12,Mysuru,Karnataka,15.2514,77.0889,40,17,Operational
+PHC-KA-MYS-748,Mysuru Primary Health Centre 13,Mysuru,Karnataka,16.0058,76.039,17,17,Operational
+PHC-KA-MYS-749,Mysuru Primary Health Centre 14,Mysuru,Karnataka,13.8646,76.446,41,7,Critical
+PHC-KA-MYS-750,Mysuru Primary Health Centre 15,Mysuru,Karnataka,16.1339,76.5812,28,9,Operational
+PHC-KA-MYS-751,Mysuru Primary Health Centre 16,Mysuru,Karnataka,16.2372,74.805,20,21,Operational
+PHC-KA-MYS-752,Mysuru Primary Health Centre 17,Mysuru,Karnataka,15.884,76.1471,40,11,Critical
+PHC-KA-MYS-753,Mysuru Primary Health Centre 18,Mysuru,Karnataka,14.3935,76.7605,40,18,Critical
+PHC-KA-MYS-754,Mysuru Primary Health Centre 19,Mysuru,Karnataka,15.713,74.3557,24,9,Operational
+PHC-KA-MYS-755,Mysuru Primary Health Centre 20,Mysuru,Karnataka,13.8261,76.9314,11,20,Operational
+PHC-KA-MYS-756,Mysuru Primary Health Centre 21,Mysuru,Karnataka,15.3437,74.9637,18,23,Operational
+PHC-KA-HUB-757,Hubli Primary Health Centre 1,Hubli,Karnataka,15.7028,75.2186,20,15,Operational
+PHC-KA-HUB-758,Hubli Primary Health Centre 2,Hubli,Karnataka,14.4337,76.81,37,9,Operational
+PHC-KA-HUB-759,Hubli Primary Health Centre 3,Hubli,Karnataka,15.3279,76.7519,28,10,Operational
+PHC-KA-HUB-760,Hubli Primary Health Centre 4,Hubli,Karnataka,15.82,76.589,40,12,Operational
+PHC-KA-HUB-761,Hubli Primary Health Centre 5,Hubli,Karnataka,14.1654,75.3838,37,13,Operational
+PHC-KA-HUB-762,Hubli Primary Health Centre 6,Hubli,Karnataka,15.2196,75.4159,42,15,Critical
+PHC-KA-HUB-763,Hubli Primary Health Centre 7,Hubli,Karnataka,15.1439,76.9437,30,13,Warning
+PHC-KA-HUB-764,Hubli Primary Health Centre 8,Hubli,Karnataka,13.9456,75.9697,39,13,Operational
+PHC-KA-HUB-765,Hubli Primary Health Centre 9,Hubli,Karnataka,14.2178,76.7752,28,17,Operational
+PHC-KA-HUB-766,Hubli Primary Health Centre 10,Hubli,Karnataka,14.0821,75.1686,11,12,Operational
+PHC-KA-HUB-767,Hubli Primary Health Centre 11,Hubli,Karnataka,16.5516,75.3523,31,19,Operational
+PHC-KA-HUB-768,Hubli Primary Health Centre 12,Hubli,Karnataka,15.1346,76.7476,31,10,Operational
+PHC-KA-HUB-769,Hubli Primary Health Centre 13,Hubli,Karnataka,14.0876,76.2638,44,25,Warning
+PHC-KA-HUB-770,Hubli Primary Health Centre 14,Hubli,Karnataka,15.4082,74.9886,13,8,Warning
+PHC-KA-HUB-771,Hubli Primary Health Centre 15,Hubli,Karnataka,15.1006,75.8158,42,22,Operational
+PHC-KA-HUB-772,Hubli Primary Health Centre 16,Hubli,Karnataka,13.9981,74.411,13,8,Operational
+PHC-KA-HUB-773,Hubli Primary Health Centre 17,Hubli,Karnataka,16.0961,74.2075,46,25,Operational
+PHC-KA-HUB-774,Hubli Primary Health Centre 18,Hubli,Karnataka,16.6884,75.6104,37,16,Warning
+PHC-KA-HUB-775,Hubli Primary Health Centre 19,Hubli,Karnataka,16.2503,75.0365,24,5,Warning
+PHC-KA-HUB-776,Hubli Primary Health Centre 20,Hubli,Karnataka,15.3589,77.1536,15,13,Operational
+PHC-KA-HUB-777,Hubli Primary Health Centre 21,Hubli,Karnataka,14.151,76.4034,18,6,Critical
+PHC-KA-MAN-778,Mangaluru Primary Health Centre 1,Mangaluru,Karnataka,16.2814,75.7838,41,16,Operational
+PHC-KA-MAN-779,Mangaluru Primary Health Centre 2,Mangaluru,Karnataka,15.6994,76.0915,49,12,Operational
+PHC-KA-MAN-780,Mangaluru Primary Health Centre 3,Mangaluru,Karnataka,16.316,75.0298,39,22,Operational
+PHC-KA-MAN-781,Mangaluru Primary Health Centre 4,Mangaluru,Karnataka,13.834,76.1247,26,9,Operational
+PHC-KA-MAN-782,Mangaluru Primary Health Centre 5,Mangaluru,Karnataka,15.527,74.2431,24,18,Operational
+PHC-KA-MAN-783,Mangaluru Primary Health Centre 6,Mangaluru,Karnataka,15.304,76.1215,30,18,Critical
+PHC-KA-MAN-784,Mangaluru Primary Health Centre 7,Mangaluru,Karnataka,16.2936,76.7674,11,12,Operational
+PHC-KA-MAN-785,Mangaluru Primary Health Centre 8,Mangaluru,Karnataka,16.3122,77.1216,11,16,Operational
+PHC-KA-MAN-786,Mangaluru Primary Health Centre 9,Mangaluru,Karnataka,16.1594,75.1148,34,9,Operational
+PHC-KA-MAN-787,Mangaluru Primary Health Centre 10,Mangaluru,Karnataka,14.407,75.835,14,12,Operational
+PHC-KA-MAN-788,Mangaluru Primary Health Centre 11,Mangaluru,Karnataka,16.5244,74.9298,13,12,Operational
+PHC-KA-MAN-789,Mangaluru Primary Health Centre 12,Mangaluru,Karnataka,13.9124,75.5305,34,9,Operational
+PHC-KA-MAN-790,Mangaluru Primary Health Centre 13,Mangaluru,Karnataka,15.0192,75.4436,35,15,Operational
+PHC-KA-MAN-791,Mangaluru Primary Health Centre 14,Mangaluru,Karnataka,15.409,76.4761,22,21,Operational
+PHC-KA-MAN-792,Mangaluru Primary Health Centre 15,Mangaluru,Karnataka,16.7112,74.9508,50,15,Operational
+PHC-KA-MAN-793,Mangaluru Primary Health Centre 16,Mangaluru,Karnataka,16.1219,75.1485,30,9,Operational
+PHC-KA-MAN-794,Mangaluru Primary Health Centre 17,Mangaluru,Karnataka,15.1036,76.4736,37,5,Operational
+PHC-KA-MAN-795,Mangaluru Primary Health Centre 18,Mangaluru,Karnataka,15.3176,77.1151,50,15,Operational
+PHC-KA-MAN-796,Mangaluru Primary Health Centre 19,Mangaluru,Karnataka,15.7778,74.4483,44,17,Operational
+PHC-KA-MAN-797,Mangaluru Primary Health Centre 20,Mangaluru,Karnataka,14.2216,77.0669,46,16,Warning
+PHC-KA-MAN-798,Mangaluru Primary Health Centre 21,Mangaluru,Karnataka,16.6862,75.4807,37,15,Warning
+PHC-KA-BEL-799,Belagavi Primary Health Centre 1,Belagavi,Karnataka,15.285,74.6101,21,15,Operational
+PHC-KA-BEL-800,Belagavi Primary Health Centre 2,Belagavi,Karnataka,15.8071,76.3532,19,21,Warning
+PHC-KA-BEL-801,Belagavi Primary Health Centre 3,Belagavi,Karnataka,16.6288,76.4911,25,6,Warning
+PHC-KA-BEL-802,Belagavi Primary Health Centre 4,Belagavi,Karnataka,16.6715,77.1953,32,11,Warning
+PHC-KA-BEL-803,Belagavi Primary Health Centre 5,Belagavi,Karnataka,14.5555,74.3,41,21,Operational
+PHC-KA-BEL-804,Belagavi Primary Health Centre 6,Belagavi,Karnataka,15.6692,74.3222,23,12,Warning
+PHC-KA-BEL-805,Belagavi Primary Health Centre 7,Belagavi,Karnataka,15.6426,75.1193,41,19,Operational
+PHC-KA-BEL-806,Belagavi Primary Health Centre 8,Belagavi,Karnataka,14.7642,77.0412,16,22,Critical
+PHC-KA-BEL-807,Belagavi Primary Health Centre 9,Belagavi,Karnataka,16.7048,76.8912,23,8,Operational
+PHC-KA-BEL-808,Belagavi Primary Health Centre 10,Belagavi,Karnataka,15.5219,74.3185,33,20,Operational
+PHC-KA-BEL-809,Belagavi Primary Health Centre 11,Belagavi,Karnataka,16.5982,75.4736,28,18,Operational
+PHC-KA-BEL-810,Belagavi Primary Health Centre 12,Belagavi,Karnataka,14.3388,76.5643,12,13,Operational
+PHC-KA-BEL-811,Belagavi Primary Health Centre 13,Belagavi,Karnataka,14.1574,76.9588,48,15,Warning
+PHC-KA-BEL-812,Belagavi Primary Health Centre 14,Belagavi,Karnataka,15.551,76.7088,37,13,Operational
+PHC-KA-BEL-813,Belagavi Primary Health Centre 15,Belagavi,Karnataka,14.9453,74.5705,22,13,Operational
+PHC-KA-BEL-814,Belagavi Primary Health Centre 16,Belagavi,Karnataka,15.6215,76.0125,37,22,Warning
+PHC-KA-BEL-815,Belagavi Primary Health Centre 17,Belagavi,Karnataka,15.1998,74.495,34,11,Operational
+PHC-KA-BEL-816,Belagavi Primary Health Centre 18,Belagavi,Karnataka,14.3006,77.1681,47,10,Operational
+PHC-KA-BEL-817,Belagavi Primary Health Centre 19,Belagavi,Karnataka,16.3849,74.5687,20,17,Operational
+PHC-KA-BEL-818,Belagavi Primary Health Centre 20,Belagavi,Karnataka,14.5367,75.5467,48,6,Warning
+PHC-KA-BEL-819,Belagavi Primary Health Centre 21,Belagavi,Karnataka,16.63,75.6584,20,24,Warning
+PHC-MP-BHO-820,Bhopal Primary Health Centre 1,Bhopal,Madhya Pradesh,24.052,79.0696,26,21,Operational
+PHC-MP-BHO-821,Bhopal Primary Health Centre 2,Bhopal,Madhya Pradesh,23.7829,79.7983,35,23,Operational
+PHC-MP-BHO-822,Bhopal Primary Health Centre 3,Bhopal,Madhya Pradesh,23.2968,78.8503,33,12,Warning
+PHC-MP-BHO-823,Bhopal Primary Health Centre 4,Bhopal,Madhya Pradesh,21.4873,77.6019,33,8,Critical
+PHC-MP-BHO-824,Bhopal Primary Health Centre 5,Bhopal,Madhya Pradesh,24.3349,79.7045,32,14,Operational
+PHC-MP-BHO-825,Bhopal Primary Health Centre 6,Bhopal,Madhya Pradesh,22.332,77.4104,34,8,Operational
+PHC-MP-BHO-826,Bhopal Primary Health Centre 7,Bhopal,Madhya Pradesh,23.2755,77.8782,45,22,Operational
+PHC-MP-BHO-827,Bhopal Primary Health Centre 8,Bhopal,Madhya Pradesh,22.18,79.7971,13,12,Operational
+PHC-MP-BHO-828,Bhopal Primary Health Centre 9,Bhopal,Madhya Pradesh,21.9117,78.3091,49,13,Operational
+PHC-MP-BHO-829,Bhopal Primary Health Centre 10,Bhopal,Madhya Pradesh,24.3086,77.4325,13,9,Warning
+PHC-MP-BHO-830,Bhopal Primary Health Centre 11,Bhopal,Madhya Pradesh,23.6184,79.3029,28,14,Critical
+PHC-MP-BHO-831,Bhopal Primary Health Centre 12,Bhopal,Madhya Pradesh,22.0474,79.1101,48,6,Critical
+PHC-MP-BHO-832,Bhopal Primary Health Centre 13,Bhopal,Madhya Pradesh,23.9104,78.7385,49,20,Operational
+PHC-MP-BHO-833,Bhopal Primary Health Centre 14,Bhopal,Madhya Pradesh,22.9915,79.6482,18,19,Operational
+PHC-MP-BHO-834,Bhopal Primary Health Centre 15,Bhopal,Madhya Pradesh,24.3832,79.5904,10,11,Operational
+PHC-MP-BHO-835,Bhopal Primary Health Centre 16,Bhopal,Madhya Pradesh,22.3864,78.8322,30,21,Critical
+PHC-MP-BHO-836,Bhopal Primary Health Centre 17,Bhopal,Madhya Pradesh,24.2207,79.5714,39,13,Operational
+PHC-MP-BHO-837,Bhopal Primary Health Centre 18,Bhopal,Madhya Pradesh,22.846,78.5139,44,14,Operational
+PHC-MP-BHO-838,Bhopal Primary Health Centre 19,Bhopal,Madhya Pradesh,22.1358,79.2496,39,7,Operational
+PHC-MP-BHO-839,Bhopal Primary Health Centre 20,Bhopal,Madhya Pradesh,21.7,78.2828,36,7,Operational
+PHC-MP-BHO-840,Bhopal Primary Health Centre 21,Bhopal,Madhya Pradesh,22.4799,77.4053,36,18,Warning
+PHC-MP-IND-841,Indore Primary Health Centre 1,Indore,Madhya Pradesh,21.6327,77.3263,24,13,Operational
+PHC-MP-IND-842,Indore Primary Health Centre 2,Indore,Madhya Pradesh,21.9163,78.7817,14,12,Operational
+PHC-MP-IND-843,Indore Primary Health Centre 3,Indore,Madhya Pradesh,21.8569,79.1834,13,18,Operational
+PHC-MP-IND-844,Indore Primary Health Centre 4,Indore,Madhya Pradesh,22.7958,78.5223,40,19,Warning
+PHC-MP-IND-845,Indore Primary Health Centre 5,Indore,Madhya Pradesh,24.2635,79.3716,47,10,Operational
+PHC-MP-IND-846,Indore Primary Health Centre 6,Indore,Madhya Pradesh,23.5604,77.3446,43,10,Operational
+PHC-MP-IND-847,Indore Primary Health Centre 7,Indore,Madhya Pradesh,21.5786,77.2715,32,9,Operational
+PHC-MP-IND-848,Indore Primary Health Centre 8,Indore,Madhya Pradesh,23.623,79.0547,38,16,Critical
+PHC-MP-IND-849,Indore Primary Health Centre 9,Indore,Madhya Pradesh,22.5948,80.0835,27,14,Warning
+PHC-MP-IND-850,Indore Primary Health Centre 10,Indore,Madhya Pradesh,24.11,78.7808,46,23,Warning
+PHC-MP-IND-851,Indore Primary Health Centre 11,Indore,Madhya Pradesh,22.6927,78.5381,23,21,Operational
+PHC-MP-IND-852,Indore Primary Health Centre 12,Indore,Madhya Pradesh,22.7968,79.7805,22,24,Operational
+PHC-MP-IND-853,Indore Primary Health Centre 13,Indore,Madhya Pradesh,24.022,78.7534,45,15,Warning
+PHC-MP-IND-854,Indore Primary Health Centre 14,Indore,Madhya Pradesh,24.3281,77.9204,38,24,Operational
+PHC-MP-IND-855,Indore Primary Health Centre 15,Indore,Madhya Pradesh,23.7781,79.1335,26,10,Operational
+PHC-MP-IND-856,Indore Primary Health Centre 16,Indore,Madhya Pradesh,23.7589,77.7604,50,13,Operational
+PHC-MP-IND-857,Indore Primary Health Centre 17,Indore,Madhya Pradesh,21.6521,79.1818,25,6,Operational
+PHC-MP-IND-858,Indore Primary Health Centre 18,Indore,Madhya Pradesh,22.9262,77.2266,19,24,Operational
+PHC-MP-IND-859,Indore Primary Health Centre 19,Indore,Madhya Pradesh,23.6873,77.6741,30,25,Warning
+PHC-MP-IND-860,Indore Primary Health Centre 20,Indore,Madhya Pradesh,24.3579,78.1255,48,10,Operational
+PHC-MP-IND-861,Indore Primary Health Centre 21,Indore,Madhya Pradesh,24.2632,79.394,30,13,Operational
+PHC-MP-JAB-862,Jabalpur Primary Health Centre 1,Jabalpur,Madhya Pradesh,21.6692,78.6203,33,18,Operational
+PHC-MP-JAB-863,Jabalpur Primary Health Centre 2,Jabalpur,Madhya Pradesh,23.5466,77.114,49,18,Operational
+PHC-MP-JAB-864,Jabalpur Primary Health Centre 3,Jabalpur,Madhya Pradesh,23.6699,77.989,33,20,Operational
+PHC-MP-JAB-865,Jabalpur Primary Health Centre 4,Jabalpur,Madhya Pradesh,23.4521,78.7443,22,7,Operational
+PHC-MP-JAB-866,Jabalpur Primary Health Centre 5,Jabalpur,Madhya Pradesh,24.054,78.4819,15,7,Operational
+PHC-MP-JAB-867,Jabalpur Primary Health Centre 6,Jabalpur,Madhya Pradesh,24.3575,77.9574,15,15,Critical
+PHC-MP-JAB-868,Jabalpur Primary Health Centre 7,Jabalpur,Madhya Pradesh,21.6124,79.5264,23,10,Operational
+PHC-MP-JAB-869,Jabalpur Primary Health Centre 8,Jabalpur,Madhya Pradesh,22.062,78.0321,22,23,Warning
+PHC-MP-JAB-870,Jabalpur Primary Health Centre 9,Jabalpur,Madhya Pradesh,23.6267,79.8816,35,8,Warning
+PHC-MP-JAB-871,Jabalpur Primary Health Centre 10,Jabalpur,Madhya Pradesh,23.3365,78.9822,23,20,Operational
+PHC-MP-JAB-872,Jabalpur Primary Health Centre 11,Jabalpur,Madhya Pradesh,23.6713,77.5037,10,9,Operational
+PHC-MP-JAB-873,Jabalpur Primary Health Centre 12,Jabalpur,Madhya Pradesh,23.0241,78.5852,42,13,Operational
+PHC-MP-JAB-874,Jabalpur Primary Health Centre 13,Jabalpur,Madhya Pradesh,22.1722,80.0464,11,21,Operational
+PHC-MP-JAB-875,Jabalpur Primary Health Centre 14,Jabalpur,Madhya Pradesh,23.242,77.4722,11,24,Operational
+PHC-MP-JAB-876,Jabalpur Primary Health Centre 15,Jabalpur,Madhya Pradesh,23.3931,77.3276,36,5,Critical
+PHC-MP-JAB-877,Jabalpur Primary Health Centre 16,Jabalpur,Madhya Pradesh,22.8644,79.8907,13,24,Critical
+PHC-MP-JAB-878,Jabalpur Primary Health Centre 17,Jabalpur,Madhya Pradesh,24.0922,78.5393,23,9,Operational
+PHC-MP-JAB-879,Jabalpur Primary Health Centre 18,Jabalpur,Madhya Pradesh,21.6665,79.297,22,19,Operational
+PHC-MP-JAB-880,Jabalpur Primary Health Centre 19,Jabalpur,Madhya Pradesh,22.7708,80.0297,23,14,Operational
+PHC-MP-JAB-881,Jabalpur Primary Health Centre 20,Jabalpur,Madhya Pradesh,22.0348,77.2282,39,16,Warning
+PHC-MP-JAB-882,Jabalpur Primary Health Centre 21,Jabalpur,Madhya Pradesh,22.2665,78.2537,14,22,Warning
+PHC-MP-GWA-883,Gwalior Primary Health Centre 1,Gwalior,Madhya Pradesh,22.7213,77.8619,50,12,Warning
+PHC-MP-GWA-884,Gwalior Primary Health Centre 2,Gwalior,Madhya Pradesh,21.705,78.7761,39,11,Operational
+PHC-MP-GWA-885,Gwalior Primary Health Centre 3,Gwalior,Madhya Pradesh,23.3868,77.8857,41,11,Operational
+PHC-MP-GWA-886,Gwalior Primary Health Centre 4,Gwalior,Madhya Pradesh,22.1363,79.1607,18,21,Critical
+PHC-MP-GWA-887,Gwalior Primary Health Centre 5,Gwalior,Madhya Pradesh,21.6899,80.0197,19,14,Operational
+PHC-MP-GWA-888,Gwalior Primary Health Centre 6,Gwalior,Madhya Pradesh,22.9476,78.3962,35,9,Operational
+PHC-MP-GWA-889,Gwalior Primary Health Centre 7,Gwalior,Madhya Pradesh,24.0491,78.4116,13,5,Operational
+PHC-MP-GWA-890,Gwalior Primary Health Centre 8,Gwalior,Madhya Pradesh,23.2889,78.8814,11,18,Operational
+PHC-MP-GWA-891,Gwalior Primary Health Centre 9,Gwalior,Madhya Pradesh,21.4474,79.5813,22,9,Operational
+PHC-MP-GWA-892,Gwalior Primary Health Centre 10,Gwalior,Madhya Pradesh,22.7579,77.388,15,13,Operational
+PHC-MP-GWA-893,Gwalior Primary Health Centre 11,Gwalior,Madhya Pradesh,24.2649,79.9414,20,17,Operational
+PHC-MP-GWA-894,Gwalior Primary Health Centre 12,Gwalior,Madhya Pradesh,23.3687,79.7698,38,16,Warning
+PHC-MP-GWA-895,Gwalior Primary Health Centre 13,Gwalior,Madhya Pradesh,22.3671,77.3647,35,5,Operational
+PHC-MP-GWA-896,Gwalior Primary Health Centre 14,Gwalior,Madhya Pradesh,21.4797,78.6892,42,20,Operational
+PHC-MP-GWA-897,Gwalior Primary Health Centre 15,Gwalior,Madhya Pradesh,24.1141,79.013,38,22,Operational
+PHC-MP-GWA-898,Gwalior Primary Health Centre 16,Gwalior,Madhya Pradesh,22.5944,77.6748,18,6,Operational
+PHC-MP-GWA-899,Gwalior Primary Health Centre 17,Gwalior,Madhya Pradesh,22.9493,79.5686,22,13,Warning
+PHC-MP-GWA-900,Gwalior Primary Health Centre 18,Gwalior,Madhya Pradesh,23.5262,79.7646,24,10,Warning
+PHC-MP-GWA-901,Gwalior Primary Health Centre 19,Gwalior,Madhya Pradesh,23.3831,78.7416,24,21,Warning
+PHC-MP-GWA-902,Gwalior Primary Health Centre 20,Gwalior,Madhya Pradesh,22.9885,77.986,26,12,Operational
+PHC-MP-GWA-903,Gwalior Primary Health Centre 21,Gwalior,Madhya Pradesh,22.9826,79.4127,37,21,Operational
+PHC-MP-UJJ-904,Ujjain Primary Health Centre 1,Ujjain,Madhya Pradesh,23.9339,77.998,42,15,Operational
+PHC-MP-UJJ-905,Ujjain Primary Health Centre 2,Ujjain,Madhya Pradesh,23.922,79.4501,32,15,Operational
+PHC-MP-UJJ-906,Ujjain Primary Health Centre 3,Ujjain,Madhya Pradesh,22.9599,78.2245,44,7,Critical
+PHC-MP-UJJ-907,Ujjain Primary Health Centre 4,Ujjain,Madhya Pradesh,24.0835,79.166,33,5,Operational
+PHC-MP-UJJ-908,Ujjain Primary Health Centre 5,Ujjain,Madhya Pradesh,23.488,77.5376,23,22,Operational
+PHC-MP-UJJ-909,Ujjain Primary Health Centre 6,Ujjain,Madhya Pradesh,21.8579,77.3928,13,20,Operational
+PHC-MP-UJJ-910,Ujjain Primary Health Centre 7,Ujjain,Madhya Pradesh,22.9011,79.6395,19,21,Warning
+PHC-MP-UJJ-911,Ujjain Primary Health Centre 8,Ujjain,Madhya Pradesh,21.7898,79.5964,23,11,Operational
+PHC-MP-UJJ-912,Ujjain Primary Health Centre 9,Ujjain,Madhya Pradesh,22.5906,79.6575,20,5,Critical
+PHC-MP-UJJ-913,Ujjain Primary Health Centre 10,Ujjain,Madhya Pradesh,23.4955,78.5526,12,17,Operational
+PHC-MP-UJJ-914,Ujjain Primary Health Centre 11,Ujjain,Madhya Pradesh,22.9445,79.1903,42,7,Operational
+PHC-MP-UJJ-915,Ujjain Primary Health Centre 12,Ujjain,Madhya Pradesh,23.751,78.3917,18,10,Operational
+PHC-MP-UJJ-916,Ujjain Primary Health Centre 13,Ujjain,Madhya Pradesh,21.7275,79.1122,42,24,Critical
+PHC-MP-UJJ-917,Ujjain Primary Health Centre 14,Ujjain,Madhya Pradesh,22.9779,78.3076,43,7,Operational
+PHC-MP-UJJ-918,Ujjain Primary Health Centre 15,Ujjain,Madhya Pradesh,24.1882,78.7163,28,19,Operational
+PHC-MP-UJJ-919,Ujjain Primary Health Centre 16,Ujjain,Madhya Pradesh,24.1707,77.6755,36,10,Warning
+PHC-MP-UJJ-920,Ujjain Primary Health Centre 17,Ujjain,Madhya Pradesh,23.705,77.3011,46,17,Operational
+PHC-MP-UJJ-921,Ujjain Primary Health Centre 18,Ujjain,Madhya Pradesh,21.9872,77.6298,40,13,Operational
+PHC-MP-UJJ-922,Ujjain Primary Health Centre 19,Ujjain,Madhya Pradesh,23.9501,78.2536,21,15,Warning
+PHC-MP-UJJ-923,Ujjain Primary Health Centre 20,Ujjain,Madhya Pradesh,21.6928,79.0957,39,12,Operational
+PHC-MP-UJJ-924,Ujjain Primary Health Centre 21,Ujjain,Madhya Pradesh,21.4965,77.6258,38,10,Operational
+PHC-AS-GUW-925,Guwahati Primary Health Centre 1,Guwahati,Assam,25.0976,92.4497,13,12,Warning
+PHC-AS-GUW-926,Guwahati Primary Health Centre 2,Guwahati,Assam,24.8121,93.5939,43,8,Operational
+PHC-AS-GUW-927,Guwahati Primary Health Centre 3,Guwahati,Assam,26.0709,93.3629,20,21,Operational
+PHC-AS-GUW-928,Guwahati Primary Health Centre 4,Guwahati,Assam,26.591,92.9892,46,23,Operational
+PHC-AS-GUW-929,Guwahati Primary Health Centre 5,Guwahati,Assam,24.83,93.6328,45,20,Operational
+PHC-AS-GUW-930,Guwahati Primary Health Centre 6,Guwahati,Assam,27.4141,91.6294,38,21,Operational
+PHC-AS-GUW-931,Guwahati Primary Health Centre 7,Guwahati,Assam,27.3305,92.6292,16,23,Operational
+PHC-AS-GUW-932,Guwahati Primary Health Centre 8,Guwahati,Assam,26.4862,92.4908,24,7,Warning
+PHC-AS-GUW-933,Guwahati Primary Health Centre 9,Guwahati,Assam,26.1422,91.629,12,15,Operational
+PHC-AS-GUW-934,Guwahati Primary Health Centre 10,Guwahati,Assam,26.3146,94.0339,18,17,Operational
+PHC-AS-GUW-935,Guwahati Primary Health Centre 11,Guwahati,Assam,25.4751,94.3784,48,22,Operational
+PHC-AS-GUW-936,Guwahati Primary Health Centre 12,Guwahati,Assam,25.9917,92.5514,38,16,Operational
+PHC-AS-GUW-937,Guwahati Primary Health Centre 13,Guwahati,Assam,27.059,94.2207,36,15,Operational
+PHC-AS-GUW-938,Guwahati Primary Health Centre 14,Guwahati,Assam,26.2492,92.1214,47,24,Operational
+PHC-AS-GUW-939,Guwahati Primary Health Centre 15,Guwahati,Assam,25.8016,93.6822,46,5,Operational
+PHC-AS-GUW-940,Guwahati Primary Health Centre 16,Guwahati,Assam,26.0189,92.1649,18,5,Operational
+PHC-AS-GUW-941,Guwahati Primary Health Centre 17,Guwahati,Assam,25.4987,92.6705,37,21,Operational
+PHC-AS-GUW-942,Guwahati Primary Health Centre 18,Guwahati,Assam,26.7184,92.4056,10,17,Operational
+PHC-AS-GUW-943,Guwahati Primary Health Centre 19,Guwahati,Assam,25.2024,91.8082,17,13,Operational
+PHC-AS-GUW-944,Guwahati Primary Health Centre 20,Guwahati,Assam,26.5848,91.5749,40,10,Operational
+PHC-AS-GUW-945,Guwahati Primary Health Centre 21,Guwahati,Assam,27.0697,92.0999,39,9,Critical
+PHC-AS-DIB-946,Dibrugarh Primary Health Centre 1,Dibrugarh,Assam,26.0673,92.7888,37,25,Warning
+PHC-AS-DIB-947,Dibrugarh Primary Health Centre 2,Dibrugarh,Assam,26.3863,94.1865,34,24,Operational
+PHC-AS-DIB-948,Dibrugarh Primary Health Centre 3,Dibrugarh,Assam,26.9976,92.253,33,25,Operational
+PHC-AS-DIB-949,Dibrugarh Primary Health Centre 4,Dibrugarh,Assam,25.1941,93.7565,46,5,Operational
+PHC-AS-DIB-950,Dibrugarh Primary Health Centre 5,Dibrugarh,Assam,26.3835,93.5834,25,22,Operational
+PHC-AS-DIB-951,Dibrugarh Primary Health Centre 6,Dibrugarh,Assam,27.441,92.0338,20,13,Warning
+PHC-AS-DIB-952,Dibrugarh Primary Health Centre 7,Dibrugarh,Assam,26.9235,92.1663,21,19,Operational
+PHC-AS-DIB-953,Dibrugarh Primary Health Centre 8,Dibrugarh,Assam,26.6553,92.6478,34,24,Operational
+PHC-AS-DIB-954,Dibrugarh Primary Health Centre 9,Dibrugarh,Assam,26.5912,91.5342,23,12,Operational
+PHC-AS-DIB-955,Dibrugarh Primary Health Centre 10,Dibrugarh,Assam,26.8483,92.5897,45,8,Operational
+PHC-AS-DIB-956,Dibrugarh Primary Health Centre 11,Dibrugarh,Assam,27.6288,94.1328,19,9,Operational
+PHC-AS-DIB-957,Dibrugarh Primary Health Centre 12,Dibrugarh,Assam,24.9094,93.664,24,22,Operational
+PHC-AS-DIB-958,Dibrugarh Primary Health Centre 13,Dibrugarh,Assam,27.0248,91.9616,46,18,Critical
+PHC-AS-DIB-959,Dibrugarh Primary Health Centre 14,Dibrugarh,Assam,27.4442,91.6675,35,25,Operational
+PHC-AS-DIB-960,Dibrugarh Primary Health Centre 15,Dibrugarh,Assam,27.423,92.4454,36,13,Warning
+PHC-AS-DIB-961,Dibrugarh Primary Health Centre 16,Dibrugarh,Assam,26.7573,91.7609,16,24,Critical
+PHC-AS-DIB-962,Dibrugarh Primary Health Centre 17,Dibrugarh,Assam,25.141,92.6505,35,20,Warning
+PHC-AS-DIB-963,Dibrugarh Primary Health Centre 18,Dibrugarh,Assam,24.9895,92.1539,34,21,Warning
+PHC-AS-DIB-964,Dibrugarh Primary Health Centre 19,Dibrugarh,Assam,25.6526,93.7828,44,21,Operational
+PHC-AS-DIB-965,Dibrugarh Primary Health Centre 20,Dibrugarh,Assam,27.3701,94.1751,18,9,Operational
+PHC-AS-DIB-966,Dibrugarh Primary Health Centre 21,Dibrugarh,Assam,24.7591,91.7162,43,11,Operational
+PHC-AS-JOR-967,Jorhat Primary Health Centre 1,Jorhat,Assam,26.9817,91.7546,30,12,Warning
+PHC-AS-JOR-968,Jorhat Primary Health Centre 2,Jorhat,Assam,24.9267,92.0077,46,24,Operational
+PHC-AS-JOR-969,Jorhat Primary Health Centre 3,Jorhat,Assam,26.2115,92.818,33,20,Operational
+PHC-AS-JOR-970,Jorhat Primary Health Centre 4,Jorhat,Assam,27.5061,91.7684,33,5,Warning
+PHC-AS-JOR-971,Jorhat Primary Health Centre 5,Jorhat,Assam,27.0503,92.1975,19,12,Warning
+PHC-AS-JOR-972,Jorhat Primary Health Centre 6,Jorhat,Assam,27.1529,91.4177,40,20,Operational
+PHC-AS-JOR-973,Jorhat Primary Health Centre 7,Jorhat,Assam,26.6501,94.3369,50,16,Operational
+PHC-AS-JOR-974,Jorhat Primary Health Centre 8,Jorhat,Assam,24.9171,94.3054,19,21,Operational
+PHC-AS-JOR-975,Jorhat Primary Health Centre 9,Jorhat,Assam,25.2527,92.7271,49,15,Operational
+PHC-AS-JOR-976,Jorhat Primary Health Centre 10,Jorhat,Assam,25.6459,91.4608,12,10,Operational
+PHC-AS-JOR-977,Jorhat Primary Health Centre 11,Jorhat,Assam,26.6348,92.3765,19,7,Operational
+PHC-AS-JOR-978,Jorhat Primary Health Centre 12,Jorhat,Assam,25.2577,93.5623,39,5,Operational
+PHC-AS-JOR-979,Jorhat Primary Health Centre 13,Jorhat,Assam,25.7557,91.747,40,20,Operational
+PHC-AS-JOR-980,Jorhat Primary Health Centre 14,Jorhat,Assam,26.6062,92.2972,13,17,Operational
+PHC-AS-JOR-981,Jorhat Primary Health Centre 15,Jorhat,Assam,27.2814,93.9187,31,20,Operational
+PHC-AS-JOR-982,Jorhat Primary Health Centre 16,Jorhat,Assam,27.5889,92.831,15,11,Operational
+PHC-AS-JOR-983,Jorhat Primary Health Centre 17,Jorhat,Assam,26.0232,93.156,31,8,Operational
+PHC-AS-JOR-984,Jorhat Primary Health Centre 18,Jorhat,Assam,26.3014,93.8636,21,8,Operational
+PHC-AS-JOR-985,Jorhat Primary Health Centre 19,Jorhat,Assam,26.164,92.6013,13,10,Operational
+PHC-AS-JOR-986,Jorhat Primary Health Centre 20,Jorhat,Assam,27.3634,91.516,43,11,Operational
+PHC-AS-JOR-987,Jorhat Primary Health Centre 21,Jorhat,Assam,25.3121,93.8324,16,7,Operational
+PHC-AS-SIL-988,Silchar Primary Health Centre 1,Silchar,Assam,27.248,93.5196,17,14,Warning
+PHC-AS-SIL-989,Silchar Primary Health Centre 2,Silchar,Assam,27.4968,92.2996,21,18,Critical
+PHC-AS-SIL-990,Silchar Primary Health Centre 3,Silchar,Assam,25.8139,92.299,19,7,Warning
+PHC-AS-SIL-991,Silchar Primary Health Centre 4,Silchar,Assam,26.7331,92.103,12,24,Critical
+PHC-AS-SIL-992,Silchar Primary Health Centre 5,Silchar,Assam,25.1624,93.9817,28,9,Operational
+PHC-AS-SIL-993,Silchar Primary Health Centre 6,Silchar,Assam,25.4043,93.3301,19,10,Warning
+PHC-AS-SIL-994,Silchar Primary Health Centre 7,Silchar,Assam,25.876,93.1412,31,16,Warning
+PHC-AS-SIL-995,Silchar Primary Health Centre 8,Silchar,Assam,26.4131,93.6408,39,19,Operational
+PHC-AS-SIL-996,Silchar Primary Health Centre 9,Silchar,Assam,25.0414,93.19,37,10,Warning
+PHC-AS-SIL-997,Silchar Primary Health Centre 10,Silchar,Assam,26.7894,93.3266,24,23,Warning
+PHC-AS-SIL-998,Silchar Primary Health Centre 11,Silchar,Assam,25.2295,93.3169,44,19,Warning
+PHC-AS-SIL-999,Silchar Primary Health Centre 12,Silchar,Assam,27.5987,91.5121,36,8,Operational
+PHC-AS-SIL-1000,Silchar Primary Health Centre 13,Silchar,Assam,26.6352,94.1951,42,6,Warning
+PHC-AS-SIL-1001,Silchar Primary Health Centre 14,Silchar,Assam,25.7559,93.4983,40,5,Critical
+PHC-AS-SIL-1002,Silchar Primary Health Centre 15,Silchar,Assam,26.4021,93.4788,26,24,Operational
+PHC-AS-SIL-1003,Silchar Primary Health Centre 16,Silchar,Assam,25.2995,93.1323,43,18,Operational
+PHC-AS-SIL-1004,Silchar Primary Health Centre 17,Silchar,Assam,25.7141,93.2796,50,17,Critical
+PHC-AS-SIL-1005,Silchar Primary Health Centre 18,Silchar,Assam,27.1764,91.6201,41,7,Operational
+PHC-AS-SIL-1006,Silchar Primary Health Centre 19,Silchar,Assam,24.8245,93.3855,25,22,Operational
+PHC-AS-SIL-1007,Silchar Primary Health Centre 20,Silchar,Assam,26.866,93.6647,35,10,Warning
+PHC-AS-SIL-1008,Silchar Primary Health Centre 21,Silchar,Assam,25.847,91.9949,47,6,Warning
+PHC-AS-TEZ-1009,Tezpur Primary Health Centre 1,Tezpur,Assam,27.5629,93.3458,34,18,Warning
+PHC-AS-TEZ-1010,Tezpur Primary Health Centre 2,Tezpur,Assam,26.5288,92.6179,46,21,Operational
+PHC-AS-TEZ-1011,Tezpur Primary Health Centre 3,Tezpur,Assam,25.7973,92.1515,48,15,Warning
+PHC-AS-TEZ-1012,Tezpur Primary Health Centre 4,Tezpur,Assam,26.2461,93.7247,17,19,Warning
+PHC-AS-TEZ-1013,Tezpur Primary Health Centre 5,Tezpur,Assam,27.0601,91.7261,45,17,Operational
+PHC-AS-TEZ-1014,Tezpur Primary Health Centre 6,Tezpur,Assam,26.0237,93.6143,31,8,Operational
+PHC-AS-TEZ-1015,Tezpur Primary Health Centre 7,Tezpur,Assam,26.9039,93.8129,46,11,Operational
+PHC-AS-TEZ-1016,Tezpur Primary Health Centre 8,Tezpur,Assam,26.1715,94.3197,26,10,Warning
+PHC-AS-TEZ-1017,Tezpur Primary Health Centre 9,Tezpur,Assam,26.3435,92.3725,18,17,Operational
+PHC-AS-TEZ-1018,Tezpur Primary Health Centre 10,Tezpur,Assam,26.7485,93.2044,21,8,Operational
+PHC-AS-TEZ-1019,Tezpur Primary Health Centre 11,Tezpur,Assam,25.5806,92.2796,40,21,Operational
+PHC-AS-TEZ-1020,Tezpur Primary Health Centre 12,Tezpur,Assam,26.6244,91.6169,45,25,Operational
+PHC-AS-TEZ-1021,Tezpur Primary Health Centre 13,Tezpur,Assam,27.02,93.743,40,11,Critical
+PHC-AS-TEZ-1022,Tezpur Primary Health Centre 14,Tezpur,Assam,24.7471,91.5872,26,10,Operational
+PHC-AS-TEZ-1023,Tezpur Primary Health Centre 15,Tezpur,Assam,26.9408,94.3801,39,18,Operational
+PHC-AS-TEZ-1024,Tezpur Primary Health Centre 16,Tezpur,Assam,26.5812,93.5269,41,24,Operational
+PHC-AS-TEZ-1025,Tezpur Primary Health Centre 17,Tezpur,Assam,27.1236,91.6569,21,5,Operational
+PHC-AS-TEZ-1026,Tezpur Primary Health Centre 18,Tezpur,Assam,24.8256,92.2825,16,15,Warning
+PHC-AS-TEZ-1027,Tezpur Primary Health Centre 19,Tezpur,Assam,25.6196,93.1757,43,9,Operational
+PHC-AS-TEZ-1028,Tezpur Primary Health Centre 20,Tezpur,Assam,25.7932,93.3328,11,14,Operational
+PHC-AS-TEZ-1029,Tezpur Primary Health Centre 21,Tezpur,Assam,25.0122,94.1023,45,23,Operational
