@@ -21,6 +21,13 @@ const Popup = dynamic(
   { ssr: false }
 );
 
+// Basemap: CARTO tiles now need a free key (https://carto.com/basemaps/apikey).
+// Set NEXT_PUBLIC_CARTO_KEY to use them; otherwise fall back to keyless OpenStreetMap tiles.
+const CARTO_KEY = process.env.NEXT_PUBLIC_CARTO_KEY || '';
+const ATTRIBUTION = CARTO_KEY
+  ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
 export default function IndiaMap({ phcs = [], onSelectPHC }) {
   const [mounted, setMounted] = useState(false);
 
@@ -42,6 +49,10 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
       </div>
     );
   }
+
+  const tileUrl = CARTO_KEY
+    ? `https://basemaps.cartocdn.com/rastertiles/${dark ? 'dark_all' : 'voyager'}/{z}/{x}/{y}.png?key=${CARTO_KEY}`
+    : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   // Center on India (Jaipur / Central India region)
   const center = [23.5, 78.5];
@@ -77,9 +88,10 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
         className="w-full h-full"
       >
         <TileLayer
-          key={dark ? 'dark' : 'light'}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url={`https://{s}.basemaps.cartocdn.com/${dark ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`}
+          key={`${dark}-${CARTO_KEY ? 'carto' : 'osm'}`}
+          attribution={ATTRIBUTION}
+          url={tileUrl}
+          className={!CARTO_KEY && dark ? 'osm-dark-tiles' : ''}
         />
 
         {displayList.map((p, idx) => {

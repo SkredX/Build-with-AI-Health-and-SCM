@@ -12,8 +12,8 @@ export default function TriageResult({
 }) {
   if (!result) return null;
 
-  const isEmergency =
-    result.urgency?.includes('EMERGENCY') || result.urgency?.includes('CRITICAL');
+  const urgencyUp = (result.urgency || '').toUpperCase();
+  const isEmergency = /EMERGENCY|CRITICAL|HIGH/.test(urgencyUp);
 
   const handleExportFHIR = () => {
     const fhirBundle = {
@@ -102,7 +102,7 @@ export default function TriageResult({
         </p>
         {usedFallback && (
           <p className="text-sm text-ink-2 mt-2">
-            Suggested using basic rules because the AI service was unavailable. Please confirm clinically.
+            {result.deductions?.offline ? 'The server could not be reached, so this is a basic offline estimate. ' : 'The AI service was unavailable, so this is a basic rule-based estimate. '}Please confirm clinically.
           </p>
         )}
       </div>
@@ -128,9 +128,11 @@ export default function TriageResult({
 
       <DialectProtocols result={result} />
 
-      <p className="text-sm text-ink-2">
-        Stock at {patientData.phcName} has been reduced to match the medicines above.
-      </p>
+      {!usedFallback && (
+        <p className="text-sm text-ink-2">
+          Stock at {patientData.phcName} has been reduced to match the medicines above.
+        </p>
+      )}
 
       <div className="flex flex-wrap gap-2 pt-1">
         <button type="button" onClick={onOpenReferralSlip} className="btn btn-primary">

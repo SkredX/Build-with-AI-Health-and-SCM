@@ -56,4 +56,13 @@ async def triage(request: TriageRequest):
     except Exception as e:
         print(f"Gemini API failed: {e}. Falling back to heuristic.")
         traceback.print_exc()
-        return heuristic_triage(request)
+        fallback = heuristic_triage(request)
+        # Short, key-free reason so it can be diagnosed from the browser network tab.
+        fallback.deductions["reason"] = str(e)[:200]
+        return fallback
+
+
+@router.get("/triage/status")
+async def triage_status():
+    """Open /api/triage/status in a browser to see whether Gemini is configured and reachable."""
+    return await gemini_service.check()
