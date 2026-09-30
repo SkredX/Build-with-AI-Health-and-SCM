@@ -177,7 +177,7 @@ Build-with-AI-Health-and-SCM/
 
 The Google Gemini API Key is **strictly safeguarded** and never exposed to the client-side browser:
 
-1. **Server-Side Isolation**: All calls to the Gemini API (`gemini-2.0-flash`) originate from `backend/services/gemini_service.py` using backend environment variables.
+1. **Server-Side Isolation**: All calls to the Gemini API (model set by `GEMINI_MODEL`) originate from `backend/services/gemini_service.py` using backend environment variables.
 2. **Gitignore Protection**: `.env`, `.env.local`, `*.key`, and credentials are strictly ignored in `.gitignore`.
 3. **Zero-Crash Resilient Fallback**: If an API key is not supplied, the backend seamlessly falls back to the clinical heuristic engine, allowing judges and evaluators to test all features with zero risk of quota exhaustion or authentication failures.
 
@@ -252,3 +252,7 @@ All tests verify:
 - [x] **3. Real / Realistic India Data**: 1,029 PHC nodes across 10 states, 10,290 inventory records, 52-week IDSP data.
 - [x] **4. Multilingual & Voice**: Speech recognition and regional audio protocols in Marwari, Hindi, Bengali, Tamil, and English.
 - [x] **5. Deployable Artifacts**: Docker Compose, FastAPI Swagger UI, and ABDM FHIR R4 exports.
+
+## Deployment
+
+Free-tier hosting without Docker (Vercel + Gemini free tier): see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
