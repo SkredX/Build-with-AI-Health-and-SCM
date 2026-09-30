@@ -9,7 +9,7 @@ from config import settings
 from models.schemas import TriageRequest, TriageResponse
 
 # Tried in order if the configured model is retired/unknown (404 / not found).
-FALLBACK_MODELS = ["gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-2.5-flash"]
+FALLBACK_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.5-flash"]
 
 SYSTEM_PROMPT = """
 You are an expert AI clinical triage assistant for India's National Health Mission (NHM),

@@ -6,46 +6,103 @@ import traceback
 router = APIRouter()
 gemini_service = GeminiService()
 
+import re
+
 def heuristic_triage(request: TriageRequest) -> TriageResponse:
     text = request.input_text.lower()
     
-    condition = "Unknown"
+    condition = "Condition not identified"
     urgency = "Low"
+    snomed_code = ""
+    confidence = 0.5
     symptoms = []
     medicines = []
-    
-    if "cholera" in text or "diarrhea" in text or "दस्त" in text:
-        condition = "Cholera/Diarrhea"
-        urgency = "High"
-        symptoms = ["Diarrhea", "Dehydration"]
-        medicines = ["ORS", "Zinc"]
-    elif "snakebite" in text or "snake" in text or "सांप" in text:
+    guidance_hi = "कृपया नजदीकी प्राथमिक स्वास्थ्य केंद्र (PHC) में डॉक्टर से जांच करवाएं।"
+    guidance_en = "Please consult a medical officer at the nearest Primary Health Centre."
+    guidance_regional = {}
+    deductions = {"heuristic_used": True}
+
+    snake_pattern = r"(snake|venom|viper|cobra|krait|fang|envenom|saanp|sanp|saamp|samp|kaata|kata|kaat|kat|dasa|dassa|dhasa|dhas|sarpa|sarp|naag|nag|सांप|साँप|सर्प|नाग|डस|काट)"
+    cholera_pattern = r"(cholera|diarrh|diarrea|vomit|dehydrat|loose\s*motion|rice\s*water|dast|ulti|haiza|pet\s*kharab|kamzori|दस्त|उल्टी|हैजा)"
+    respiratory_pattern = r"(cough|breath|wheez|asthma|bronch|pneumonia|dyspnea|chest|khansi|khaansi|saans|sans|balgam|dum|seene|खांसी|सांस|बलगम)"
+    fever_pattern = r"(fever|dengue|malaria|shiver|chills|bukhar|bukhaar|badan\s*dard|sir\s*dard|sar\s*dard|dengu|बुखार|डेंगू|मलेरिया)"
+
+    if re.search(snake_pattern, text):
         condition = "Snakebite"
         urgency = "Critical"
-        symptoms = ["Bite marks", "Swelling"]
-        medicines = ["Anti-Snake Venom"]
-    elif "cough" in text or "breath" in text or "खांसी" in text:
+        snomed_code = "242635008"
+        confidence = 0.92
+        symptoms = ["Fang marks / Bite site", "Local swelling and pain", "Suspected snake envenomation"]
+        medicines = ["Anti-Snake Venom", "Polyvalent ASV (10 vials)", "Tetanus Toxoid"]
+        guidance_hi = "काटे हुए हिस्से को स्थिर रखें और दिल के स्तर से नीचे रखें। चीरा या कसकर पट्टी (tourniquet) बिल्कुल न बांधें। तुरंत 108 एम्बुलेंस बुलाएं या नजदीकी अस्पताल ले जाएं।"
+        guidance_en = "Immobilize the bitten limb below heart level with a splint. Do NOT apply tourniquet, suction, or incisions. Transfer immediately to hospital for ASV."
+        guidance_regional = {
+            "hindi": guidance_hi,
+            "marwari": "काट्योड़े अंग ने हिलाओ मत, दिल री सीध सूं नीचो राखो। चीरो या कस’र पट्टी मत बांधो, तुरंत अस्पताल ले जावो।",
+            "bengali": "কামড়ানো স্থানটি স্থির রাখুন এবং হৃদপিন্ডের নিচে রাখুন। কোনো বাঁধন বা কাটবেন না। অবিলম্বে হাসপাতালে নিয়ে যান।",
+            "tamil": "கடித்த பகுதியை அசைக்காமல் இதய மட்டத்திற்கு கீழே வைக்கவும். கயிறு கட்டவோ கீறல் போடவோ கூடாது. உடனடியாக மருத்துவமனைக்கு அழைத்துச் செல்லவும்."
+        }
+        deductions = {"antivenom": 1, "heuristic_used": True}
+    elif re.search(cholera_pattern, text):
+        condition = "Cholera/Diarrhea"
+        urgency = "High"
+        snomed_code = "63650001"
+        confidence = 0.90
+        symptoms = ["Profuse watery diarrhoea", "Vomiting", "Dehydration"]
+        medicines = ["ORS", "Zinc"]
+        guidance_hi = "ओआरएस का घोल थोड़ी-थोड़ी देर में लगातार पिलाते रहें। कमजोरी ज्यादा हो या पानी न पी पाए तो तुरंत अस्पताल ले जाएं।"
+        guidance_en = "Administer ORS frequently in small sips. If patient is severely dehydrated or unable to drink, initiate IV fluids and refer urgently."
+        guidance_regional = {
+            "hindi": guidance_hi,
+            "marwari": "ओआरएस घोल थोड़ा-थोड़ा लगातार पावो। घणी कमजोरी होवे तो तुरत अस्पताल ले जावो।",
+            "bengali": "ঘন ঘন ওআরএস দ্রবণ খাওয়ান। রোগী বেশি দুর্বল হলে অবিলম্বে হাসপাতালে নিয়ে যান।",
+            "tamil": "ஓஆர்எஸ் கரைசலை அடிக்கடி கொடுக்கவும். அதிக சோர்வு ஏற்பட்டால் உடனடியாக மருத்துவமனைக்கு கொண்டு செல்லவும்."
+        }
+        deductions = {"ors": 10, "zinc": 14, "heuristic_used": True}
+    elif re.search(respiratory_pattern, text):
         condition = "Respiratory Infection"
         urgency = "Medium"
-        symptoms = ["Cough", "Shortness of breath"]
-        medicines = ["Paracetamol", "Cough Syrup"]
-    elif "fever" in text or "dengue" in text or "बुखार" in text:
+        snomed_code = "10509002"
+        confidence = 0.88
+        symptoms = ["Cough", "Shortness of breath", "Chest congestion"]
+        medicines = ["Paracetamol", "Amoxicillin", "Salbutamol"]
+        guidance_hi = "मरीज का ऑक्सीजन स्तर (SpO2) जांचें। गर्म पानी की भाप दें। यदि सांस लेने में ज्यादा तकलीफ हो तो तुरंत अस्पताल ले जाएं।"
+        guidance_en = "Check oxygen saturation (SpO2). Administer bronchodilator if wheezing. Refer urgently if breathing is labored or SpO2 < 92%."
+        guidance_regional = {
+            "hindi": guidance_hi,
+            "marwari": "ऑक्सीजन जांचो। सांस लेवण में घणी तकलीफ होवे तो तुरत अस्पताल ले जावो।",
+            "bengali": "অক্সিজেন পরীক্ষা করুন। শ্বাসকষ্ট বাড়লে দ্রুত হাসপাতালে নিয়ে যান।",
+            "tamil": "ஆக்சிஜன் அளவை சோதிக்கவும். மூச்சுத் திணறல் அதிகமானால் உடனடியாக மருத்துவமனைக்கு கொண்டு செல்லவும்."
+        }
+        deductions = {"amoxicillin": 15, "pcm": 3, "heuristic_used": True}
+    elif re.search(fever_pattern, text):
         condition = "Fever/Dengue"
         urgency = "Medium"
-        symptoms = ["Fever", "Body Ache"]
+        snomed_code = "38362002"
+        confidence = 0.88
+        symptoms = ["Fever", "Body Ache", "Headache"]
         medicines = ["Paracetamol"]
+        guidance_hi = "केवल पैरासिटामोल दें, ब्रूफेन या डिस्प्रिन बिल्कुल न दें। खूब पानी और तरल पदार्थ पिलाएं। प्लेटलेट्स की जांच करवाएं।"
+        guidance_en = "Administer Paracetamol strictly. Contraindicated: Aspirin/Ibuprofen/NSAIDs due to bleeding risk. Encourage plenty of fluids and monitor platelet count."
+        guidance_regional = {
+            "hindi": guidance_hi,
+            "marwari": "सिर्फ पैरासिटामोल दीजो, ब्रूफेन या डिस्प्रिन बिल्कुल मत दीजो। खूब पानी पावो।",
+            "bengali": "শুধুমাত্র প্যারাসিটামল দিন। অ্যাসপিরিন বা আইবুপ্রোফেন দেবেন না। প্রচুর তরল খাওয়ান।",
+            "tamil": "பாராசிட்டமால் மட்டுமே கொடுக்கவும். ஆஸ்பிரின் அல்லது இப்யூபுரூஃபன் கொடுக்கக் கூடாது. நிறைய திரவங்கள் கொடுக்கவும்."
+        }
+        deductions = {"pcm": 4, "ors": 4, "heuristic_used": True}
 
     return TriageResponse(
         condition=condition,
-        snomed_code="SNOMED-XYZ",
+        snomed_code=snomed_code,
         urgency=urgency,
-        confidence=0.5,
+        confidence=confidence,
         symptoms=symptoms,
         medicines=medicines,
-        guidance_hi="कृपया आराम करें",
-        guidance_en="Please rest",
-        guidance_regional={},
-        deductions={"heuristic_used": True}
+        guidance_hi=guidance_hi,
+        guidance_en=guidance_en,
+        guidance_regional=guidance_regional,
+        deductions=deductions
     )
 
 @router.post("/triage", response_model=TriageResponse)

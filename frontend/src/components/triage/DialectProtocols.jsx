@@ -28,11 +28,11 @@ export default function DialectProtocols({ result }) {
 
   const getConditionKey = () => {
     if (!result) return 'cholera';
-    const text = `${result.condition || ''} ${result.title || ''} ${result.symptoms || ''}`.toLowerCase();
-    if (text.includes('snake') || text.includes('venom')) return 'snakebite';
-    if (text.includes('bronch') || text.includes('breath') || text.includes('cough')) return 'respiratory';
-    if (text.includes('dengue')) return 'dengue';
-    if (text.includes('malaria')) return 'malaria';
+    const text = `${result.condition || ''} ${result.title || ''} ${Array.isArray(result.symptoms) ? result.symptoms.join(' ') : result.symptoms || ''}`.toLowerCase();
+    if (/snake|venom|viper|cobra|krait|saanp|sanp|saamp|samp|kaata|kata|sarpa|sarp|naag|सांप|साँप|डस|काट/.test(text)) return 'snakebite';
+    if (/bronch|breath|cough|wheez|asthma|pneumonia|khansi|khaansi|saans|sans|खांसी|सांस/.test(text)) return 'respiratory';
+    if (/dengue|fever|malaria|bukhar|bukhaar|डेंगू|बुखार|मलेरिया/.test(text)) return 'dengue';
+    if (/cholera|diarrh|diarrea|vomit|dehydrat|dast|haiza|दस्त|उल्टी/.test(text)) return 'cholera';
     return 'cholera';
   };
 

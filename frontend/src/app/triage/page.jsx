@@ -40,6 +40,8 @@ export default function TriagePage() {
     language,
     setLanguage,
     toggleRecording,
+    isSupported,
+    speechError,
   } = useSpeechRecognition('hi-IN');
 
   const { loading, error, result, runTriage, resetTriage, setResult } = useGeminiTriage();
@@ -251,6 +253,8 @@ export default function TriagePage() {
                 onLanguageChange={setLanguage}
                 onSubmit={() => handleProcessTriage('audio')}
                 loading={loading}
+                isSupported={isSupported}
+                speechError={speechError}
               />
             )}
 

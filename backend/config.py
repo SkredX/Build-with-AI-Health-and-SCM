@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     # Accepts either MODEL_NAME or GEMINI_MODEL (the name used in .env.example).
     # Check https://ai.google.dev/gemini-api/docs/models for currently live models.
     MODEL_NAME: str = Field(
-        default="gemini-3.5-flash-lite",
+        default="gemini-2.0-flash",
         validation_alias=AliasChoices("MODEL_NAME", "GEMINI_MODEL"),
     )
 

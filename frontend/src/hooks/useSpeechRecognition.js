@@ -7,16 +7,19 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
   const [transcript, setTranscript] = useState('');
   const [language, setLanguage] = useState(initialLang);
   const [isSupported, setIsSupported] = useState(false);
+  const [speechError, setSpeechError] = useState(null);
   const recognitionRef = useRef(null);
   // Stores the stable "committed" text (final results only).
-  // Interim results are layered on top but never saved into this ref.
   const committedRef = useRef('');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+    if (!SpeechRecognition) {
+      setIsSupported(false);
+      return;
+    }
 
     setIsSupported(true);
 
@@ -24,7 +27,6 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = language;
-    // Reduce silence-detection aggressiveness on mobile Chrome
     recognition.maxAlternatives = 1;
 
     recognition.onresult = (event) => {
@@ -34,34 +36,43 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const text = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
-          // Append a space between sentences
           newFinals += (newFinals ? ' ' : '') + text.trim();
         } else {
           interim += text;
         }
       }
 
-      // Commit any new final results
       if (newFinals) {
         committedRef.current = committedRef.current
           ? committedRef.current + ' ' + newFinals
           : newFinals;
       }
 
-      // Display = committed finals + live interim preview
       const display = interim
         ? (committedRef.current ? committedRef.current + ' ' + interim : interim)
         : committedRef.current;
 
       setTranscript(display);
+      setSpeechError(null);
     };
 
     recognition.onerror = (event) => {
-      // 'no-speech' is normal; ignore it so the session keeps running
-      if (event.error !== 'no-speech') {
-        console.warn('Speech recognition error:', event.error);
-        setIsRecording(false);
+      if (event.error === 'no-speech') {
+        // Normal silence timeout; don't disrupt if user just paused
+        return;
       }
+      let errMsg = 'Speech recognition error';
+      if (event.error === 'not-allowed') {
+        errMsg = 'Microphone access was denied. Please allow microphone permission in your browser.';
+      } else if (event.error === 'network') {
+        errMsg = 'Network error during voice recognition. Check your internet connection.';
+      } else if (event.error === 'audio-capture') {
+        errMsg = 'No microphone found or audio capture device failed.';
+      } else {
+        errMsg = `Speech recognition notice: ${event.error}`;
+      }
+      setSpeechError(errMsg);
+      setIsRecording(false);
     };
 
     recognition.onend = () => {
@@ -75,16 +86,31 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
     };
   }, [language]);
 
+  const updateTranscript = useCallback((text) => {
+    committedRef.current = text;
+    setTranscript(text);
+  }, []);
+
   const startRecording = useCallback(() => {
-    if (!recognitionRef.current) return;
+    setSpeechError(null);
+    if (!recognitionRef.current) {
+      if (!isSupported) {
+        setSpeechError('Speech recognition is not supported in this browser. Please use Chrome/Edge or type directly.');
+      }
+      return;
+    }
     try {
       recognitionRef.current.lang = language;
       recognitionRef.current.start();
       setIsRecording(true);
     } catch (e) {
       console.warn('Recognition start exception:', e);
+      // Already running or permission issue
+      if (e.name !== 'InvalidStateError') {
+        setSpeechError(`Could not start microphone: ${e.message || e}`);
+      }
     }
-  }, [language]);
+  }, [language, isSupported]);
 
   const stopRecording = useCallback(() => {
     if (!recognitionRef.current) return;
@@ -103,15 +129,18 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
   const clearTranscript = useCallback(() => {
     committedRef.current = '';
     setTranscript('');
+    setSpeechError(null);
   }, []);
 
   return {
     isRecording,
     transcript,
-    setTranscript,
+    setTranscript: updateTranscript,
     language,
     setLanguage,
     isSupported,
+    speechError,
+    setSpeechError,
     startRecording,
     stopRecording,
     toggleRecording,

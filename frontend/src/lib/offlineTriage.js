@@ -3,27 +3,92 @@
 export function offlineTriage(payload) {
   const t = (payload.input_text || '').toLowerCase();
   let r = {
-    condition: 'Not identified from notes',
+    condition: 'Condition not identified',
     urgency: 'Low',
-    symptoms: [],
-    medicines: [],
-    guidance_en: 'No clear pattern found. Examine the patient and refer if symptoms worsen.',
-  };
-  if (/cholera|diarrh|diarrea|vomit|dehydrat|दस्त/.test(t)) {
-    r = { condition: 'Diarrhoea with dehydration', urgency: 'High', symptoms: ['Diarrhoea', 'Dehydration'], medicines: ['ORS', 'Zinc'], guidance_en: 'Give ORS in small frequent sips. Refer urgently if the patient cannot drink or is very weak.' };
-  } else if (/snake|venom|सांप/.test(t)) {
-    r = { condition: 'Snakebite', urgency: 'Critical', symptoms: ['Bite marks', 'Swelling'], medicines: ['Anti-snake venom'], guidance_en: 'Keep the limb still and below heart level. Transfer to a hospital immediately.' };
-  } else if (/cough|breath|wheez|खांसी/.test(t)) {
-    r = { condition: 'Respiratory infection', urgency: 'Medium', symptoms: ['Cough', 'Shortness of breath'], medicines: ['Paracetamol'], guidance_en: 'Check oxygen level. Refer if breathing is difficult or SpO2 is below 94%.' };
-  } else if (/fever|dengue|बुखार/.test(t)) {
-    r = { condition: 'Fever, possible dengue', urgency: 'Medium', symptoms: ['Fever', 'Body ache'], medicines: ['Paracetamol'], guidance_en: 'Give paracetamol only (no aspirin or ibuprofen). Encourage fluids and check platelets.' };
-  }
-  return {
-    ...r,
     snomed_code: '',
     confidence: 0.5,
-    guidance_hi: '',
-    guidance_regional: {},
+    symptoms: [],
+    medicines: [],
+    guidance_hi: 'लक्षण स्पष्ट नहीं हैं। कृपया डॉक्टर से जांच करवाएं।',
+    guidance_en: 'No clear clinical pattern found. Examine the patient thoroughly and refer if symptoms worsen.',
     deductions: { heuristic_used: true, offline: true },
   };
+
+  // Snakebite patterns: English, Devanagari Hindi, Romanized Hindi (Hinglish)
+  // e.g. "Patient ko ek kaale rang ke saanp ne kaata hai", "saanp ne kata", "snake bite", "सांप ने काटा"
+  if (/snake|venom|viper|cobra|krait|fang|envenom|saanp|sanp|saamp|samp|kaata|kata|kaat|kat|dasa|dassa|dhasa|dhas|sarpa|sarp|naag|nag|सांप|साँप|सर्प|नाग|डस|काट/.test(t)) {
+    r = {
+      condition: "Suspected Snakebite (Envenomation Crisis)",
+      urgency: 'CRITICAL EMERGENCY',
+      snomed_code: '242635008',
+      confidence: 0.92,
+      symptoms: ['Fang marks / Bite site', 'Local swelling and pain', 'Suspected snake envenomation'],
+      medicines: ['Polyvalent Anti-Snake Venom (ASV x10 vials in Normal Saline)', 'Tetanus Toxoid'],
+      guidance_hi: 'काटे हुए हिस्से को स्थिर रखें और दिल के स्तर से नीचे रखें। चीरा या कसकर पट्टी (tourniquet) बिल्कुल न लगाएं। तुरंत एम्बुलेंस 108 बुलाएं या नजदीकी अस्पताल ले जाएं।',
+      guidance_en: 'Immobilize the bitten limb below heart level with a splint. Do NOT apply tourniquet, suction, or incisions. Transfer to hospital immediately for ASV administration.',
+      guidance_regional: {
+        hindi: 'काटे हुए हिस्से को स्थिर रखें और दिल के स्तर से नीचे रखें। चीरा या कसकर पट्टी (tourniquet) बिल्कुल न लगाएं। तुरंत नजदीकी अस्पताल ले जाएं।',
+        marwari: 'काट्योड़े अंग ने हिलाओ मत, दिल री सीध सूं नीचो राखो। चीरो या कस’र पट्टी मत बांधो, तुरंत अस्पताल ले जावो।',
+        bengali: 'কামড়ানো স্থানটি স্থির রাখুন এবং হৃদপিন্ডের নিচে রাখুন। কোনো বাঁধন বা কাটবেন না। অবিলম্বে হাসপাতালে নিয়ে যান।',
+        tamil: 'கடித்த பகுதியை அசைக்காமல் இதய மட்டத்திற்கு கீழே வைக்கவும். கயிறு கட்டவோ கீறல் போடவோ கூடாது. உடனடியாக மருத்துவமனைக்கு அழைத்துச் செல்லவும்.',
+      },
+      deductions: { antivenom: 1, heuristic_used: true, offline: true },
+    };
+  } else if (/cholera|diarrh|diarrea|vomit|dehydrat|loose\s*motion|rice\s*water|dast|ulti|haiza|pet\s*kharab|kamzori|दस्त|उल्टी|हैजा/.test(t)) {
+    r = {
+      condition: 'Acute Diarrhoeal Disease / Suspected Cholera',
+      urgency: 'EMERGENCY RED',
+      snomed_code: '63650001',
+      confidence: 0.90,
+      symptoms: ['Profuse watery diarrhoea', 'Vomiting', 'Dehydration risk'],
+      medicines: ['ORS Sachets x10', 'Zinc Sulfate 20mg', 'IV Ringer Lactate if severe'],
+      guidance_hi: 'ओआरएस का घोल थोड़ी-थोड़ी देर में लगातार पिलाते रहें। कमजोरी ज्यादा हो या पानी न पी पाए तो तुरंत अस्पताल ले जाएं।',
+      guidance_en: 'Administer ORS frequently in small sips. If patient is severely dehydrated or unable to drink, initiate IV fluids and refer urgently.',
+      guidance_regional: {
+        hindi: 'ओआरएस का घोल थोड़ी-थोड़ी देर में लगातार पिलाते रहें। कमजोरी ज्यादा हो या पानी न पी पाए तो तुरंत अस्पताल ले जाएं।',
+        marwari: 'ओआरएस घोल थोड़ा-थोड़ा लगातार पावो। घणी कमजोरी होवे तो तुरत अस्पताल ले जावो।',
+        bengali: 'ঘন ঘন ওআরএস দ্রবণ খাওয়ান। রোগী বেশি দুর্বল হলে অবিলম্বে হাসপাতালে নিয়ে যান।',
+        tamil: 'ஓஆர்எஸ் கரைசலை அடிக்கடி கொடுக்கவும். அதிக சோர்வு ஏற்பட்டால் உடனடியாக மருத்துவமனைக்கு கொண்டு செல்லவும்.',
+      },
+      deductions: { ors: 10, zinc: 14, heuristic_used: true, offline: true },
+    };
+  } else if (/cough|breath|wheez|asthma|bronch|pneumonia|dyspnea|chest|khansi|khaansi|saans|sans|balgam|dum|seene|खांसी|सांस|बलगम/.test(t)) {
+    r = {
+      condition: 'Acute Respiratory Infection / Bronchitis',
+      urgency: 'URGENT YELLOW',
+      snomed_code: '10509002',
+      confidence: 0.88,
+      symptoms: ['Persistent cough', 'Shortness of breath', 'Chest congestion'],
+      medicines: ['Amoxicillin 500mg', 'Salbutamol Nebulization/Inhaler', 'Paracetamol 500mg'],
+      guidance_hi: 'मरीज का ऑक्सीजन स्तर (SpO2) जांचें। गर्म पानी की भाप दें। यदि सांस लेने में ज्यादा तकलीफ हो तो तुरंत अस्पताल ले जाएं।',
+      guidance_en: 'Check oxygen saturation (SpO2). Administer bronchodilator if wheezing. Refer urgently if breathing is labored or SpO2 < 92%.',
+      guidance_regional: {
+        hindi: 'मरीज का ऑक्सीजन स्तर जांचें। यदि सांस लेने में ज्यादा तकलीफ हो तो तुरंत अस्पताल ले जाएं।',
+        marwari: 'ऑक्सीजन जांचो। सांस लेवण में घणी तकलीफ होवे तो तुरत अस्पताल ले जावो।',
+        bengali: 'অক্সিজেন পরীক্ষা করুন। শ্বাসকষ্ট বাড়লে দ্রুত হাসপাতালে নিয়ে যান।',
+        tamil: 'ஆக்சிஜன் அளவை சோதிக்கவும். மூச்சுத் திணறல் அதிகமானால் உடனடியாக மருத்துவமனைக்கு கொண்டு செல்லவும்.',
+      },
+      deductions: { amoxicillin: 15, pcm: 3, heuristic_used: true, offline: true },
+    };
+  } else if (/fever|dengue|malaria|shiver|chills|bukhar|bukhaar|badan\s*dard|sir\s*dard|sar\s*dard|dengu|बुखार|डेंगू|मलेरिया/.test(t)) {
+    r = {
+      condition: 'Acute Febrile Illness / Suspected Dengue',
+      urgency: 'URGENT YELLOW',
+      snomed_code: '38362002',
+      confidence: 0.88,
+      symptoms: ['High fever', 'Severe body ache', 'Headache'],
+      medicines: ['Paracetamol 650mg TDS', 'Oral Rehydration Fluids (ORS)'],
+      guidance_hi: 'केवल पैरासिटामोल दें, ब्रूफेन या डिस्प्रिन बिल्कुल न दें। खूब पानी और तरल पदार्थ पिलाएं। प्लेटलेट्स की जांच करवाएं।',
+      guidance_en: 'Administer Paracetamol strictly. Contraindicated: Aspirin/Ibuprofen/NSAIDs due to bleeding risk. Encourage plenty of fluids and monitor platelet count.',
+      guidance_regional: {
+        hindi: 'केवल पैरासिटामोल दें, ब्रूफेन या डिस्प्रिन बिल्कुल न दें। खूब तरल पदार्थ पिलाएं।',
+        marwari: 'सिर्फ पैरासिटामोल दीजो, ब्रूफेन या डिस्प्रिन बिल्कुल मत दीजो। खूब पानी पावो।',
+        bengali: 'শুধুমাত্র প্যারাসিটামল দিন। অ্যাসপিরিন বা আইবুপ্রোফেন দেবেন না। প্রচুর তরল খাওয়ান।',
+        tamil: 'பாராசிட்டமால் மட்டுமே கொடுக்கவும். ஆஸ்பிரின் அல்லது இப்யூபுரூஃபன் கொடுக்கக் கூடாது. நிறைய திரவங்கள் கொடுக்கவும்.',
+      },
+      deductions: { pcm: 4, ors: 4, heuristic_used: true, offline: true },
+    };
+  }
+
+  return r;
 }
