@@ -140,48 +140,26 @@ export default function SupplyRadarPage() {
         </div>
       )}
 
-      {/* Top Banner */}
-      <div className="enterprise-card rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-l-4 border-l-warningAmber">
+      <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400 status-pulse-amber" />
-            <span className="text-xs font-mono font-bold uppercase text-amber-400">
-              District Operational Command • Zone 04 Jaipur Rural
-            </span>
-          </div>
-          <h2 className="text-lg font-bold text-white mt-0.5">
-            Predictive Supply Chain & Outbreak Early-Warning Radar
-          </h2>
-          <p className="text-xs text-slate-400">
-            Monitors drug depletion velocity across all PHCs, correlates clinical surges, and exports standard GIS outbreak layers for District Collector and CMHO spatial mapping.
+          <h1 className="text-3xl font-semibold tracking-tight">Stock Forecast</h1>
+          <p className="text-ink-2 mt-1 max-w-2xl">
+            Medicine stock at each health centre in Jaipur Rural, with a 7-day demand forecast.
           </p>
         </div>
-
         <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={handleExportGeoJSON}
-            className="px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs font-mono shadow flex items-center gap-1.5 transition"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Export GIS GeoJSON (.geojson)</span>
+          <button type="button" onClick={() => triggerSurge('cholera')} className="btn btn-plain">
+            Demo: cholera surge
           </button>
-          <button
-            type="button"
-            onClick={() => triggerSurge('cholera')}
-            className="px-2.5 py-1.5 rounded bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 font-bold text-xs font-mono transition"
-          >
-            Simulate Cholera Spike
+          <button type="button" onClick={() => triggerSurge('snakebite')} className="btn btn-plain">
+            Demo: snakebite cases
           </button>
-          <button
-            type="button"
-            onClick={() => triggerSurge('snakebite')}
-            className="px-2.5 py-1.5 rounded bg-rose-600/30 hover:bg-rose-600/50 text-rose-300 border border-rose-500/40 font-bold text-xs font-mono transition"
-          >
-            Simulate Snakebite Crisis
+          <button type="button" onClick={handleExportGeoJSON} className="btn btn-quiet">
+            <Download className="w-4 h-4" aria-hidden="true" />
+            Export map data
           </button>
         </div>
-      </div>
+      </header>
 
       {/* Outbreak Alert Banner */}
       {showAlert && (
@@ -203,42 +181,42 @@ export default function SupplyRadarPage() {
         </div>
 
         {/* Autonomous Central Warehouse Purchase Orders Feed */}
-        <div className="lg:col-span-5 enterprise-card rounded-xl p-5 space-y-4 flex flex-col justify-between">
+        <div className="lg:col-span-5 enterprise-card rounded-2xl p-5 space-y-4 flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-center border-b border-govBorder pb-2 mb-3">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-                <Truck className="w-4 h-4 text-clinicalEmerald" />
+            <div className="flex justify-between items-center border-b border-line pb-2 mb-3">
+              <h3 className="text-xs font-semibold text-ink   tabular-nums flex items-center gap-2">
+                <Truck className="w-4 h-4 text-ok" />
                 Central Warehouse Purchase Orders
               </h3>
-              <span className="text-[10px] font-mono text-slate-400">Autonomous Reorder Feed</span>
+              <span className="text-xs tabular-nums text-ink-2">Autonomous Reorder Feed</span>
             </div>
 
             <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1">
               {purchaseOrders.map((po, index) => (
                 <div
                   key={po.id}
-                  className="p-3 rounded-lg bg-[#0d182e] border border-govBorder flex items-center justify-between text-xs font-mono"
+                  className="p-3 rounded-lg bg-fill border border-line flex items-center justify-between text-xs tabular-nums"
                 >
                   <div>
                     <div className="flex items-center space-x-2">
-                      <span className="font-bold text-cyan-400">{po.id}</span>
-                      <span className="text-slate-300">&rarr; {po.destination}</span>
+                      <span className="font-semibold text-accent">{po.id}</span>
+                      <span className="text-ink-2">&rarr; {po.destination}</span>
                     </div>
-                    <p className="text-slate-200 text-[11px] mt-0.5 font-semibold">{po.item}</p>
-                    <p className="text-[10px] text-slate-500">Reason: {po.reason}</p>
+                    <p className="text-ink text-xs mt-0.5 font-semibold">{po.item}</p>
+                    <p className="text-xs text-ink-3">Reason: {po.reason}</p>
                   </div>
                   <div className="text-right flex-shrink-0 ml-2">
                     {po.status === 'In Transit' ? (
                       <button
                         type="button"
                         onClick={() => handleRestockPO(index)}
-                        className="px-2 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold transition flex items-center gap-1"
+                        className="px-2 py-1 rounded bg-ok/20 hover:bg-ok/30 text-ok border border-ok/40 text-xs font-semibold transition flex items-center gap-1"
                       >
                         <CheckCircle className="w-3 h-3" />
                         <span>Restock</span>
                       </button>
                     ) : (
-                      <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-bold">
+                      <span className="bg-ok/10 text-ok border border-ok/20 px-2 py-0.5 rounded text-xs font-semibold">
                         DELIVERED
                       </span>
                     )}
@@ -248,11 +226,11 @@ export default function SupplyRadarPage() {
             </div>
           </div>
 
-          <div className="pt-3 border-t border-govBorder flex justify-between items-center text-xs font-mono text-slate-400">
+          <div className="pt-3 border-t border-line flex justify-between items-center text-xs tabular-nums text-ink-2">
             <span>
-              Avg Depot Transit ETA: <strong className="text-emerald-400">3.2 Hours</strong>
+              Avg Depot Transit ETA: <strong className="text-ok">3.2 Hours</strong>
             </span>
-            <span className="text-cyan-400 text-[11px]">Direct Cold Chain Linked</span>
+            <span className="text-accent text-xs">Direct Cold Chain Linked</span>
           </div>
         </div>
       </div>

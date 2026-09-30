@@ -19,8 +19,8 @@ export default function CMHOSitRep({ onClose, phcs = [] }) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="enterprise-card max-w-2xl w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm overflow-y-auto z-50 flex items-center justify-center p-4 overflow-y-auto">
+      <div className="card max-w-2xl w-full p-5 space-y-4 my-auto max-h-[90vh] overflow-y-auto">
         {/* Printable Area */}
         <div className="print-area bg-white text-slate-950 p-6 rounded-lg font-sans space-y-4 border border-slate-300 shadow">
           {/* Official Gov Banner */}
@@ -96,7 +96,7 @@ export default function CMHOSitRep({ onClose, phcs = [] }) {
           {/* Directives */}
           <div className="bg-amber-50 border border-amber-300 p-3 rounded text-xs space-y-1 text-slate-900">
             <span className="font-bold text-amber-900 uppercase text-[10px] flex items-center gap-1">
-              ⚠️ CMHO Statutory Directives:
+              CMHO Statutory Directives:
             </span>
             <p className="text-[11px] leading-relaxed">
               1. Authorize emergency lateral replenishment of 10 Polyvalent Antivenom vials from Jamwa Ramgarh to Chomu PHC.<br />
@@ -124,14 +124,14 @@ export default function CMHOSitRep({ onClose, phcs = [] }) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder transition"
+            className="btn btn-plain"
           >
             Close
           </button>
           <button
             type="button"
             onClick={handlePrint}
-            className="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold font-mono text-xs flex items-center gap-1.5 transition"
+            className="btn btn-primary"
           >
             <Printer className="w-4 h-4" />
             <span>Print Official SitRep</span>

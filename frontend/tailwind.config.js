@@ -1,24 +1,33 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
-  darkMode: 'class',
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  // Light/dark follows the system setting (prefers-color-scheme) via CSS variables.
+  darkMode: 'media',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: [
+          '-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI Variable"',
+          '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif',
+        ],
       },
       colors: {
-        govNavy: '#0b132b',
-        govCard: '#1c2541',
-        govBorder: '#2a3b5c',
-        govAccent: '#00b4d8',
-        clinicalEmerald: '#10b981',
-        alertRed: '#ef4444',
-        warningAmber: '#f59e0b',
+        canvas: token('canvas'),
+        surface: token('surface'),
+        fill: token('fill'),
+        ink: token('ink'),
+        'ink-2': token('ink-2'),
+        'ink-3': token('ink-3'),
+        line: token('line'),
+        accent: token('accent'),
+        'accent-fill': token('accent-fill'),
+        ok: token('ok'),
+        warn: token('warn'),
+        bad: token('bad'),
       },
+      borderRadius: { card: '16px' },
     },
   },
   plugins: [],

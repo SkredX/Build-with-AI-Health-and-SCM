@@ -55,27 +55,27 @@ export default function RxImageUpload({
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-center justify-between gap-1 text-xs text-slate-400">
+      <div className="flex flex-wrap items-center justify-between gap-1 text-xs text-ink-2">
         <span>Upload prescription or choose pre-verified sample:</span>
-        <div className="flex gap-1 text-[10px] font-mono">
+        <div className="flex gap-1 text-xs tabular-nums">
           <button
             type="button"
             onClick={() => loadSampleRx('cholera')}
-            className="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-amber-300 hover:border-amber-500 transition"
+            className="px-2 py-0.5 rounded bg-fill border border-line text-warn hover:border-warn transition"
           >
             Sample Cholera
           </button>
           <button
             type="button"
             onClick={() => loadSampleRx('snakebite')}
-            className="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-rose-300 hover:border-rose-500 transition"
+            className="px-2 py-0.5 rounded bg-fill border border-line text-bad hover:border-bad transition"
           >
             Sample Snakebite
           </button>
           <button
             type="button"
             onClick={() => loadSampleRx('respiratory')}
-            className="px-2 py-0.5 rounded bg-[#0d182e] border border-govBorder text-cyan-300 hover:border-cyan-500 transition"
+            className="px-2 py-0.5 rounded bg-fill border border-line text-accent hover:border-accent transition"
           >
             Sample Bronchitis
           </button>
@@ -84,7 +84,7 @@ export default function RxImageUpload({
 
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="border-2 border-dashed border-govBorder hover:border-govAccent rounded-lg p-5 text-center bg-[#0d182e] transition cursor-pointer"
+        className="border-2 border-dashed border-line hover:border-accent rounded-lg p-5 text-center bg-fill transition cursor-pointer"
       >
         <input
           ref={fileInputRef}
@@ -99,18 +99,18 @@ export default function RxImageUpload({
             <img
               src={preview}
               alt="Prescription preview"
-              className="max-h-36 mx-auto rounded border border-govBorder shadow"
+              className="max-h-36 mx-auto rounded border border-line shadow"
             />
-            <p className="text-[10px] text-cyan-400 font-mono">Image loaded • Click to replace</p>
+            <p className="text-xs text-accent tabular-nums">Image loaded • Click to replace</p>
           </div>
         ) : (
           <div className="space-y-2 py-3">
-            <UploadCloud className="w-8 h-8 text-slate-500 mx-auto" />
-            <p className="text-xs font-semibold text-slate-300">
+            <UploadCloud className="w-8 h-8 text-ink-3 mx-auto" />
+            <p className="text-xs font-semibold text-ink-2">
               Click to upload doctor prescription photo or clinical report
             </p>
-            <p className="text-[10px] text-slate-500 font-mono">
-              Supports JPG, PNG, WEBP for Gemini Multimodal Vision OCR
+            <p className="text-xs text-ink-3 tabular-nums">
+              JPG, PNG or WEBP
             </p>
           </div>
         )}
@@ -120,10 +120,10 @@ export default function RxImageUpload({
         type="button"
         onClick={onSubmit}
         disabled={loading || !preview}
-        className="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99] disabled:opacity-50"
+        className="btn btn-primary w-full"
       >
         <ImageIcon className="w-4 h-4" />
-        {loading ? 'Analyzing with Gemini Vision...' : 'Parse Rx Image with Gemini Vision'}
+        {loading ? 'Reading prescription...' : 'Read prescription'}
       </button>
     </div>
   );
