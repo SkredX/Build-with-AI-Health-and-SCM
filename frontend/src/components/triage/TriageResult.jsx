@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertTriangle, FileCode, Printer, RotateCcw, Pill, Activity } from 'lucide-react';
+import { AlertTriangle, FileCode, Printer, RotateCcw, Pill, Activity, HeartPulse } from 'lucide-react';
 import { downloadJSON } from '@/lib/utils';
 import DialectProtocols, { stopSpeaking } from './DialectProtocols';
 
@@ -133,6 +133,17 @@ export default function TriageResult({
           </ul>
         </section>
       </div>
+
+      {result.prognosis && (
+        <section className="bg-fill rounded-2xl p-4 border border-line">
+          <h3 className="text-sm text-ink-2 flex items-center gap-1.5 font-medium">
+            <HeartPulse className="w-4 h-4 text-accent" aria-hidden="true" /> Clinical Prognosis & Trajectory
+          </h3>
+          <p className="mt-2 text-sm text-ink leading-relaxed">
+            {result.prognosis}
+          </p>
+        </section>
+      )}
 
       <DialectProtocols result={result} />
 

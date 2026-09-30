@@ -15,8 +15,23 @@ export default function TriagePage() {
   const [activeInputTab, setActiveInputTab] = useState('audio');
   const [clinicalNotes, setClinicalNotes] = useState('');
   const [uploadedImageBase64, setUploadedImageBase64] = useState(null);
+  const [uploadedRxText, setUploadedRxText] = useState('');
+  const [uploadedSampleType, setUploadedSampleType] = useState(null);
   const [showReferralSlip, setShowReferralSlip] = useState(false);
   const [toastMsg, setToastMsg] = useState(null);
+
+  const handleImageSelected = (base64, sampleType = null, ocrText = '', patientMeta = null) => {
+    setUploadedImageBase64(base64);
+    setUploadedSampleType(sampleType);
+    setUploadedRxText(ocrText);
+    if (patientMeta) {
+      setPatientData((prev) => ({
+        ...prev,
+        ...patientMeta,
+        vitals: { ...prev.vitals, ...(patientMeta.vitals || {}) },
+      }));
+    }
+  };
 
   const [patientData, setPatientData] = useState({
     patientId: 'PAT-ABHA-9042',
@@ -142,7 +157,9 @@ export default function TriagePage() {
     let textInput = '';
     if (mode === 'audio') textInput = transcript;
     else if (mode === 'text') textInput = clinicalNotes;
-    else if (mode === 'image') textInput = 'Analyze prescription and extract medicine requirements.';
+    else if (mode === 'image') {
+      textInput = uploadedRxText || (uploadedSampleType ? `Doctor clinical prescription for ${uploadedSampleType}` : 'Doctor prescription photo uploaded for analysis and medicine extraction.');
+    }
 
     try {
       const data = await runTriage({
@@ -260,7 +277,7 @@ export default function TriagePage() {
 
             {activeInputTab === 'image' && (
               <RxImageUpload
-                onImageSelected={setUploadedImageBase64}
+                onImageSelected={handleImageSelected}
                 onSubmit={() => handleProcessTriage('image')}
                 loading={loading}
               />

@@ -13,13 +13,14 @@ FALLBACK_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.5-flash"]
 
 SYSTEM_PROMPT = """
 You are an expert AI clinical triage assistant for India's National Health Mission (NHM),
-supporting an ASHA worker at a primary health centre. Analyse the patient's vitals and
-symptom description. Reply with ONLY a JSON object (no markdown) in exactly this shape:
+supporting an ASHA worker at a primary health centre. Analyse the patient's vitals,
+symptom description, and prescription. Reply with ONLY a JSON object (no markdown) in exactly this shape:
 {
   "condition": "Condition name",
   "snomed_code": "SNOMED CT code or empty string",
   "urgency": "Low | Medium | High | Critical",
   "confidence": 0.9,
+  "prognosis": "Clinical trajectory, risk assessment, and expected recovery or complications",
   "symptoms": ["Symptom 1", "Symptom 2"],
   "medicines": ["Medicine and dose 1", "Medicine and dose 2"],
   "guidance_hi": "Short advice for the family in Hindi",
@@ -60,6 +61,7 @@ def _coerce(data: Dict[str, Any]) -> TriageResponse:
     regional = data.get("guidance_regional")
     regional = {str(k): str(v) for k, v in regional.items()} if isinstance(regional, dict) else {}
     deductions = data.get("deductions")
+    prognosis = data.get("prognosis")
     return TriageResponse(
         condition=str(data.get("condition") or "Condition not identified"),
         snomed_code=str(data.get("snomed_code") or ""),
@@ -71,6 +73,7 @@ def _coerce(data: Dict[str, Any]) -> TriageResponse:
         guidance_en=str(data.get("guidance_en") or ""),
         guidance_regional=regional,
         deductions=deductions if isinstance(deductions, dict) else {},
+        prognosis=str(prognosis) if prognosis else None,
     )
 
 

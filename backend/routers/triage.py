@@ -9,12 +9,23 @@ gemini_service = GeminiService()
 import re
 
 def heuristic_triage(request: TriageRequest) -> TriageResponse:
-    text = request.input_text.lower()
+    text = (request.input_text or "").lower()
     
+    # If an image was submitted (such as an SVG sample prescription), decode its text
+    if request.image_base64 and "base64," in request.image_base64:
+        try:
+            import base64
+            raw_b64 = request.image_base64.split("base64,")[1]
+            decoded = base64.b64decode(raw_b64).decode("utf-8", errors="ignore").lower()
+            text += " " + decoded
+        except Exception:
+            pass
+
     condition = "Condition not identified"
     urgency = "Low"
     snomed_code = ""
     confidence = 0.5
+    prognosis = "Further diagnostic evaluation required. Monitor vitals and re-evaluate if symptoms persist."
     symptoms = []
     medicines = []
     guidance_hi = "कृपया नजदीकी प्राथमिक स्वास्थ्य केंद्र (PHC) में डॉक्टर से जांच करवाएं।"
@@ -22,16 +33,17 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
     guidance_regional = {}
     deductions = {"heuristic_used": True}
 
-    snake_pattern = r"(snake|venom|viper|cobra|krait|fang|envenom|saanp|sanp|saamp|samp|kaata|kata|kaat|kat|dasa|dassa|dhasa|dhas|sarpa|sarp|naag|nag|सांप|साँप|सर्प|नाग|डस|काट)"
-    cholera_pattern = r"(cholera|diarrh|diarrea|vomit|dehydrat|loose\s*motion|rice\s*water|dast|ulti|haiza|pet\s*kharab|kamzori|दस्त|उल्टी|हैजा)"
-    respiratory_pattern = r"(cough|breath|wheez|asthma|bronch|pneumonia|dyspnea|chest|khansi|khaansi|saans|sans|balgam|dum|seene|खांसी|सांस|बलगम)"
+    snake_pattern = r"(snake|venom|viper|cobra|krait|fang|envenom|asv|antivenom|saanp|sanp|saamp|samp|kaata|kata|kaat|kat|dasa|dassa|dhasa|dhas|sarpa|sarp|naag|nag|सांप|साँप|सर्प|नाग|डस|काट)"
+    cholera_pattern = r"(cholera|diarrh|diarrea|vomit|dehydrat|loose\s*motion|rice\s*water|doxycycline|dast|ulti|haiza|pet\s*kharab|kamzori|दस्त|उल्टी|हैजा)"
+    respiratory_pattern = r"(cough|breath|wheez|asthma|bronch|pneumonia|dyspnea|chest|salbutamol|amoxicillin|khansi|khaansi|saans|sans|balgam|dum|seene|खांसी|सांस|बलगम)"
     fever_pattern = r"(fever|dengue|malaria|shiver|chills|bukhar|bukhaar|badan\s*dard|sir\s*dard|sar\s*dard|dengu|बुखार|डेंगू|मलेरिया)"
 
     if re.search(snake_pattern, text):
         condition = "Snakebite"
         urgency = "Critical"
         snomed_code = "242635008"
-        confidence = 0.92
+        confidence = 0.94
+        prognosis = "Critical emergency. High risk of systemic coagulopathy and acute kidney injury if ASV neutralization is delayed beyond 2 hours. Favorable recovery if 10 vials of ASV are infused promptly."
         symptoms = ["Fang marks / Bite site", "Local swelling and pain", "Suspected snake envenomation"]
         medicines = ["Anti-Snake Venom", "Polyvalent ASV (10 vials)", "Tetanus Toxoid"]
         guidance_hi = "काटे हुए हिस्से को स्थिर रखें और दिल के स्तर से नीचे रखें। चीरा या कसकर पट्टी (tourniquet) बिल्कुल न बांधें। तुरंत 108 एम्बुलेंस बुलाएं या नजदीकी अस्पताल ले जाएं।"
@@ -47,7 +59,8 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
         condition = "Cholera/Diarrhea"
         urgency = "High"
         snomed_code = "63650001"
-        confidence = 0.90
+        confidence = 0.92
+        prognosis = "Favorable with rapid rehydration and oral zinc therapy. Risk of hypovolemic shock, severe electrolyte collapse, and acute renal failure within 6-12 hours if fluid replenishment is withheld."
         symptoms = ["Profuse watery diarrhoea", "Vomiting", "Dehydration"]
         medicines = ["ORS", "Zinc"]
         guidance_hi = "ओआरएस का घोल थोड़ी-थोड़ी देर में लगातार पिलाते रहें। कमजोरी ज्यादा हो या पानी न पी पाए तो तुरंत अस्पताल ले जाएं।"
@@ -55,7 +68,7 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
         guidance_regional = {
             "hindi": guidance_hi,
             "marwari": "ओआरएस घोल थोड़ा-थोड़ा लगातार पावो। घणी कमजोरी होवे तो तुरत अस्पताल ले जावो।",
-            "bengali": "ঘন ঘন ওআরএস দ্রবণ খাওয়ান। রোগী বেশি দুর্বল হলে অবিলম্বে হাসপাতালে নিয়ে যান।",
+            "bengali": "ঘন ঘন ওআরএস দ্রবণ খাওয়ান। रोगी বেশি দুর্বল হলে অবিলম্বে হাসপাতালে নিয়ে যান।",
             "tamil": "ஓஆர்எஸ் கரைசலை அடிக்கடி கொடுக்கவும். அதிக சோர்வு ஏற்பட்டால் உடனடியாக மருத்துவமனைக்கு கொண்டு செல்லவும்."
         }
         deductions = {"ors": 10, "zinc": 14, "heuristic_used": True}
@@ -63,7 +76,8 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
         condition = "Respiratory Infection"
         urgency = "Medium"
         snomed_code = "10509002"
-        confidence = 0.88
+        confidence = 0.90
+        prognosis = "Favorable prognosis with bronchodilator nebulization and oral antibiotics. Low risk of respiratory failure provided SpO2 is maintained > 92%. Monitor for progression to pneumonia."
         symptoms = ["Cough", "Shortness of breath", "Chest congestion"]
         medicines = ["Paracetamol", "Amoxicillin", "Salbutamol"]
         guidance_hi = "मरीज का ऑक्सीजन स्तर (SpO2) जांचें। गर्म पानी की भाप दें। यदि सांस लेने में ज्यादा तकलीफ हो तो तुरंत अस्पताल ले जाएं।"
@@ -80,6 +94,7 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
         urgency = "Medium"
         snomed_code = "38362002"
         confidence = 0.88
+        prognosis = "Good recovery expected with adequate hydration and strict paracetamol fever control. Defervescence phase (days 3-7) carries risk of plasma leakage; platelet counts must be tracked."
         symptoms = ["Fever", "Body Ache", "Headache"]
         medicines = ["Paracetamol"]
         guidance_hi = "केवल पैरासिटामोल दें, ब्रूफेन या डिस्प्रिन बिल्कुल न दें। खूब पानी और तरल पदार्थ पिलाएं। प्लेटलेट्स की जांच करवाएं।"
@@ -97,6 +112,7 @@ def heuristic_triage(request: TriageRequest) -> TriageResponse:
         snomed_code=snomed_code,
         urgency=urgency,
         confidence=confidence,
+        prognosis=prognosis,
         symptoms=symptoms,
         medicines=medicines,
         guidance_hi=guidance_hi,

@@ -23,6 +23,7 @@ class TriageResponse(BaseModel):
     guidance_en: str
     guidance_regional: Dict[str, str]
     deductions: Dict[str, Any]
+    prognosis: Optional[str] = None
 
 class ForecastRequest(BaseModel):
     district_id: str
