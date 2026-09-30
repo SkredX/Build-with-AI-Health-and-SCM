@@ -1,11 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { Languages, Volume2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Languages, Volume2, VolumeX } from 'lucide-react';
 import { dialectProtocols, DIALECT_LABELS, DIALECT_TTS_LANG } from '@/data/dialectProtocols';
+
+// Stop any TTS that may be running — call this whenever the user navigates away.
+export function stopSpeaking() {
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+}
 
 export default function DialectProtocols({ result }) {
   const [activeDialect, setActiveDialect] = useState('marwari');
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const utteranceRef = useRef(null);
+
+  // Stop TTS if the result changes (i.e. user moved to a new patient)
+  useEffect(() => {
+    return () => {
+      // Component unmount → always cancel
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const getConditionKey = () => {
     if (!result) return 'cholera';
@@ -26,11 +45,34 @@ export default function DialectProtocols({ result }) {
 
   const handleSpeak = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
+
+    if (isSpeaking) {
+      // Toggle off: cancel immediately
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    window.speechSynthesis.cancel(); // clear any previous utterance
     const utterance = new SpeechSynthesisUtterance(guidanceText);
     utterance.lang = DIALECT_TTS_LANG[activeDialect] || 'hi-IN';
     utterance.rate = activeDialect === 'marwari' ? 0.9 : 0.95;
+
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
+  };
+
+  // Stop speaking if the user switches dialect mid-playback
+  const handleDialectChange = (key) => {
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+    setActiveDialect(key);
   };
 
   return (
@@ -46,7 +88,7 @@ export default function DialectProtocols({ result }) {
               type="button"
               role="tab"
               aria-selected={activeDialect === key}
-              onClick={() => setActiveDialect(key)}
+              onClick={() => handleDialectChange(key)}
               className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
                 activeDialect === key ? 'bg-fill text-ink' : 'text-ink-2 hover:text-ink'
               }`}
@@ -60,8 +102,16 @@ export default function DialectProtocols({ result }) {
       <p className="text-[17px] leading-relaxed">{guidanceText}</p>
 
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <button type="button" onClick={handleSpeak} className="btn btn-quiet !min-h-0 !py-1.5 text-sm">
-          <Volume2 className="w-4 h-4" aria-hidden="true" /> Read aloud
+        <button
+          type="button"
+          onClick={handleSpeak}
+          className={`btn btn-quiet !min-h-0 !py-1.5 text-sm ${isSpeaking ? 'text-accent' : ''}`}
+          aria-pressed={isSpeaking}
+        >
+          {isSpeaking
+            ? <><VolumeX className="w-4 h-4" aria-hidden="true" /> Stop</>
+            : <><Volume2 className="w-4 h-4" aria-hidden="true" /> Read aloud</>
+          }
         </button>
         {result?.guidance_en && (
           <p className="text-sm text-ink-2 basis-full">

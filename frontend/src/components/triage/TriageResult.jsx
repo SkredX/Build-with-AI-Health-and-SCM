@@ -2,7 +2,7 @@
 
 import { AlertTriangle, FileCode, Printer, RotateCcw, Pill, Activity } from 'lucide-react';
 import { downloadJSON } from '@/lib/utils';
-import DialectProtocols from './DialectProtocols';
+import DialectProtocols, { stopSpeaking } from './DialectProtocols';
 
 export default function TriageResult({
   result,
@@ -75,6 +75,12 @@ export default function TriageResult({
     downloadJSON(fhirBundle, `ABDM_FHIR_R4_${patientData.patientId}.json`);
   };
 
+  const handleReset = () => {
+    // Always stop any running speech before clearing the result panel
+    stopSpeaking();
+    onReset();
+  };
+
   const list = (v) => (Array.isArray(v) ? v : v ? String(v).split(/,\s*/) : []);
   const symptoms = list(result.symptoms);
   const medicines = list(result.medicines);
@@ -83,7 +89,6 @@ export default function TriageResult({
     typeof result.confidence === 'number'
       ? `${Math.round(result.confidence * 100)}%`
       : result.confidence || null;
-  const tone = isEmergency ? 'bad' : 'warn';
 
   return (
     <div className="space-y-4">
@@ -102,7 +107,10 @@ export default function TriageResult({
         </p>
         {usedFallback && (
           <p className="text-sm text-ink-2 mt-2">
-            {result.deductions?.offline ? 'The server could not be reached, so this is a basic offline estimate. ' : 'The AI service was unavailable, so this is a basic rule-based estimate. '}Please confirm clinically.
+            {result.deductions?.offline
+              ? 'The server could not be reached, so this is a basic offline estimate. '
+              : 'The AI service was unavailable, so this is a basic rule-based estimate. '}
+            Please confirm clinically.
           </p>
         )}
       </div>
@@ -141,7 +149,7 @@ export default function TriageResult({
         <button type="button" onClick={handleExportFHIR} className="btn btn-plain">
           <FileCode className="w-4 h-4" aria-hidden="true" /> Export health record
         </button>
-        <button type="button" onClick={onReset} className="btn btn-plain">
+        <button type="button" onClick={handleReset} className="btn btn-plain">
           <RotateCcw className="w-4 h-4" aria-hidden="true" /> New patient
         </button>
       </div>

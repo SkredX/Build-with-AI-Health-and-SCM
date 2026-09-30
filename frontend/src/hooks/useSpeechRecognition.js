@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export function useSpeechRecognition(initialLang = 'hi-IN') {
   const [isRecording, setIsRecording] = useState(false);
@@ -8,48 +8,74 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
   const [language, setLanguage] = useState(initialLang);
   const [isSupported, setIsSupported] = useState(false);
   const recognitionRef = useRef(null);
+  // Stores the stable "committed" text (final results only).
+  // Interim results are layered on top but never saved into this ref.
+  const committedRef = useRef('');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        setIsSupported(true);
-        const recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang = language;
+    if (typeof window === 'undefined') return;
 
-        recognition.onresult = (event) => {
-          let currentTranscript = '';
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            currentTranscript += event.results[i][0].transcript;
-          }
-          setTranscript((prev) => (prev ? prev + ' ' + currentTranscript : currentTranscript));
-        };
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
 
-        recognition.onerror = (event) => {
-          console.warn('Speech recognition error:', event.error);
-          setIsRecording(false);
-        };
+    setIsSupported(true);
 
-        recognition.onend = () => {
-          setIsRecording(false);
-        };
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = language;
+    // Reduce silence-detection aggressiveness on mobile Chrome
+    recognition.maxAlternatives = 1;
 
-        recognitionRef.current = recognition;
+    recognition.onresult = (event) => {
+      let newFinals = '';
+      let interim = '';
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const text = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          // Append a space between sentences
+          newFinals += (newFinals ? ' ' : '') + text.trim();
+        } else {
+          interim += text;
+        }
       }
-    }
+
+      // Commit any new final results
+      if (newFinals) {
+        committedRef.current = committedRef.current
+          ? committedRef.current + ' ' + newFinals
+          : newFinals;
+      }
+
+      // Display = committed finals + live interim preview
+      const display = interim
+        ? (committedRef.current ? committedRef.current + ' ' + interim : interim)
+        : committedRef.current;
+
+      setTranscript(display);
+    };
+
+    recognition.onerror = (event) => {
+      // 'no-speech' is normal; ignore it so the session keeps running
+      if (event.error !== 'no-speech') {
+        console.warn('Speech recognition error:', event.error);
+        setIsRecording(false);
+      }
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    recognitionRef.current = recognition;
 
     return () => {
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.stop();
-        } catch (e) {}
-      }
+      try { recognition.stop(); } catch (_) {}
     };
   }, [language]);
 
-  const startRecording = () => {
+  const startRecording = useCallback(() => {
     if (!recognitionRef.current) return;
     try {
       recognitionRef.current.lang = language;
@@ -58,9 +84,9 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
     } catch (e) {
       console.warn('Recognition start exception:', e);
     }
-  };
+  }, [language]);
 
-  const stopRecording = () => {
+  const stopRecording = useCallback(() => {
     if (!recognitionRef.current) return;
     try {
       recognitionRef.current.stop();
@@ -68,19 +94,16 @@ export function useSpeechRecognition(initialLang = 'hi-IN') {
     } catch (e) {
       console.warn('Recognition stop exception:', e);
     }
-  };
+  }, []);
 
-  const toggleRecording = () => {
-    if (isRecording) {
-      stopRecording();
-    } else {
-      startRecording();
-    }
-  };
+  const toggleRecording = useCallback(() => {
+    if (isRecording) stopRecording(); else startRecording();
+  }, [isRecording, startRecording, stopRecording]);
 
-  const clearTranscript = () => {
+  const clearTranscript = useCallback(() => {
+    committedRef.current = '';
     setTranscript('');
-  };
+  }, []);
 
   return {
     isRecording,
