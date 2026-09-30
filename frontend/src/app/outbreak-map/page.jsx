@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import IndiaMap from '@/components/map/IndiaMap';
-import { MapPin, Download, Code, Layers } from 'lucide-react';
+import { MapPin, Download, Code, Layers, X } from 'lucide-react';
 import { downloadJSON } from '@/lib/utils';
 import Toast from '@/components/common/Toast';
 
@@ -65,42 +65,20 @@ export default function OutbreakMapPage() {
         </div>
       )}
 
-      {/* Header */}
-      <div className="enterprise-card rounded-xl p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-4 border-l-govAccent">
+      <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2">
-            <MapPin className="w-4 h-4 text-govAccent" />
-            <span className="text-xs font-mono font-bold uppercase text-govAccent">
-              Geospatial Epidemic Surveillance Layer
-            </span>
-          </div>
-          <h2 className="text-lg font-bold text-white mt-0.5">
-            National GIS Outbreak & Buffer Heatmap Layer
-          </h2>
-          <p className="text-xs text-slate-400">
-            Interactive RFC 7946 geospatial layer mapped to data.gov.in and IDSP surveillance grids for District Magistrates and State Health Secretaries.
-          </p>
+          <h1 className="text-3xl font-semibold tracking-tight">Outbreak Map</h1>
+          <p className="text-ink-2 mt-1 max-w-2xl">Health centres coloured by stock status. Select a marker for details.</p>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setShowGeoJSONModal(true)}
-            className="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder flex items-center gap-1.5 transition"
-          >
-            <Code className="w-3.5 h-3.5" />
-            <span>Inspect GeoJSON</span>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => setShowGeoJSONModal(true)} className="btn btn-plain">
+            <Code className="w-4 h-4" aria-hidden="true" /> View data
           </button>
-          <button
-            type="button"
-            onClick={handleExportGeoJSON}
-            className="px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs font-mono flex items-center gap-1.5 shadow transition"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Export GeoJSON Layer</span>
+          <button type="button" onClick={handleExportGeoJSON} className="btn btn-quiet">
+            <Download className="w-4 h-4" aria-hidden="true" /> Export map data
           </button>
         </div>
-      </div>
+      </header>
 
       {/* Map View */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -110,39 +88,39 @@ export default function OutbreakMapPage() {
 
         {/* Selected PHC Details Card */}
         <div className="lg:col-span-3 space-y-4">
-          <div className="enterprise-card rounded-xl p-4 space-y-3 font-mono text-xs">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5 border-b border-govBorder pb-2">
-              <Layers className="w-4 h-4 text-govAccent" />
+          <div className="enterprise-card rounded-2xl p-4 space-y-3 tabular-nums text-xs">
+            <h3 className="text-xs font-semibold text-ink   flex items-center gap-1.5 border-b border-line pb-2">
+              <Layers className="w-4 h-4 text-accent" />
               Node Spatial Telemetry
             </h3>
 
             {selectedPHC ? (
               <div className="space-y-2">
-                <p className="font-bold text-cyan-400 text-sm">{selectedPHC.name || selectedPHC.phc_name}</p>
-                <p className="text-slate-300">
+                <p className="font-semibold text-accent text-sm">{selectedPHC.name || selectedPHC.phc_name}</p>
+                <p className="text-ink-2">
                   {selectedPHC.district}, {selectedPHC.state}
                 </p>
-                <div className="p-2.5 rounded bg-[#0d182e] border border-govBorder space-y-1">
+                <div className="p-2.5 rounded bg-fill border border-line space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Risk Tier:</span>
-                    <strong className="text-white">{selectedPHC.status}</strong>
+                    <span className="text-ink-2">Risk Tier:</span>
+                    <strong className="text-ink">{selectedPHC.status}</strong>
                   </div>
                   {selectedPHC.ors !== undefined && (
                     <div className="flex justify-between">
-                      <span className="text-slate-400">ORS:</span>
-                      <strong className="text-amber-400">{selectedPHC.ors} pkts</strong>
+                      <span className="text-ink-2">ORS:</span>
+                      <strong className="text-warn">{selectedPHC.ors} pkts</strong>
                     </div>
                   )}
                   {selectedPHC.asv !== undefined && (
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Antivenom:</span>
-                      <strong className="text-rose-400">{selectedPHC.asv} vials</strong>
+                      <span className="text-ink-2">Antivenom:</span>
+                      <strong className="text-bad">{selectedPHC.asv} vials</strong>
                     </div>
                   )}
                 </div>
               </div>
             ) : (
-              <p className="text-slate-400 text-xs py-4 text-center">
+              <p className="text-ink-2 text-xs py-4 text-center">
                 Click any node on the map to inspect its real-time GPS coordinates, stock buffers, and IDSP hazard alert levels.
               </p>
             )}
@@ -152,35 +130,35 @@ export default function OutbreakMapPage() {
 
       {/* GeoJSON Modal */}
       {showGeoJSONModal && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="enterprise-card max-w-2xl w-full rounded-xl p-5 space-y-3 border border-govBorder shadow-2xl">
-            <div className="flex justify-between items-center border-b border-govBorder pb-2">
-              <h4 className="text-sm font-bold font-mono text-white flex items-center gap-2">
-                <Code className="w-4 h-4 text-govAccent" />
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="enterprise-card max-w-2xl w-full rounded-2xl p-5 space-y-3 border border-line shadow-none">
+            <div className="flex justify-between items-center border-b border-line pb-2">
+              <h4 className="text-sm font-semibold tabular-nums text-ink flex items-center gap-2">
+                <Code className="w-4 h-4 text-accent" />
                 GIS GeoJSON Outbreak Layer (RFC 7946 Standard)
               </h4>
               <button
                 onClick={() => setShowGeoJSONModal(false)}
-                className="text-slate-400 hover:text-white"
+                className="text-ink-2 hover:text-ink"
               >
-                ✕
+                <X className="w-5 h-5" />
               </button>
             </div>
-            <pre className="bg-[#0d182e] p-3 rounded-lg border border-govBorder font-mono text-[11px] text-cyan-300 max-h-72 overflow-y-auto">
+            <pre className="bg-fill p-3 rounded-lg border border-line tabular-nums text-xs text-accent max-h-72 overflow-y-auto">
               {JSON.stringify(sampleGeoJSON, null, 2)}
             </pre>
-            <div className="flex justify-end gap-2 pt-2 border-t border-govBorder">
+            <div className="flex justify-end gap-2 pt-2 border-t border-line">
               <button
                 type="button"
                 onClick={() => setShowGeoJSONModal(false)}
-                className="px-3 py-1.5 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 text-xs font-mono border border-govBorder"
+                className="px-3 py-1.5 rounded bg-fill hover:bg-fill text-ink-2 text-xs tabular-nums border border-line"
               >
                 Close
               </button>
               <button
                 type="button"
                 onClick={handleExportGeoJSON}
-                className="px-3.5 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs font-mono"
+                className="px-3.5 py-1.5 rounded bg-accent-fill hover:brightness-110 text-white font-semibold text-xs tabular-nums"
               >
                 Download .geojson
               </button>

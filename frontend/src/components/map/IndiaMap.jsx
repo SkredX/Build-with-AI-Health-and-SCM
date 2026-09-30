@@ -24,14 +24,21 @@ const Popup = dynamic(
 export default function IndiaMap({ phcs = [], onSelectPHC }) {
   const [mounted, setMounted] = useState(false);
 
+  const [dark, setDark] = useState(false);
+
   useEffect(() => {
     setMounted(true);
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    setDark(mq.matches);
+    const onChange = (e) => setDark(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
   }, []);
 
   if (!mounted) {
     return (
-      <div className="w-full h-96 rounded-xl bg-[#0d182e] border border-govBorder flex items-center justify-center font-mono text-xs text-slate-400">
-        Initializing Spatial GIS Layer...
+      <div className="w-full h-96 rounded-2xl bg-fill border border-line flex items-center justify-center tabular-nums text-sm text-ink-2">
+        Loading map...
       </div>
     );
   }
@@ -56,13 +63,13 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
   const displayList = phcs.length > 0 ? phcs : defaultPhcs;
 
   const getColor = (status) => {
-    if (status === 'Critical') return '#ef4444';
-    if (status === 'Warning') return '#f59e0b';
-    return '#10b981';
+    if (status === 'Critical') return '#ff3b30';
+    if (status === 'Warning') return '#ff9500';
+    return '#34c759';
   };
 
   return (
-    <div className="w-full h-[520px] rounded-xl overflow-hidden border border-govBorder shadow-2xl relative">
+    <div className="w-full h-[520px] rounded-2xl overflow-hidden border border-line shadow-none relative">
       <MapContainer
         center={center}
         zoom={zoom}
@@ -70,8 +77,9 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
         className="w-full h-full"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          key={dark ? 'dark' : 'light'}
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url={`https://{s}.basemaps.cartocdn.com/${dark ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`}
         />
 
         {displayList.map((p, idx) => {
@@ -97,9 +105,9 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
               }}
             >
               <Popup>
-                <div className="p-1 font-mono text-xs text-slate-900 space-y-1">
-                  <p className="font-bold text-slate-950 text-sm">{p.phc_name || p.name}</p>
-                  <p className="text-slate-600">
+                <div className="p-1 tabular-nums text-xs text-slate-900 space-y-1">
+                  <p className="font-semibold text-ink text-sm">{p.phc_name || p.name}</p>
+                  <p className="text-ink-3">
                     {p.district}, {p.state}
                   </p>
                   <div className="pt-1 border-t border-slate-200">
@@ -115,19 +123,19 @@ export default function IndiaMap({ phcs = [], onSelectPHC }) {
       </MapContainer>
 
       {/* Map Legend Overlay */}
-      <div className="absolute bottom-4 right-4 bg-[#070d1f]/90 border border-govBorder p-3 rounded-lg z-[1000] text-[11px] font-mono space-y-1 backdrop-blur-sm">
-        <p className="font-bold text-white uppercase text-[10px]">Triage Risk Tier</p>
+      <div className="absolute bottom-4 right-4 border p-3 rounded-xl z-[1000] text-sm space-y-1.5 glass">
+        <p className="font-semibold text-ink  text-xs">Stock status</p>
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-          <span className="text-slate-300">Tier 1: Critical (Stockout Risk)</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-bad" />
+          <span className="text-ink-2">Critical</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-          <span className="text-slate-300">Tier 2: Warning Buffer</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-warn" />
+          <span className="text-ink-2">Warning</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-          <span className="text-slate-300">Tier 3: Optimal Reserve</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-ok" />
+          <span className="text-ink-2">Optimal</span>
         </div>
       </div>
     </div>

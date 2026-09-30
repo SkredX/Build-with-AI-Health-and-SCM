@@ -12,31 +12,31 @@ export default function Toast({ message, type = 'info', onClose, duration = 4000
   }, [duration, onClose]);
 
   const icons = {
-    success: <CheckCircle className="w-4 h-4 text-clinicalEmerald flex-shrink-0" />,
-    warning: <AlertTriangle className="w-4 h-4 text-warningAmber flex-shrink-0" />,
-    error: <AlertTriangle className="w-4 h-4 text-alertRed flex-shrink-0" />,
-    info: <Info className="w-4 h-4 text-govAccent flex-shrink-0" />,
+    success: <CheckCircle className="w-4 h-4 text-ok flex-shrink-0" />,
+    warning: <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0" />,
+    error: <AlertTriangle className="w-4 h-4 text-bad flex-shrink-0" />,
+    info: <Info className="w-4 h-4 text-accent flex-shrink-0" />,
   };
 
   const borders = {
-    success: 'border-clinicalEmerald/40',
-    warning: 'border-warningAmber/40',
-    error: 'border-alertRed/40',
-    info: 'border-govAccent/40',
+    success: 'border-ok/40',
+    warning: 'border-warn/40',
+    error: 'border-bad/40',
+    info: 'border-accent/40',
   };
 
   return (
     <div
       className={`enterprise-card p-3 rounded-lg border ${
         borders[type] || borders.info
-      } shadow-2xl text-xs text-white flex items-center justify-between gap-3 font-mono transition-all animate-fade-in`}
+      } shadow-none text-xs text-ink flex items-center justify-between gap-3 tabular-nums transition-all animate-fade-in`}
     >
       <div className="flex items-center gap-2">
         {icons[type]}
         <span>{message}</span>
       </div>
       {onClose && (
-        <button onClick={onClose} className="text-slate-400 hover:text-white transition">
+        <button onClick={onClose} className="text-ink-2 hover:text-ink transition">
           <X className="w-3.5 h-3.5" />
         </button>
       )}

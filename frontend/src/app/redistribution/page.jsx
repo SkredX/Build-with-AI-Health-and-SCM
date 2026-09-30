@@ -97,50 +97,28 @@ export default function RedistributionPage() {
         </div>
       )}
 
-      {/* Top Banner */}
-      <div className="enterprise-card rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-l-4 border-l-govAccent">
+      <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 status-pulse-emerald" />
-            <span className="text-xs font-mono font-bold uppercase text-cyan-400">
-              District Lateral Logistics Optimization
-            </span>
-          </div>
-          <h2 className="text-lg font-bold text-white mt-0.5">
-            Inter-PHC Emergency Stock Balancing Network
-          </h2>
-          <p className="text-xs text-slate-400">
-            Rebalance vital pharmaceuticals between surplus and deficit health centres directly via district 108 ambulances or rapid couriers without central warehouse latency.
-          </p>
+          <h1 className="text-3xl font-semibold tracking-tight">Transfers</h1>
+          <p className="text-ink-2 mt-1 max-w-2xl">Move medicine from centres with a surplus to centres that are running low, by ambulance or courier.</p>
         </div>
-
-        <div className="flex items-center space-x-3 text-xs font-mono">
-          <div className="bg-[#0d182e] p-2.5 rounded-lg border border-govBorder text-center">
-            <span className="text-[10px] text-slate-400 block">Surplus Hub</span>
-            <span className="text-white font-bold">Jamwa Ramgarh</span>
-          </div>
-          <div className="bg-[#0d182e] p-2.5 rounded-lg border border-govBorder text-center">
-            <span className="text-[10px] text-slate-400 block">Critical Need</span>
-            <span className="text-rose-400 font-bold">Chomu (Antivenom)</span>
-          </div>
-        </div>
-      </div>
+      </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Form Column (5 cols) */}
-        <div className="lg:col-span-5 enterprise-card rounded-xl p-5 space-y-4">
-          <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono border-b border-govBorder pb-2 flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4 text-govAccent" />
+        <div className="lg:col-span-5 enterprise-card rounded-2xl p-5 space-y-4">
+          <h3 className="text-xs font-semibold text-ink   tabular-nums border-b border-line pb-2 flex items-center gap-2">
+            <ArrowLeftRight className="w-4 h-4 text-accent" />
             Initiate Lateral Stock Transfer
           </h3>
 
-          <div className="space-y-3 text-xs font-mono">
+          <div className="space-y-3 text-xs tabular-nums">
             <div>
-              <label className="block text-slate-400 mb-1">Source Health Centre (Surplus)</label>
+              <label className="block text-ink-2 mb-1">Source Health Centre (Surplus)</label>
               <select
                 value={sourceIdx}
                 onChange={(e) => setSourceIdx(e.target.value)}
-                className="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+                className="field"
               >
                 <option value="3">Jamwa Ramgarh PHC (8 Antivenom, 210 ORS)</option>
                 <option value="4">Phulera PHC (10 Antivenom, 300 ORS)</option>
@@ -150,13 +128,13 @@ export default function RedistributionPage() {
             </div>
 
             <div>
-              <label className="block text-slate-400 mb-1">
+              <label className="block text-ink-2 mb-1">
                 Destination Health Centre (Deficit / Critical)
               </label>
               <select
                 value={destIdx}
                 onChange={(e) => setDestIdx(e.target.value)}
-                className="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+                className="field"
               >
                 <option value="2">Chomu PHC (1 Antivenom - CRITICAL)</option>
                 <option value="0">Sanganer PHC (18 Paracetamol - WARNING)</option>
@@ -166,11 +144,11 @@ export default function RedistributionPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-slate-400 mb-1">Commodity</label>
+                <label className="block text-ink-2 mb-1">Commodity</label>
                 <select
                   value={item}
                   onChange={(e) => setItem(e.target.value)}
-                  className="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+                  className="field"
                 >
                   <option value="antivenom">Polyvalent Antivenom</option>
                   <option value="ors">ORS Packets</option>
@@ -179,24 +157,24 @@ export default function RedistributionPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-slate-400 mb-1">Quantity</label>
+                <label className="block text-ink-2 mb-1">Quantity</label>
                 <input
                   type="number"
                   min="1"
                   max="50"
                   value={qty}
                   onChange={(e) => setQty(parseInt(e.target.value, 10) || 1)}
-                  className="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+                  className="field"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-slate-400 mb-1">Dispatch Mechanism</label>
+              <label className="block text-ink-2 mb-1">Dispatch Mechanism</label>
               <select
                 value={vehicle}
                 onChange={(e) => setVehicle(e.target.value)}
-                className="w-full bg-[#0d182e] border border-govBorder rounded px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+                className="field"
               >
                 <option value="Ambulance 108 Return Leg">Ambulance 108 Return Leg (ETA ~45 mins)</option>
                 <option value="District Vaccine Cold-Van">District Vaccine Cold-Van (ETA ~1.2 hrs)</option>
@@ -207,7 +185,7 @@ export default function RedistributionPage() {
             <button
               type="button"
               onClick={handleExecuteTransfer}
-              className="w-full py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg transition active:scale-95"
+              className="w-full py-2.5 rounded-lg bg-accent-fill hover:brightness-110 text-white font-semibold   text-xs flex items-center justify-center gap-2 shadow-none transition active:scale-95"
             >
               <ArrowLeftRight className="w-4 h-4" />
               <span>Dispatch Lateral Stock Rebalance</span>
@@ -216,45 +194,45 @@ export default function RedistributionPage() {
         </div>
 
         {/* Missions Feed (7 cols) */}
-        <div className="lg:col-span-7 enterprise-card rounded-xl p-5 space-y-4">
-          <div className="flex justify-between items-center border-b border-govBorder pb-2">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-              <Truck className="w-4 h-4 text-govAccent" />
+        <div className="lg:col-span-7 enterprise-card rounded-2xl p-5 space-y-4">
+          <div className="flex justify-between items-center border-b border-line pb-2">
+            <h3 className="text-xs font-semibold text-ink   tabular-nums flex items-center gap-2">
+              <Truck className="w-4 h-4 text-accent" />
               Active Lateral Transfer Missions
             </h3>
-            <span className="text-[10px] font-mono text-emerald-400">Autonomous Routing Active</span>
+            <span className="text-xs tabular-nums text-ok">Autonomous Routing Active</span>
           </div>
 
           <div className="space-y-3 max-h-[420px] overflow-y-auto pr-1">
             {missions.map((mission) => (
               <div
                 key={mission.id}
-                className="p-3.5 rounded-lg bg-[#0d182e] border border-govBorder flex items-center justify-between text-xs font-mono"
+                className="p-3.5 rounded-lg bg-fill border border-line flex items-center justify-between text-xs tabular-nums"
               >
                 <div>
                   <div className="flex items-center space-x-2">
-                    <span className="font-bold text-cyan-400">{mission.id}</span>
-                    <span className="text-white font-bold">
+                    <span className="font-semibold text-accent">{mission.id}</span>
+                    <span className="text-ink font-semibold">
                       {mission.from} &rarr; {mission.to}
                     </span>
                   </div>
-                  <p className="text-slate-200 text-xs mt-1 font-semibold">{mission.item}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
+                  <p className="text-ink text-xs mt-1 font-semibold">{mission.item}</p>
+                  <p className="text-xs text-ink-2 mt-0.5 flex items-center gap-1">
                     {mission.mode.includes('Drone') ? (
-                      <Plane className="w-3 h-3 text-cyan-400" />
+                      <Plane className="w-3 h-3 text-accent" />
                     ) : (
-                      <Truck className="w-3 h-3 text-amber-400" />
+                      <Truck className="w-3 h-3 text-warn" />
                     )}
                     <span>Mechanism: {mission.mode}</span>
                   </p>
                 </div>
                 <div className="text-right">
                   {mission.status === 'Completed' ? (
-                    <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1">
+                    <span className="bg-ok/10 text-ok border border-ok/20 px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3" /> COMPLETED
                     </span>
                   ) : (
-                    <span className="bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 animate-pulse">
+                    <span className="bg-accent/10 text-accent border border-accent/20 px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 animate-pulse">
                       <Clock className="w-3 h-3" /> EN ROUTE ({mission.eta})
                     </span>
                   )}

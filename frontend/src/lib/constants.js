@@ -6,17 +6,17 @@ export const INDIAN_STATES = [
 ];
 
 export const URGENCY_LEVELS = {
-  'CRITICAL EMERGENCY': { color: 'rose', bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/30' },
-  'EMERGENCY RED': { color: 'rose', bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/30' },
-  'URGENT YELLOW': { color: 'amber', bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/30' },
-  'ROUTINE': { color: 'emerald', bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/30' },
+  'CRITICAL EMERGENCY': { color: 'bad', bg: 'bg-bad/10', text: 'text-bad', border: 'border-bad/30' },
+  'EMERGENCY RED': { color: 'bad', bg: 'bg-bad/10', text: 'text-bad', border: 'border-bad/30' },
+  'URGENT YELLOW': { color: 'warn', bg: 'bg-warn/10', text: 'text-warn', border: 'border-warn/30' },
+  'ROUTINE': { color: 'ok', bg: 'bg-ok/10', text: 'text-ok', border: 'border-ok/30' },
 };
 
 export const STATUS_CONFIG = {
-  Critical: { bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/20', dot: 'bg-rose-500' },
-  Warning: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', dot: 'bg-amber-400' },
-  Operational: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', dot: 'bg-emerald-400' },
-  Optimal: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', dot: 'bg-emerald-400' },
+  Critical: { bg: 'bg-bad/10', text: 'text-bad', border: 'border-bad/20', dot: 'bg-bad' },
+  Warning: { bg: 'bg-warn/10', text: 'text-warn', border: 'border-warn/20', dot: 'bg-warn' },
+  Operational: { bg: 'bg-ok/10', text: 'text-ok', border: 'border-ok/20', dot: 'bg-ok' },
+  Optimal: { bg: 'bg-ok/10', text: 'text-ok', border: 'border-ok/20', dot: 'bg-ok' },
 };
 
 export const DRUG_CATEGORIES = [

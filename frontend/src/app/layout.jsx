@@ -1,19 +1,27 @@
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 
 export const metadata = {
-  title: 'PHC-Connect Enterprise | National Health Mission',
-  description: 'Federated AI platform for national-scale health resource and supply chain management across India\'s PHC network',
+  title: 'PHC-Connect | Health supply chain and triage',
+  description:
+    "AI-assisted stock forecasting, lateral redistribution and field triage across India's primary health centres.",
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f2f2f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full dark">
+    <html lang="en">
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -21,14 +29,10 @@ export default function RootLayout({ children }) {
           crossOrigin=""
         />
       </head>
-      <body className="h-full flex flex-col font-sans antialiased grid-bg text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+      <body className="min-h-screen flex flex-col font-sans antialiased selection:bg-accent/30">
         <Navbar />
-        <main className="flex-1 max-w-[1700px] w-full mx-auto px-4 sm:px-6 py-6">
-          {children}
-        </main>
-        <footer className="bg-[#070d1f] border-t border-govBorder py-3 text-center text-[10px] font-mono text-slate-500">
-          PHC-Connect Enterprise © 2026 | National Health Mission • ABDM Compliant • Powered by Google Gemini AI
-        </footer>
+        <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-6">{children}</main>
+        <Footer />
       </body>
     </html>
   );

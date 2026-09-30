@@ -107,39 +107,27 @@ export default function AuditPage() {
         </div>
       )}
 
-      {/* Header */}
-      <div className="enterprise-card rounded-xl p-5 space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-govBorder pb-4">
-          <div>
-            <h2 className="text-base font-bold text-white uppercase font-mono flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-govAccent" />
-              Immutable District Clinical & Stock Audit Trail
-            </h2>
-            <p className="text-xs text-slate-400">
-              Verifiable chronological ledger linked to ABDM ABHA registries and NHM stock auto-deductions.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleExportCSV}
-            className="px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 font-mono transition"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export CSV</span>
-          </button>
+      <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight">Audit Log</h1>
+          <p className="text-ink-2 mt-1 max-w-2xl">A record of every triage decision and stock change.</p>
         </div>
+        <button type="button" onClick={handleExportCSV} className="btn btn-quiet">
+          <Download className="w-4 h-4" aria-hidden="true" /> Export CSV
+        </button>
+      </header>
 
+      <div className="card p-5 space-y-4">
         {/* Filters */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs tabular-nums">
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-ink-3 absolute left-3 top-3.5" />
             <input
               type="text"
               placeholder="Search Patient ID, ABHA, Diagnosis..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-[#0d182e] border border-govBorder rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-govAccent"
+              className="field !pl-9"
             />
           </div>
 
@@ -147,7 +135,7 @@ export default function AuditPage() {
             <select
               value={phcFilter}
               onChange={(e) => setPhcFilter(e.target.value)}
-              className="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+              className="field"
             >
               <option value="">All Health Centres (6 PHCs)</option>
               <option value="Sanganer PHC">Sanganer PHC</option>
@@ -162,7 +150,7 @@ export default function AuditPage() {
             <select
               value={urgencyFilter}
               onChange={(e) => setUrgencyFilter(e.target.value)}
-              className="w-full bg-[#0d182e] border border-govBorder rounded-lg px-3 py-2 text-white focus:outline-none focus:border-govAccent"
+              className="field"
             >
               <option value="">All Urgency Levels</option>
               <option value="EMERGENCY">Emergency / Critical</option>
@@ -174,8 +162,8 @@ export default function AuditPage() {
 
         {/* Audit Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#0d182e] text-slate-400 border-b border-govBorder uppercase text-[10px]">
+          <table className="w-full text-left text-xs tabular-nums">
+            <thead className="bg-fill text-ink-2 border-b border-line  text-xs">
               <tr>
                 <th className="p-3">Timestamp</th>
                 <th className="p-3">Patient / ABHA ID</th>
@@ -187,38 +175,38 @@ export default function AuditPage() {
                 <th className="p-3 text-right">Details</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-govBorder text-slate-300">
+            <tbody className="divide-y divide-line text-ink-2">
               {filteredLogs.map((log, index) => (
-                <tr key={index} className="hover:bg-slate-800/30 transition">
-                  <td className="p-3 text-slate-400">{log.time}</td>
+                <tr key={index} className="hover:bg-fill transition">
+                  <td className="p-3 text-ink-2">{log.time}</td>
                   <td className="p-3">
-                    <span className="font-bold text-cyan-400">{log.id}</span>
-                    <span className="block text-[10px] text-teal-300">ABHA: {log.abha}</span>
+                    <span className="font-semibold text-accent">{log.id}</span>
+                    <span className="block text-xs text-accent">ABHA: {log.abha}</span>
                   </td>
-                  <td className="p-3 font-semibold text-white">{log.phc}</td>
-                  <td className="p-3 text-slate-300">{log.type}</td>
-                  <td className="p-3 font-bold text-white">
-                    {log.diagnosis} <span className="text-[10px] text-slate-400 font-normal">({log.snomed})</span>
+                  <td className="p-3 font-semibold text-ink">{log.phc}</td>
+                  <td className="p-3 text-ink-2">{log.type}</td>
+                  <td className="p-3 font-semibold text-ink">
+                    {log.diagnosis} <span className="text-xs text-ink-2 font-normal">({log.snomed})</span>
                   </td>
                   <td className="p-3">
                     <span
-                      className={`font-bold ${
+                      className={`font-semibold ${
                         log.urgency.includes('EMERGENCY') || log.urgency.includes('CRITICAL')
-                          ? 'text-rose-400'
+                          ? 'text-bad'
                           : log.urgency.includes('URGENT')
-                          ? 'text-amber-400'
-                          : 'text-emerald-400'
+                          ? 'text-warn'
+                          : 'text-ok'
                       }`}
                     >
                       {log.urgency}
                     </span>
                   </td>
-                  <td className="p-3 text-emerald-400 font-bold">{log.conf}</td>
+                  <td className="p-3 text-ok font-semibold">{log.conf}</td>
                   <td className="p-3 text-right">
                     <button
                       type="button"
                       onClick={() => setSelectedEntry(log)}
-                      className="text-cyan-400 hover:text-cyan-300 underline font-bold"
+                      className="text-accent hover:text-accent underline font-semibold"
                     >
                       Inspect
                     </button>
@@ -232,56 +220,56 @@ export default function AuditPage() {
 
       {/* Entry Modal */}
       {selectedEntry && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="enterprise-card max-w-lg w-full rounded-xl p-5 space-y-4 border border-govBorder shadow-2xl font-mono text-xs">
-            <div className="flex justify-between items-center border-b border-govBorder pb-2">
-              <h3 className="font-bold text-white uppercase flex items-center gap-2">
-                <Eye className="w-4 h-4 text-govAccent" />
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="enterprise-card max-w-lg w-full rounded-2xl p-5 space-y-4 border border-line shadow-none tabular-nums text-xs">
+            <div className="flex justify-between items-center border-b border-line pb-2">
+              <h3 className="font-semibold text-ink  flex items-center gap-2">
+                <Eye className="w-4 h-4 text-accent" />
                 Audit Entry Telemetry (ABDM M2)
               </h3>
-              <button onClick={() => setSelectedEntry(null)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setSelectedEntry(null)} className="text-ink-2 hover:text-ink">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             <div className="space-y-2.5">
-              <div className="grid grid-cols-2 gap-2 bg-[#0d182e] p-3 rounded border border-govBorder">
+              <div className="grid grid-cols-2 gap-2 bg-fill p-3 rounded border border-line">
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase">Patient Reference</span>
-                  <p className="font-bold text-cyan-400">{selectedEntry.id}</p>
-                  <p className="text-[10px] text-teal-300">ABHA: {selectedEntry.abha}</p>
+                  <span className="text-ink-3 text-xs ">Patient Reference</span>
+                  <p className="font-semibold text-accent">{selectedEntry.id}</p>
+                  <p className="text-xs text-accent">ABHA: {selectedEntry.abha}</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase">Timestamp</span>
-                  <p className="text-slate-300">{selectedEntry.time}</p>
+                  <span className="text-ink-3 text-xs ">Timestamp</span>
+                  <p className="text-ink-2">{selectedEntry.time}</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase">Health Centre</span>
-                  <p className="text-white font-bold">{selectedEntry.phc}</p>
+                  <span className="text-ink-3 text-xs ">Health Centre</span>
+                  <p className="text-ink font-semibold">{selectedEntry.phc}</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 text-[10px] uppercase">Urgency</span>
-                  <p className="font-bold text-rose-400">{selectedEntry.urgency}</p>
+                  <span className="text-ink-3 text-xs ">Urgency</span>
+                  <p className="font-semibold text-bad">{selectedEntry.urgency}</p>
                 </div>
               </div>
 
-              <div className="bg-[#0d182e] p-3 rounded border border-govBorder space-y-1">
-                <span className="text-slate-500 text-[10px] uppercase">Provisional Diagnosis</span>
-                <p className="text-white font-bold">{selectedEntry.diagnosis}</p>
-                <p className="text-[11px] text-cyan-400">SNOMED-CT Code: {selectedEntry.snomed}</p>
+              <div className="bg-fill p-3 rounded border border-line space-y-1">
+                <span className="text-ink-3 text-xs ">Provisional Diagnosis</span>
+                <p className="text-ink font-semibold">{selectedEntry.diagnosis}</p>
+                <p className="text-xs text-accent">SNOMED-CT Code: {selectedEntry.snomed}</p>
               </div>
 
-              <div className="bg-[#0d182e] p-3 rounded border border-govBorder space-y-1">
-                <span className="text-slate-500 text-[10px] uppercase">Prescribed Regimen</span>
-                <p className="text-slate-200">{selectedEntry.meds}</p>
+              <div className="bg-fill p-3 rounded border border-line space-y-1">
+                <span className="text-ink-3 text-xs ">Prescribed Regimen</span>
+                <p className="text-ink">{selectedEntry.meds}</p>
               </div>
             </div>
 
-            <div className="flex justify-end pt-2 border-t border-govBorder">
+            <div className="flex justify-end pt-2 border-t border-line">
               <button
                 type="button"
                 onClick={() => setSelectedEntry(null)}
-                className="px-4 py-1.5 rounded bg-cyan-600 text-slate-950 font-bold text-xs"
+                className="px-4 py-1.5 rounded bg-accent-fill text-white font-semibold text-xs"
               >
                 Close
               </button>

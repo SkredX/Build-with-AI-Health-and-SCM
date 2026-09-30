@@ -15,19 +15,19 @@ export default function VoiceRecorder({
 }) {
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center text-xs text-slate-400">
+      <div className="flex justify-between items-center text-xs text-ink-2">
         <span>Record field audio memo in your dialect:</span>
-        <div className="flex items-center space-x-1 text-[11px] font-mono">
-          <span className="text-slate-500 mr-1">Dialect:</span>
+        <div className="flex items-center space-x-1 text-xs tabular-nums">
+          <span className="text-ink-3 mr-1">Dialect:</span>
           {SPEECH_LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               type="button"
               onClick={() => onLanguageChange(lang.code)}
-              className={`px-2 py-0.5 rounded text-[10px] font-mono transition ${
+              className={`px-2 py-0.5 rounded text-xs tabular-nums transition ${
                 language === lang.code
-                  ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40'
-                  : 'text-slate-400 hover:text-white bg-[#0d182e]'
+                  ? 'bg-accent/20 text-accent font-semibold border border-accent/40'
+                  : 'text-ink-2 hover:text-ink bg-fill'
               }`}
             >
               {lang.short}
@@ -37,19 +37,19 @@ export default function VoiceRecorder({
       </div>
 
       {/* Recording Box */}
-      <div className="p-4 rounded-lg bg-[#0d182e] border border-govBorder text-center space-y-3 relative overflow-hidden">
+      <div className="p-4 rounded-lg bg-fill border border-line text-center space-y-3 relative overflow-hidden">
         {isRecording && (
-          <div className="absolute inset-0 bg-cyan-500/5 animate-pulse pointer-events-none" />
+          <div className="absolute inset-0 bg-accent/5 animate-pulse pointer-events-none" />
         )}
 
-        <div className="text-xs font-mono relative z-10">
+        <div className="text-xs tabular-nums relative z-10">
           {isRecording ? (
-            <span className="text-rose-400 font-bold flex items-center justify-center gap-1.5 animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-rose-500" />
-              Recording Live Voice ({language})... Speak Now
+            <span className="text-bad font-semibold flex items-center justify-center gap-1.5 animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-bad" />
+              Recording ({language}). Tap to stop
             </span>
           ) : (
-            <span className="text-slate-400">Microphone Ready • Click Mic to Speak or Edit Below</span>
+            <span className="text-ink-2">Tap the microphone and speak</span>
           )}
         </div>
 
@@ -57,27 +57,27 @@ export default function VoiceRecorder({
           <button
             type="button"
             onClick={onToggleRecording}
-            className={`w-12 h-12 rounded-full text-white flex items-center justify-center text-lg shadow-lg transition-transform active:scale-95 ${
+            className={`w-16 h-16 rounded-full text-white flex items-center justify-center transition-transform active:scale-95 ${
               isRecording
-                ? 'bg-rose-600 animate-bounce'
-                : 'bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500'
+                ? 'bg-bad'
+                : 'bg-accent-fill'
             }`}
             title={isRecording ? 'Stop Recording' : 'Start Voice Recording'}
           >
-            {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+            {isRecording ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Live Editable Transcript */}
         <div className="text-left space-y-1 relative z-10">
-          <label className="block text-[10px] font-mono text-slate-400">
-            Spoken Memo Transcript (Speech-to-Text or Type Direct):
+          <label className="block text-xs tabular-nums text-ink-2">
+            Transcript (you can edit it)
           </label>
           <textarea
             rows={3}
             value={transcript}
             onChange={(e) => onTranscriptChange(e.target.value)}
-            className="w-full bg-[#1c2541] border border-govBorder rounded p-2.5 text-xs text-white font-mono focus:outline-none focus:border-govAccent"
+            className="field"
             placeholder="Microphone transcription will appear here. e.g. रोगी ने तेज दस्त और उल्टी की शिकायत है। बहुत प्यास लाग री है..."
           />
         </div>
@@ -87,10 +87,10 @@ export default function VoiceRecorder({
         type="button"
         onClick={onSubmit}
         disabled={loading || !transcript.trim()}
-        className="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99] disabled:opacity-50"
+        className="btn btn-primary w-full"
       >
         <Volume2 className="w-4 h-4" />
-        {loading ? 'Processing with Gemini...' : 'Process Voice Intake with Gemini'}
+        {loading ? 'Analysing...' : 'Analyse voice memo'}
       </button>
     </div>
   );

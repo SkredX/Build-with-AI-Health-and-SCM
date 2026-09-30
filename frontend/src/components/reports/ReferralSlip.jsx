@@ -10,8 +10,8 @@ export default function ReferralSlip({ patientData, result, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="enterprise-card max-w-xl w-full rounded-xl p-6 border border-govBorder shadow-2xl space-y-4">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm overflow-y-auto z-50 flex items-center justify-center p-4">
+      <div className="card max-w-xl w-full p-5 space-y-4 my-auto">
         {/* Printable Area */}
         <div className="print-area bg-white text-slate-950 p-6 rounded-lg font-sans space-y-4 border border-slate-300 shadow">
           {/* Header */}
@@ -98,14 +98,14 @@ export default function ReferralSlip({ patientData, result, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded bg-[#0d182e] hover:bg-slate-800 text-slate-300 font-mono text-xs border border-govBorder transition"
+            className="btn btn-plain"
           >
             Close Preview
           </button>
           <button
             type="button"
             onClick={handlePrint}
-            className="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold font-mono text-xs flex items-center gap-1.5 transition"
+            className="btn btn-primary"
           >
             <Printer className="w-4 h-4" />
             <span>Print Referral Pass</span>
