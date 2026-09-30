@@ -143,7 +143,7 @@ export default function TriagePage() {
     else if (mode === 'image') textInput = 'Analyze prescription and extract medicine requirements.';
 
     try {
-      await runTriage({
+      const data = await runTriage({
         patient_id: patientData.patientId,
         patient_name: patientData.patientName,
         age: parseInt(patientData.age, 10) || 40,
@@ -154,9 +154,15 @@ export default function TriagePage() {
         input_mode: mode,
         image_base64: mode === 'image' ? uploadedImageBase64 : undefined,
       });
-      setToastMsg({ text: 'Patient successfully triaged & stock deducted!', type: 'success' });
+      if (data?.deductions?.offline) {
+        setToastMsg({ text: "Couldn't reach the server. Showing a basic offline estimate.", type: 'warning' });
+      } else if (data?.deductions?.heuristic_used) {
+        setToastMsg({ text: 'AI service unavailable. Showing a basic rule-based estimate.', type: 'warning' });
+      } else {
+        setToastMsg({ text: 'Patient triaged and stock updated.', type: 'success' });
+      }
     } catch (e) {
-      setToastMsg({ text: 'FastAPI triage fallback engaged (offline/heuristic)', type: 'warning' });
+      setToastMsg({ text: 'Something went wrong. Please try again.', type: 'warning' });
     }
   };
 

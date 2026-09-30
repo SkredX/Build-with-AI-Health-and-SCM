@@ -41,6 +41,8 @@ git push -u origin main
 | `GEMINI_MODEL` | a live model, e.g. `gemini-3.5-flash-lite` (check the AI Studio model list) |
 | `CORS_ORIGINS` | `*` for now; tighten in step 4 |
 
+Frontend project variables: `NEXT_PUBLIC_API_URL` (required) and `NEXT_PUBLIC_CARTO_KEY` (optional, see Troubleshooting).
+
 4. Deploy, then open `https://<backend>.vercel.app/health` (expect `{"status":"ok"}`) and `/docs`.
 
 ## 3. Deploy the frontend (Vercel project 2)
@@ -58,6 +60,21 @@ Redeploy the backend.
 - Frontend loads, and the Triage page returns a result.
 - Supply Radar charts and Outbreak Map render (the map uses CARTO tiles, which is fine for a demo).
 - Browser dev tools show no CORS errors.
+
+## Troubleshooting
+
+**Triage shows "Couldn't reach the server"** - the browser cannot call the backend.
+1. Open `https://<backend>.vercel.app/health`. It must return `{"status":"ok"}`. If not, check the backend project's deployment logs.
+2. In the *frontend* project, `NEXT_PUBLIC_API_URL` must be the backend URL (no trailing slash). Redeploy the frontend after changing it, because it is baked in at build time. If it is missing, the app calls `localhost:8000`, which fails on Vercel.
+3. `CORS_ORIGINS` on the backend must include the frontend URL (or `*`). Redeploy the backend after changing it.
+
+**Triage shows "AI service unavailable"** - the backend works, but Gemini failed. Open `https://<backend>.vercel.app/api/triage/status`. It returns `key_set`, `key_looks_valid`, the model, and the exact error.
+- `key_set: false`: add `GEMINI_API_KEY` to the *backend* project and redeploy.
+- `key_looks_valid: false`: Gemini keys usually start with `AIza`. Create one at https://aistudio.google.com/apikey.
+- 404 / model not found: set `GEMINI_MODEL` to a live model. The backend also tries a few fallback models automatically.
+- 429: free-tier rate limit. Wait a minute.
+
+**Map shows "API KEY REQUIRED"** - CARTO tiles now need a free key. Either leave `NEXT_PUBLIC_CARTO_KEY` empty (the map uses OpenStreetMap tiles) or get a free key at https://carto.com/basemaps/apikey and set `NEXT_PUBLIC_CARTO_KEY` in the *frontend* project, then redeploy. The key is visible in the browser, so restrict it to your domain in CARTO.
 
 ## Limits and caveats
 - **Vercel Hobby is for personal, non-commercial use only.** A hackathon or demo is fine; a commercial pilot needs a paid plan.

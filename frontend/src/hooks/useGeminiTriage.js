@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { offlineTriage } from '@/lib/offlineTriage';
 import { submitTriage } from '@/lib/api';
 
 export function useGeminiTriage() {
@@ -16,9 +17,12 @@ export function useGeminiTriage() {
       setResult(data);
       return data;
     } catch (err) {
-      console.error('Triage error:', err);
-      setError(err.message || 'Failed to process triage');
-      throw err;
+      console.error('Triage error (backend unreachable?):', err);
+      // Never leave the health worker with nothing: show a basic offline estimate.
+      const data = offlineTriage(payload);
+      setResult(data);
+      setError(err.message || 'Could not reach the server');
+      return data;
     } finally {
       setLoading(false);
     }

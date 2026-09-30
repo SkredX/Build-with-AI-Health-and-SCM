@@ -117,3 +117,6 @@ body {
 
 /* Leaflet */
 .leaflet-container { width: 100%; height: 100%; z-index: 1; font-family: inherit; }
+
+/* Dark look for keyless OpenStreetMap tiles */
+.osm-dark-tiles { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9) saturate(.7); }
