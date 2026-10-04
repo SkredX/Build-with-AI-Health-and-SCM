@@ -253,6 +253,6 @@ All tests verify:
 - [x] **4. Multilingual & Voice**: Speech recognition and regional audio protocols in Marwari, Hindi, Bengali, Tamil, and English.
 - [x] **5. Deployable Artifacts**: Docker Compose, FastAPI Swagger UI, and ABDM FHIR R4 exports.
 
-## Deployment Status
+## Deployment 
 
 Free-tier hosting without Docker (Vercel + Gemini free tier): see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
